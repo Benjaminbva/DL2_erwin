@@ -1,0 +1,9 @@
+model_name,tree,mean,std
+base,dynamic,153.5388,2.1388
+base,fixed,6.2604,0.5506
+eq. 9,dynamic,153.5678,2.5664
+eq. 9,fixed,6.2305,0.6064
+eq. 12,dynamic,153.0566,2.2965
+eq. 12,fixed,0.5608,0.0335
+eq. 13,dynamic,153.2135,2.3795
+eq. 13,fixed,0.0462,0.0027
