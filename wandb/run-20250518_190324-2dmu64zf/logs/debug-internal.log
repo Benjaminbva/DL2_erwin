@@ -1,0 +1,15 @@
+{"time":"2025-05-18T19:03:24.726649631+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/erwin-main/wandb/run-20250518_190324-2dmu64zf/logs/debug-core.log"}
+{"time":"2025-05-18T19:03:25.086374169+02:00","level":"INFO","msg":"created new stream","id":"2dmu64zf"}
+{"time":"2025-05-18T19:03:25.086396364+02:00","level":"INFO","msg":"stream: started","id":"2dmu64zf"}
+{"time":"2025-05-18T19:03:25.086446336+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"2dmu64zf"}
+{"time":"2025-05-18T19:03:25.086452436+02:00","level":"INFO","msg":"handler: started","stream_id":"2dmu64zf"}
+{"time":"2025-05-18T19:03:25.086515044+02:00","level":"INFO","msg":"sender: started","stream_id":"2dmu64zf"}
+{"time":"2025-05-18T19:03:25.439206004+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-18T19:28:04.698835994+02:00","level":"INFO","msg":"stream: closing","id":"2dmu64zf"}
+{"time":"2025-05-18T19:28:04.698858141+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-18T19:28:04.698877732+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-18T19:28:06.841243406+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-18T19:28:07.914771107+02:00","level":"INFO","msg":"handler: closed","stream_id":"2dmu64zf"}
+{"time":"2025-05-18T19:28:07.914801934+02:00","level":"INFO","msg":"sender: closed","stream_id":"2dmu64zf"}
+{"time":"2025-05-18T19:28:07.914799316+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"2dmu64zf"}
+{"time":"2025-05-18T19:28:07.914828455+02:00","level":"INFO","msg":"stream: closed","id":"2dmu64zf"}

@@ -1,0 +1,15 @@
+{"time":"2025-05-17T21:30:30.245313639+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/erwin-main/wandb/run-20250517_213030-lygr949o/logs/debug-core.log"}
+{"time":"2025-05-17T21:30:30.580337088+02:00","level":"INFO","msg":"created new stream","id":"lygr949o"}
+{"time":"2025-05-17T21:30:30.580372728+02:00","level":"INFO","msg":"stream: started","id":"lygr949o"}
+{"time":"2025-05-17T21:30:30.580421025+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"lygr949o"}
+{"time":"2025-05-17T21:30:30.580553014+02:00","level":"INFO","msg":"handler: started","stream_id":"lygr949o"}
+{"time":"2025-05-17T21:30:30.580552846+02:00","level":"INFO","msg":"sender: started","stream_id":"lygr949o"}
+{"time":"2025-05-17T21:30:31.032529266+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-17T21:32:03.463377504+02:00","level":"INFO","msg":"stream: closing","id":"lygr949o"}
+{"time":"2025-05-17T21:32:03.46340396+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-17T21:32:03.463421296+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-17T21:32:04.296134202+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-17T21:32:04.621562762+02:00","level":"INFO","msg":"handler: closed","stream_id":"lygr949o"}
+{"time":"2025-05-17T21:32:04.621595561+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"lygr949o"}
+{"time":"2025-05-17T21:32:04.62163794+02:00","level":"INFO","msg":"sender: closed","stream_id":"lygr949o"}
+{"time":"2025-05-17T21:32:04.621643743+02:00","level":"INFO","msg":"stream: closed","id":"lygr949o"}

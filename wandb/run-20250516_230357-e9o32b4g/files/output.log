@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/home/aema/Desktop/erwin-main/./experiments/train_cosmology.py", line 156, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/erwin-main/training.py", line 127, in fit
+    stat_dict = train_step(model, batch, optimizer, scheduler)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/training.py", line 61, in train_step
+    optimizer.step()
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/lr_scheduler.py", line 140, in wrapper
+    return func.__get__(opt, opt.__class__)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/optimizer.py", line 493, in wrapper
+    out = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/optimizer.py", line 91, in _use_grad
+    ret = func(self, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/adamw.py", line 243, in step
+    adamw(
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/optimizer.py", line 154, in maybe_fallback
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/adamw.py", line 875, in adamw
+    func(
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/adamw.py", line 677, in _multi_tensor_adamw
+    bias_correction1 = [
+                       ^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/optim/adamw.py", line 677, in <listcomp>
+    bias_correction1 = [
+                       ^
+KeyboardInterrupt

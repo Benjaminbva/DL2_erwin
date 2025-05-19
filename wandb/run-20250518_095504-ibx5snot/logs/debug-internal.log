@@ -1,0 +1,15 @@
+{"time":"2025-05-18T09:55:04.54497219+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/erwin-main/wandb/run-20250518_095504-ibx5snot/logs/debug-core.log"}
+{"time":"2025-05-18T09:55:04.880826395+02:00","level":"INFO","msg":"created new stream","id":"ibx5snot"}
+{"time":"2025-05-18T09:55:04.880852718+02:00","level":"INFO","msg":"stream: started","id":"ibx5snot"}
+{"time":"2025-05-18T09:55:04.880995897+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"ibx5snot"}
+{"time":"2025-05-18T09:55:04.88105071+02:00","level":"INFO","msg":"handler: started","stream_id":"ibx5snot"}
+{"time":"2025-05-18T09:55:04.881051271+02:00","level":"INFO","msg":"sender: started","stream_id":"ibx5snot"}
+{"time":"2025-05-18T09:55:05.227614429+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-18T10:17:03.317959951+02:00","level":"INFO","msg":"stream: closing","id":"ibx5snot"}
+{"time":"2025-05-18T10:17:03.317985364+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-18T10:17:03.318053439+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-18T10:17:04.439521646+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-18T10:17:05.125445771+02:00","level":"INFO","msg":"handler: closed","stream_id":"ibx5snot"}
+{"time":"2025-05-18T10:17:05.125484463+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ibx5snot"}
+{"time":"2025-05-18T10:17:05.125510657+02:00","level":"INFO","msg":"sender: closed","stream_id":"ibx5snot"}
+{"time":"2025-05-18T10:17:05.125532495+02:00","level":"INFO","msg":"stream: closed","id":"ibx5snot"}

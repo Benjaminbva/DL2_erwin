@@ -9,7 +9,7 @@ from einops import rearrange, reduce
 
 from typing import Literal, List
 from dataclasses import dataclass
-
+import sys
 from balltree import build_balltree_with_rotations
 
 
@@ -118,12 +118,11 @@ class BallPooling(nn.Module):
         3. apply linear projection and batch normalization.
         4. the output is the center of each ball endowed with the pooled features.
     """
-    def __init__(self, dim: int, stride: int, dimensionality: int = 3):
+    def __init__(self, in_dim: int, out_dim: int, stride: int, dimensionality: int = 3):
         super().__init__()
         self.stride = stride
-        input_dim = stride * dim + stride * dimensionality
-        self.proj = nn.Linear(input_dim, stride * dim)
-        self.norm = nn.BatchNorm1d(stride * dim)
+        self.proj = nn.Linear(stride * in_dim + stride * dimensionality, out_dim)
+        self.norm = nn.BatchNorm1d(out_dim)
 
     def forward(self, node: Node) -> Node:
         if self.stride == 1: # no pooling
@@ -134,7 +133,6 @@ class BallPooling(nn.Module):
             centers = reduce(node.pos, "(n s) d -> n d", 'mean', s=self.stride)
             pos = rearrange(node.pos, "(n s) d -> n s d", s=self.stride)
             rel_pos = rearrange(pos - centers[:, None], "n s d -> n (s d)")
-
         x = torch.cat([rearrange(node.x, "(n s) c -> n (s c)", s=self.stride), rel_pos], dim=1)
         x = self.norm(self.proj(x))
 
@@ -149,21 +147,18 @@ class BallUnpooling(nn.Module):
         3. apply linear projection and self-connection followed by batch normalization.
         4. the output is a refined tree with the same number of nodes as before pooling.
     """
-    def __init__(self, dim: int, stride: int, dimensionality: int = 3):
+    def __init__(self, in_dim: int, out_dim: int, stride: int, dimensionality: int = 3):
         super().__init__()
         self.stride = stride
-        input_dim = stride * dim + stride * dimensionality
-        self.proj = nn.Linear(input_dim, stride * dim)         
-        self.norm = nn.BatchNorm1d(dim)
+        self.proj = nn.Linear(in_dim + stride * dimensionality, stride * out_dim)         
+        self.norm = nn.BatchNorm1d(out_dim)
 
     def forward(self, node: Node) -> Node:
         with torch.no_grad():
             rel_pos = rearrange(node.children.pos, "(n m) d -> n m d", m=self.stride) - node.pos[:, None]
             rel_pos = rearrange(rel_pos, "n m d -> n (m d)")
-
         x = torch.cat([node.x, rel_pos], dim=-1)
         node.children.x = self.norm(node.children.x + rearrange(self.proj(x), "n (m d) -> (n m) d", m=self.stride))
-        
         return node.children
 
 
@@ -171,10 +166,8 @@ class BallMSA(nn.Module):
     """ Ball Multi-Head Self-Attention (BMSA) module (eq. 8). """
     def __init__(self, dim: int, num_heads: int, ball_size: int, dimensionality: int = 3):
         super().__init__()
-        self.dim = dim
         self.num_heads = num_heads
         self.ball_size = ball_size
-
         self.qkv = nn.Linear(dim, 3 * dim)
         self.proj = nn.Linear(dim, dim)
         self.pe_proj = nn.Linear(dimensionality, dim)
@@ -221,7 +214,8 @@ class BasicLayer(nn.Module):
         direction: Literal['down', 'up', None], # down: encoder, up: decoder, None: bottleneck
         depth: int,
         stride: int,
-        dim: int,
+        in_dim: int,
+        out_dim: int,
         num_heads: int,
         ball_size: int,
         mlp_ratio: int,
@@ -230,17 +224,18 @@ class BasicLayer(nn.Module):
 
     ):
         super().__init__()
+        hidden_dim = in_dim if direction == 'down' else out_dim
 
-        self.blocks = nn.ModuleList([ErwinTransformerBlock(dim, num_heads, ball_size, mlp_ratio, dimensionality) for _ in range(depth)])
+        self.blocks = nn.ModuleList([ErwinTransformerBlock(hidden_dim, num_heads, ball_size, mlp_ratio, dimensionality) for _ in range(depth)])
         self.rotate = [i % 2 for i in range(depth)] if rotate else [False] * depth
 
         self.pool = lambda node: node
         self.unpool = lambda node: node
 
         if direction == 'down' and stride is not None:
-            self.pool = BallPooling(dim, stride, dimensionality)
+            self.pool = BallPooling(hidden_dim, out_dim, stride, dimensionality)
         elif direction == 'up' and stride is not None:
-            self.unpool = BallUnpooling(dim, stride, dimensionality)
+            self.unpool = BallUnpooling(in_dim, hidden_dim, stride, dimensionality)
 
     def forward(self, node: Node) -> Node:
         node = self.unpool(node)
@@ -263,7 +258,7 @@ class ErwinTransformer(nn.Module):
 
     Args:
         c_in (int): number of input channels.
-        c_hidden (int): number of hidden channels. With every layer, the number of channels is multiplied by stride.
+        c_hidden (List): number of hidden channels for each encoder + bottleneck layer (reverse for decoder).
         ball_size (List): list of ball sizes for each encoder layer (reverse for decoder).
         enc_num_heads (List): list of number of heads for each encoder layer.
         enc_depths (List): list of number of ErwinTransformerBlock layers for each encoder layer.
@@ -283,7 +278,7 @@ class ErwinTransformer(nn.Module):
     def __init__(
         self,
         c_in: int,
-        c_hidden: int,
+        c_hidden: List,
         ball_sizes: List,
         enc_num_heads: List,
         enc_depths: List,
@@ -306,10 +301,9 @@ class ErwinTransformer(nn.Module):
         self.ball_sizes = ball_sizes
         self.strides = strides
 
-        self.embed = ErwinEmbedding(c_in, c_hidden, mp_steps, dimensionality)
+        self.embed = ErwinEmbedding(c_in, c_hidden[0], mp_steps, dimensionality)
 
         num_layers = len(enc_depths) - 1 # last one is a bottleneck
-        num_hidden = [c_hidden] + [c_hidden * math.prod(strides[:i]) for i in range(1, num_layers + 1)]
         
         self.encoder = nn.ModuleList()
         for i in range(num_layers):
@@ -318,7 +312,8 @@ class ErwinTransformer(nn.Module):
                     direction='down',
                     depth=enc_depths[i],
                     stride=strides[i],
-                    dim=num_hidden[i],
+                    in_dim=c_hidden[i],
+                    out_dim=c_hidden[i + 1],
                     num_heads=enc_num_heads[i],
                     ball_size=ball_sizes[i],
                     rotate=rotate > 0,
@@ -331,7 +326,8 @@ class ErwinTransformer(nn.Module):
             direction=None,
             depth=enc_depths[-1],
             stride=None,
-            dim=num_hidden[-1],
+            in_dim=c_hidden[-1],
+            out_dim=c_hidden[-1],
             num_heads=enc_num_heads[-1],
             ball_size=ball_sizes[-1],
             rotate=rotate > 0,
@@ -347,7 +343,8 @@ class ErwinTransformer(nn.Module):
                         direction='up',
                         depth=dec_depths[i],
                         stride=strides[i],
-                        dim=num_hidden[i],
+                        in_dim=c_hidden[i + 1],
+                        out_dim=c_hidden[i],
                         num_heads=dec_num_heads[i],
                         ball_size=ball_sizes[i],
                         rotate=rotate > 0,
@@ -357,7 +354,7 @@ class ErwinTransformer(nn.Module):
                 )
 
         self.in_dim = c_in
-        self.out_dim = c_hidden if decode else num_hidden[-1]
+        self.out_dim = c_hidden[0]
         self.apply(self._init_weights)
 
     def _init_weights(self, m):

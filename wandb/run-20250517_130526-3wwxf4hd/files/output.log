@@ -1,0 +1,17 @@
+making tree
+Traceback (most recent call last):
+  File "/home/aema/Desktop/erwin-main/./experiments/train_cosmology.py", line 171, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/erwin-main/training.py", line 127, in fit
+    stat_dict = train_step(model, batch, optimizer, scheduler)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/training.py", line 59, in train_step
+    stat_dict = model.training_step(batch)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 43, in training_step
+    return self.step(batch, "train")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 39, in step
+    loss = ((extract_point(pred_mv) - batch["target"]) ** 2).mean()
+             ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+RuntimeError: The size of tensor a (3) must match the size of tensor b (10000) at non-singleton dimension 1

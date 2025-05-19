@@ -1,0 +1,15 @@
+{"time":"2025-05-17T13:02:40.628350338+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/erwin-main/wandb/run-20250517_130240-ju252hww/logs/debug-core.log"}
+{"time":"2025-05-17T13:02:40.975565999+02:00","level":"INFO","msg":"created new stream","id":"ju252hww"}
+{"time":"2025-05-17T13:02:40.975580333+02:00","level":"INFO","msg":"stream: started","id":"ju252hww"}
+{"time":"2025-05-17T13:02:40.975637353+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"ju252hww"}
+{"time":"2025-05-17T13:02:40.975707745+02:00","level":"INFO","msg":"sender: started","stream_id":"ju252hww"}
+{"time":"2025-05-17T13:02:40.975736962+02:00","level":"INFO","msg":"handler: started","stream_id":"ju252hww"}
+{"time":"2025-05-17T13:02:41.390194636+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-17T13:02:42.648064817+02:00","level":"INFO","msg":"stream: closing","id":"ju252hww"}
+{"time":"2025-05-17T13:02:42.648083017+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-17T13:02:42.648154844+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-17T13:02:43.331926232+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-17T13:02:43.638219426+02:00","level":"INFO","msg":"handler: closed","stream_id":"ju252hww"}
+{"time":"2025-05-17T13:02:43.638239359+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ju252hww"}
+{"time":"2025-05-17T13:02:43.638247754+02:00","level":"INFO","msg":"sender: closed","stream_id":"ju252hww"}
+{"time":"2025-05-17T13:02:43.638273631+02:00","level":"INFO","msg":"stream: closed","id":"ju252hww"}

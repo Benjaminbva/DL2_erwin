@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 336, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/erwin-main/training.py", line 127, in fit
+    stat_dict = train_step(model, batch, optimizer, scheduler)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/training.py", line 59, in train_step
+    stat_dict = model.training_step(batch)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 207, in training_step
+    return self.step(batch, "train")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 202, in step
+    pred = self(batch["pos"], **batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 197, in forward
+    mv_output = self.main_model(None, node_positions, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 181, in forward
+    return self.model(positions, features)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 147, in forward
+    x = layer(x)
+        ^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 107, in forward
+    x = residual + self.attn(x)
+                   ^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_train_cosmology.py", line 81, in forward
+    attn = (q_scalar @ k_scalar.transpose(-2, -1)) / math.sqrt(self.head_dim)  # (B, h, N, N)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 5.96 GiB. GPU 0 has a total capacity of 7.62 GiB of which 1.24 GiB is free. Including non-PyTorch memory, this process has 6.37 GiB memory in use. Of the allocated memory 6.21 GiB is allocated by PyTorch, and 5.17 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

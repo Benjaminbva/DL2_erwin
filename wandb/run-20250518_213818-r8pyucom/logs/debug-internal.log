@@ -1,0 +1,15 @@
+{"time":"2025-05-18T21:38:18.354494107+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/erwin-main/wandb/run-20250518_213818-r8pyucom/logs/debug-core.log"}
+{"time":"2025-05-18T21:38:18.699881404+02:00","level":"INFO","msg":"created new stream","id":"r8pyucom"}
+{"time":"2025-05-18T21:38:18.699904063+02:00","level":"INFO","msg":"stream: started","id":"r8pyucom"}
+{"time":"2025-05-18T21:38:18.699933807+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"r8pyucom"}
+{"time":"2025-05-18T21:38:18.7000417+02:00","level":"INFO","msg":"handler: started","stream_id":"r8pyucom"}
+{"time":"2025-05-18T21:38:18.700048455+02:00","level":"INFO","msg":"sender: started","stream_id":"r8pyucom"}
+{"time":"2025-05-18T21:38:18.946499922+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-18T22:44:48.081862906+02:00","level":"INFO","msg":"stream: closing","id":"r8pyucom"}
+{"time":"2025-05-18T22:44:48.081896057+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-18T22:44:48.081914566+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-18T22:44:49.16515186+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-18T22:44:49.841576131+02:00","level":"INFO","msg":"handler: closed","stream_id":"r8pyucom"}
+{"time":"2025-05-18T22:44:49.841629478+02:00","level":"INFO","msg":"sender: closed","stream_id":"r8pyucom"}
+{"time":"2025-05-18T22:44:49.841626712+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"r8pyucom"}
+{"time":"2025-05-18T22:44:49.841676933+02:00","level":"INFO","msg":"stream: closed","id":"r8pyucom"}

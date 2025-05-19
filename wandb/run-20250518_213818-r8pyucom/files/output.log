@@ -1,0 +1,79 @@
+Traceback (most recent call last):
+  File "/home/aema/Desktop/erwin-main/./experiments/train_cosmology.py", line 184, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/erwin-main/training.py", line 127, in fit
+    stat_dict = train_step(model, batch, optimizer, scheduler)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/training.py", line 59, in train_step
+    stat_dict = model.training_step(batch)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 43, in training_step
+    return self.step(batch, "train")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 38, in step
+    pred_mv, pred_s = self(batch["pos"], **batch)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 33, in forward
+    out = self.main_model(x_mv, node_positions, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_erwin.py", line 590, in forward
+    node = self.bottleneck(node, self.ref_mv_global)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_erwin.py", line 403, in forward
+    node = blk(node, reference_mv)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_erwin.py", line 313, in forward
+    mlp_out_mv, mlp_out_s = self.mlp(x_mv_norm, scalars=x_s_norm, reference_mv=reference_mv)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/layers/mlp/mlp.py", line 97, in forward
+    mv, s = layer(mv, scalars=s, reference_mv=reference_mv)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/layers/mlp/geometric_bilinears.py", line 113, in forward
+    join_outputs = equivariant_join(left, right, reference_mv)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/primitives/dual.py", line 190, in equivariant_join
+    return efficient_equivariant_join(x, y, reference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/primitives/dual.py", line 246, in efficient_equivariant_join
+    return reference[..., [14]] * gatr_einsum("i j k , ... j, ... k -> ... i", kernel, x, y)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/utils/einsum.py", line 74, in gatr_einsum
+    def gatr_einsum(equation: str, *operands: torch.Tensor):
+
+KeyboardInterrupt

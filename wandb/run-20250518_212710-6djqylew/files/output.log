@@ -1,0 +1,97 @@
+Traceback (most recent call last):
+  File "/home/aema/Desktop/erwin-main/./experiments/train_cosmology.py", line 184, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/erwin-main/training.py", line 127, in fit
+    stat_dict = train_step(model, batch, optimizer, scheduler)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/training.py", line 59, in train_step
+    stat_dict = model.training_step(batch)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 43, in training_step
+    return self.step(batch, "train")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 38, in step
+    pred_mv, pred_s = self(batch["pos"], **batch)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 33, in forward
+    out = self.main_model(x_mv, node_positions, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_erwin.py", line 596, in forward
+    node = self.bottleneck(node, self.ref_mv_global)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_erwin.py", line 409, in forward
+    node = blk(node, reference_mv)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_erwin.py", line 306, in forward
+    attn_out_mv, attn_out_s = self.attn(x_mv_norm, x_s_norm, pos_mv, node.pos_cartesian ,batch_idx)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/equi_erwin.py", line 193, in forward
+    out_mv, out_s = self.attention(x_mv_batched, scalars=x_s_batched,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/layers/attention/self_attention.py", line 120, in forward
+    q_mv, k_mv, v_mv, q_s, k_s, v_s = self.qkv_module(
+                                      ^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/layers/attention/qkv.py", line 180, in forward
+    q_mv, q_s = self.q_linear(
+                ^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/gatr/layers/linear.py", line 166, in forward
+    outputs_mv[..., 0] += self.s2mvs(scalars)
+                          ^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (8192x54 and 64x128)

@@ -14,7 +14,7 @@ fi
 if [ "$MINIMAL" = true ]; then
     echo "Installing minimal dependencies [Erwin]"
     uv pip install torch==2.5.0 
-    uv pip install torch-cluster -f https://data.pyg.org/whl/torch-2.5.0+cu124.html # CUDA 12.4
+    uv pip install torch-cluster -f https://data.pyg.org/whl/torch-2.6.0+cu124.html # CUDA 12.4
     uv pip install numpy 
     uv pip install einops
     uv pip install Cython
@@ -23,8 +23,8 @@ else
     echo "Installing all dependencies [Erwin + baselines + experiments]"
 
     # Erwin dependencies
-    uv pip install torch==2.5.0 # 2.5 required for torch-scatter, can be ommited for Erwin
-    uv pip install torch-cluster -f https://data.pyg.org/whl/torch-2.5.0+cu124.html # CUDA 12.4
+    uv pip install torch==2.6.0 # 2.5 required for torch-scatter, can be ommited for Erwin
+    uv pip install torch-cluster -f https://data.pyg.org/whl/torch-2.6.0+cu124.html # CUDA 12.4
     uv pip install numpy 
     uv pip install einops
     uv pip install Cython
@@ -32,9 +32,11 @@ else
 
     # PointTransformer v3 dependencies
     uv pip install addict
-    uv pip install torch-scatter -f https://data.pyg.org/whl/torch-2.5.0+cu124.html # CUDA 12.4
+    uv pip install torch-scatter -f https://data.pyg.org/whl/torch-2.6.0+cu124.html # CUDA 12.4
     uv pip install spconv-cu120
     uv pip install timm
+
+    #uv pip install torch-scatter -f https://data.pyg.org/whl/torch-2.7.0+cu126.html 
 
     # MD dependencies
     uv pip install h5py

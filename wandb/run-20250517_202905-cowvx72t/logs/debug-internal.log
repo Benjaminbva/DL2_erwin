@@ -1,0 +1,15 @@
+{"time":"2025-05-17T20:29:05.45339874+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/erwin-main/wandb/run-20250517_202905-cowvx72t/logs/debug-core.log"}
+{"time":"2025-05-17T20:29:05.764822153+02:00","level":"INFO","msg":"created new stream","id":"cowvx72t"}
+{"time":"2025-05-17T20:29:05.764862676+02:00","level":"INFO","msg":"stream: started","id":"cowvx72t"}
+{"time":"2025-05-17T20:29:05.764888802+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"cowvx72t"}
+{"time":"2025-05-17T20:29:05.765007752+02:00","level":"INFO","msg":"sender: started","stream_id":"cowvx72t"}
+{"time":"2025-05-17T20:29:05.765054109+02:00","level":"INFO","msg":"handler: started","stream_id":"cowvx72t"}
+{"time":"2025-05-17T20:29:06.268881354+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-17T20:50:58.33907161+02:00","level":"INFO","msg":"stream: closing","id":"cowvx72t"}
+{"time":"2025-05-17T20:50:58.341103905+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-17T20:50:58.341126178+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-17T20:50:59.33948298+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-17T20:51:00.167686802+02:00","level":"INFO","msg":"handler: closed","stream_id":"cowvx72t"}
+{"time":"2025-05-17T20:51:00.167728203+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"cowvx72t"}
+{"time":"2025-05-17T20:51:00.167767751+02:00","level":"INFO","msg":"sender: closed","stream_id":"cowvx72t"}
+{"time":"2025-05-17T20:51:00.167772517+02:00","level":"INFO","msg":"stream: closed","id":"cowvx72t"}

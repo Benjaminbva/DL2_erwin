@@ -1,0 +1,22 @@
+making tree
+torch.Size([10000, 3])
+torch.Size([10000, 3]) None
+Traceback (most recent call last):
+  File "/home/aema/Desktop/erwin-main/./experiments/train_cosmology.py", line 171, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/erwin-main/training.py", line 127, in fit
+    stat_dict = train_step(model, batch, optimizer, scheduler)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/training.py", line 59, in train_step
+    stat_dict = model.training_step(batch)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 44, in training_step
+    return self.step(batch, "train")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/erwin-main/experiments/wrappers/cosmology_equi.py", line 40, in step
+    loss = ((extract_point(pred_mv) - batch["target"]) ** 2).mean()
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+  File "/home/aema/Desktop/erwin-main/erwin/lib/python3.11/site-packages/torch/_tensor.py", line 39, in wrapped
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.12 GiB. GPU 0 has a total capacity of 7.62 GiB of which 958.25 MiB is free. Including non-PyTorch memory, this process has 6.67 GiB memory in use. Of the allocated memory 6.05 GiB is allocated by PyTorch, and 476.23 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

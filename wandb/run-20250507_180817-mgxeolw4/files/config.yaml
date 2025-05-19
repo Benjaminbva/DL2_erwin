@@ -1,0 +1,100 @@
+_wandb:
+    value:
+        cli_version: 0.19.10
+        m: []
+        python_version: 3.12.7
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 49
+                - 55
+            "2":
+                - 1
+                - 2
+                - 3
+                - 49
+                - 55
+            "3":
+                - 1
+                - 13
+                - 16
+                - 23
+                - 55
+                - 61
+            "4": 3.12.7
+            "5": 0.19.10
+            "8":
+                - 5
+            "12": 0.19.10
+            "13": linux-x86_64
+ball_sizes:
+    value:
+        - 256
+        - 256
+        - 256
+        - 256
+batch_size:
+    value: 8
+c_hidden:
+    value:
+        - 32
+        - 64
+        - 128
+        - 256
+c_in:
+    value: 32
+data_path:
+    value: ./data/cosmology
+dec_depths:
+    value:
+        - 2
+        - 2
+        - 2
+dec_num_heads:
+    value:
+        - 2
+        - 4
+        - 8
+enc_depths:
+    value:
+        - 2
+        - 2
+        - 6
+        - 2
+enc_num_heads:
+    value:
+        - 2
+        - 4
+        - 8
+        - 16
+experiment:
+    value: glx_node
+lr:
+    value: 0.0005
+model:
+    value: erwin
+num_epochs:
+    value: 3000
+num_parameters:
+    value: 4753723
+num_samples:
+    value: 8192
+rotate:
+    value: 0
+seed:
+    value: 0
+size:
+    value: small
+strides:
+    value:
+        - 2
+        - 2
+        - 2
+test:
+    value: true
+use_wandb:
+    value: true
+val_every_iter:
+    value: 500

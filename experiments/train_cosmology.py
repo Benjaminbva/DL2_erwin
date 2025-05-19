@@ -1,5 +1,7 @@
 import sys
+import os
 sys.path.append("../../")
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import argparse
 import torch
@@ -8,10 +10,12 @@ from torch.utils.data import DataLoader
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
-from erwin.training import fit
-from erwin.models.erwin import ErwinTransformer
-from erwin.experiments.datasets import CosmologyDataset
-from erwin.experiments.wrappers import CosmologyModel
+from training import fit
+from equi_erwin import EquivariantErwinTransformer
+from models import ErwinTransformer
+from experiments.datasets import CosmologyDataset
+from experiments.wrappers.cosmology_equi import CosmologyEquiModel
+from experiments.wrappers.cosmology import CosmologyModel
 
 
 def parse_args():
@@ -20,7 +24,7 @@ def parse_args():
                         help="Model type (mpnn, pointtransformer, erwin)")
     parser.add_argument("--data-path", type=str)
     parser.add_argument("--size", type=str, default="small",
-                        choices=["small", "medium", "large"],
+                        choices=["smallest", "smaller", "small", "medium", "large"],
                         help="Model size configuration")
     parser.add_argument("--num-samples", type=int, default=8192,
                         help="Number of samples for training")
@@ -44,40 +48,69 @@ def parse_args():
 
 
 erwin_configs = {
+    "smallest": {
+        "mv_dim_in": 8,
+        "mv_dims": [8, 16],
+        "s_dims": [8, 16],
+        "enc_num_heads": [2, 4],
+        "enc_depths": [2, 2],
+        "dec_num_heads": [2],
+        "dec_depths": [2],
+        "strides": [2],
+        "ball_sizes": [128, 128],
+        "rotate": 0,
+    },
+    "smaller": {
+        "c_in": 8,
+        "c_hidden": [8, 16],
+        "enc_num_heads": [2, 4],
+        "enc_depths": [2, 2],
+        "dec_num_heads": [2],
+        "dec_depths": [2],
+        "strides": [2],
+        "ball_sizes": [128, 128],
+        "rotate": 0,
+        "mp_steps":0
+    },
     "small": {
         "c_in": 32,
-        "c_hidden": 32,
+        "c_hidden": [32, 64, 128, 256],
         "enc_num_heads": [2, 4, 8, 16],
         "enc_depths": [2, 2, 6, 2],
         "dec_num_heads": [2, 4, 8],
         "dec_depths": [2, 2, 2],
         "strides": [2, 2, 2],
         "ball_sizes": [256, 256, 256, 256],
+        "rotate": 0,
+        "mp_steps":3
     },
     "medium": {
         "c_in": 64,
-        "c_hidden": 64,
+        "c_hidden": [64, 128, 256, 512],
         "enc_num_heads": [2, 4, 8, 16],
         "enc_depths": [2, 2, 6, 2],
         "dec_num_heads": [2, 4, 8],
         "dec_depths": [2, 2, 2],
         "strides": [2, 2, 2],
         "ball_sizes": [256, 256, 256, 256],
+        "rotate": 0,
     },
     "large": {
         "c_in": 128,
-        "c_hidden": 128,
+        "c_hidden": [128, 256, 512, 1024],
         "enc_num_heads": [2, 4, 8, 16],
         "enc_depths": [2, 2, 6, 2],
         "dec_num_heads": [2, 4, 8],
         "dec_depths": [2, 2, 2],
         "strides": [2, 2, 2],
         "ball_sizes": [256, 256, 256, 256],
+        "rotate": 0,
+        "mp_steps":3
     },
 }
 
 model_cls = {
-    "erwin": ErwinTransformer,
+    "erwin": EquivariantErwinTransformer,
 }
 
 
@@ -139,8 +172,8 @@ if __name__ == "__main__":
     )
 
     dynamic_model = model_cls[args.model](**model_config)
-    model = CosmologyModel(dynamic_model).cuda()
-    # model = torch.compile(model)
+    model = CosmologyEquiModel(dynamic_model).cuda()
+    model = torch.compile(model)
 
     optimizer = AdamW(model.parameters(), lr=args.lr)
     scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=1e-6)
