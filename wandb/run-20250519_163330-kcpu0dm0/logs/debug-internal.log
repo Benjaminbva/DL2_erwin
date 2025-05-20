@@ -1,0 +1,15 @@
+{"time":"2025-05-19T16:33:30.224474197+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250519_163330-kcpu0dm0/logs/debug-core.log"}
+{"time":"2025-05-19T16:33:30.548253977+02:00","level":"INFO","msg":"created new stream","id":"kcpu0dm0"}
+{"time":"2025-05-19T16:33:30.548296357+02:00","level":"INFO","msg":"stream: started","id":"kcpu0dm0"}
+{"time":"2025-05-19T16:33:30.548384715+02:00","level":"INFO","msg":"handler: started","stream_id":"kcpu0dm0"}
+{"time":"2025-05-19T16:33:30.548396189+02:00","level":"INFO","msg":"sender: started","stream_id":"kcpu0dm0"}
+{"time":"2025-05-19T16:33:30.548387134+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"kcpu0dm0"}
+{"time":"2025-05-19T16:33:30.936338247+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-19T16:44:19.261267289+02:00","level":"INFO","msg":"stream: closing","id":"kcpu0dm0"}
+{"time":"2025-05-19T16:44:19.261290312+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-19T16:44:19.261309035+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-19T16:44:20.370095625+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-19T16:44:21.471534875+02:00","level":"INFO","msg":"handler: closed","stream_id":"kcpu0dm0"}
+{"time":"2025-05-19T16:44:21.47156178+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"kcpu0dm0"}
+{"time":"2025-05-19T16:44:21.47160148+02:00","level":"INFO","msg":"sender: closed","stream_id":"kcpu0dm0"}
+{"time":"2025-05-19T16:44:21.471627999+02:00","level":"INFO","msg":"stream: closed","id":"kcpu0dm0"}

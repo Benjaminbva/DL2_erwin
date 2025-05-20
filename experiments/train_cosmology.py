@@ -49,9 +49,9 @@ def parse_args():
 
 erwin_configs = {
     "smallest": {
-        "mv_dim_in": 8,
-        "mv_dims": [8, 16],
-        "s_dims": [8, 16],
+        "mv_dim_in": 16,
+        "mv_dims": [16, 32],
+        "s_dims": [16, 32],
         "enc_num_heads": [2, 4],
         "enc_depths": [2, 2],
         "dec_num_heads": [2],
@@ -59,6 +59,7 @@ erwin_configs = {
         "strides": [2],
         "ball_sizes": [128, 128],
         "rotate": 0,
+        "mp_steps":3
     },
     "smaller": {
         "c_in": 8,

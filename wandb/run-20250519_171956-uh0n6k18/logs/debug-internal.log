@@ -1,0 +1,16 @@
+{"time":"2025-05-19T17:19:56.345917419+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250519_171956-uh0n6k18/logs/debug-core.log"}
+{"time":"2025-05-19T17:19:56.734825403+02:00","level":"INFO","msg":"created new stream","id":"uh0n6k18"}
+{"time":"2025-05-19T17:19:56.734847371+02:00","level":"INFO","msg":"stream: started","id":"uh0n6k18"}
+{"time":"2025-05-19T17:19:56.734879546+02:00","level":"INFO","msg":"sender: started","stream_id":"uh0n6k18"}
+{"time":"2025-05-19T17:19:56.734884656+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"uh0n6k18"}
+{"time":"2025-05-19T17:19:56.734908016+02:00","level":"INFO","msg":"handler: started","stream_id":"uh0n6k18"}
+{"time":"2025-05-19T17:19:56.985405498+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-19T17:31:13.595966783+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/arcelli2001-university-of-amsterdam/ballformer/uh0n6k18/file_stream\": unexpected EOF"}
+{"time":"2025-05-19T17:41:19.107709172+02:00","level":"INFO","msg":"stream: closing","id":"uh0n6k18"}
+{"time":"2025-05-19T17:41:19.107730018+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-19T17:41:19.107788647+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-19T17:41:22.144155854+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-19T17:41:22.470249726+02:00","level":"INFO","msg":"handler: closed","stream_id":"uh0n6k18"}
+{"time":"2025-05-19T17:41:22.470270237+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"uh0n6k18"}
+{"time":"2025-05-19T17:41:22.470284317+02:00","level":"INFO","msg":"sender: closed","stream_id":"uh0n6k18"}
+{"time":"2025-05-19T17:41:22.470296384+02:00","level":"INFO","msg":"stream: closed","id":"uh0n6k18"}

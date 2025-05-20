@@ -1,17 +1,9 @@
-# @title Equivariant Erwin Transformer Implementation
-# @markdown This code integrates GATr's E(3)-equivariant principles
-# @markdown into the hierarchical structure of the Erwin transformer.
-# @markdown It assumes a `gatr` library providing the necessary
-# @markdown primitives like `EquiLinear`, `GeometricAttention`, etc.
-# @markdown and interfaces like `embed_point`, `extract_point`.
-
 import torch
 import torch.nn as nn
 from einops import rearrange, reduce
 from typing import Literal, List, Optional
 from dataclasses import dataclass
 
-# Assume these imports from GATr library/primitives
 from gatr.layers.linear import EquiLinear
 from gatr.layers.attention.self_attention import SelfAttention
 from gatr.layers.attention.config import SelfAttentionConfig
@@ -21,13 +13,12 @@ from gatr.layers.layer_norm import EquiLayerNorm
 from gatr.interface import embed_point,embed_translation
 from gatr.utils.tensors import construct_reference_multivector
 import torch_cluster
+import sys
 
 
-# Assume balltree library is available
 from balltree import build_balltree_with_rotations
 
 
-# --- Data Structures ---
 
 @dataclass
 class EquivariantNode:
@@ -40,19 +31,8 @@ class EquivariantNode:
     tree_idx_rot: Optional[torch.Tensor] = None  # Indices for rotated tree permutation
     children: Optional['EquivariantNode'] = None # Link to finer level node during unpooling
 
-# --- Equivariant Modules ---
 def scatter_mean(src: torch.Tensor, idx: torch.Tensor, num_receivers: int):
-    """ 
-    Averages all values from src into the receivers at the indices specified by idx.
 
-    Args:
-        src (torch.Tensor): Source tensor of shape (N, D).
-        idx (torch.Tensor): Indices tensor of shape (N,).
-        num_receivers (int): Number of receivers (usually the maximum index in idx + 1).
-    
-    Returns:
-        torch.Tensor: Result tensor of shape (num_receivers, D).
-    """
     result = torch.zeros(num_receivers, src.size(1), dtype=src.dtype, device=src.device)
     count = torch.zeros(num_receivers, dtype=torch.long, device=src.device)
     result.index_add_(0, idx, src)
@@ -60,7 +40,6 @@ def scatter_mean(src: torch.Tensor, idx: torch.Tensor, num_receivers: int):
     return result / count.unsqueeze(1).clamp(min=1)
 
 class InvMPNN(nn.Module):
-    """ Invariant Message Passing Neural Network using scalar distances. """
     def __init__(self, scalar_feature_dim: int, mp_steps: int, distance_dim: int = 1):
         super().__init__()
         self.mp_steps = mp_steps
@@ -73,7 +52,7 @@ class InvMPNN(nn.Module):
         ])
         self.update_fns = nn.ModuleList([
             nn.Sequential(
-                nn.Linear(2 * scalar_feature_dim, scalar_feature_dim), # hidden_dim + message_dim
+                nn.Linear(2 * scalar_feature_dim, scalar_feature_dim),
                 nn.LayerNorm(scalar_feature_dim)
             ) for _ in range(mp_steps)
         ])
@@ -93,17 +72,14 @@ class InvMPNN(nn.Module):
         row, col = edge_index
 
         for message_fn, update_fn in zip(self.message_fns, self.update_fns):
-            # Message computation
             message_inputs = torch.cat([h_s[row], h_s[col], edge_attr], dim=-1)
             messages = message_fn(message_inputs)
 
-            # Aggregation
             aggregated_messages = scatter_mean(messages, col, h_s.size(0))
 
-            # Update
             update_inputs = torch.cat([h_s, aggregated_messages], dim=-1)
             h_s_update = update_fn(update_inputs)
-            h_s = h_s + h_s_update # Residual connection
+            h_s = h_s + h_s_update
 
         return h_s
 
@@ -128,7 +104,7 @@ class EquivariantErwinEmbedding(nn.Module):
         self.mpnn = InvMPNN(scalar_feature_dim=out_s_dim, mp_steps=mp_steps, distance_dim=1)
 
     def forward(self, x_mv: torch.Tensor, x_s: Optional[torch.Tensor], cartesian_pos: torch.Tensor = torch.Tensor([0]), edge_index: torch.Tensor = torch.tensor([0])):
-        x_mv, x_s = self.embed_fn(x_mv) #Bx1x16 -> #Bxout_cx16
+        x_mv, x_s = self.embed_fn(x_mv)
         if x_s is None and self.mp_steps > 0:
             row, col = edge_index
             x_s = torch.norm(cartesian_pos[row] - cartesian_pos[col], dim=-1, keepdim=True)
@@ -145,7 +121,6 @@ class EquivariantBallAttention(nn.Module):
         super().__init__()
         self.ball_size = ball_size
 
-        # Configure GATr SelfAttention
         attn_config = SelfAttentionConfig(
             in_mv_channels=mv_dim,
             out_mv_channels=mv_dim,
@@ -153,9 +128,9 @@ class EquivariantBallAttention(nn.Module):
             out_s_channels=s_dim,
             num_heads=num_heads,
             dropout_prob=dropout,
-            pos_encoding=True, # Erwin handles structure via ball partitioning
-            increase_hidden_channels=increase_hidden_channels_factor # ADD THIS LINE (or rely on GATr default)
-            # Ensure all other necessary SelfAttentionConfig fields are appropriately set or defaulted
+            pos_encoding=True,
+            increase_hidden_channels=increase_hidden_channels_factor
+
         )
         self.attention = SelfAttention(config=attn_config)
         self.sigma_att = nn.Parameter(-1 + 0.01 * torch.randn((1, num_heads, 1, 1)))
@@ -167,11 +142,7 @@ class EquivariantBallAttention(nn.Module):
         return self.sigma_att * torch.cdist(pos, pos, p=2).unsqueeze(1)
     
     def forward(self, x_mv: torch.Tensor, x_s: Optional[torch.Tensor], pos_mv: torch.Tensor, pos_cartesian: torch.Tensor, batch_idx: torch.Tensor):
-        # Reshape inputs for attention: (N, C, 16) -> (B, Items_in_batch, C, 16)
-        # GATr attention expects shape (..., items, channels, 16/s_dim)
-        # Here, 'items' corresponds to points within a ball.
-        # We need to reshape the flat input (N = num_balls * ball_size)
-        # into (num_balls, ball_size, C, 16)
+
 
         num_total_nodes = x_mv.shape[0]
 
@@ -182,12 +153,9 @@ class EquivariantBallAttention(nn.Module):
         if x_s is not None:
             x_s_batched = rearrange(x_s, '(b n) cs -> b n cs', b=num_balls, n=self.ball_size)
 
-        # GATr SelfAttention expects (..., items, channels, 16)
-        # Input shape is (batch=num_balls, items=ball_size, channels=c_mv, 16)
-        out_mv, out_s = self.attention(x_mv_batched, scalars=x_s_batched,
-                                       attention_mask = self.create_attention_mask(pos_cartesian)) # , attention_mask=?)
 
-        # Reshape back to flat structure: (B, N, C, 16) -> (B*N, C, 16)
+        out_mv, out_s = self.attention(x_mv_batched, scalars=x_s_batched,
+                                       attention_mask = self.create_attention_mask(pos_cartesian))
         out_mv = rearrange(out_mv, 'b n c val -> (b n) c val')
         if out_s is not None:
             out_s = rearrange(out_s, 'b n cs -> (b n) cs')
@@ -206,16 +174,12 @@ class EquivariantBallPooling(nn.Module):
                                in_s_dim * stride + stride, out_s_dim)
 
     def forward(self, node: EquivariantNode) -> EquivariantNode:
-        if self.stride == 1: # No pooling
-            # Still wrap in EquivariantNode for consistency
+        if self.stride == 1:
             return EquivariantNode(
                 x_mv=node.x_mv, x_s=node.x_s, pos_mv=node.pos_mv,
                 pos_cartesian=node.pos_cartesian, batch_idx=node.batch_idx, children=node
             )
 
-        # Aggregate features using mean
-        # Input shape: (N_fine, C, 16/s) where N_fine = N_coarse * stride
-        # Output shape: (N_coarse, C, 16/s)
         with torch.no_grad():
             batch_idx = node.batch_idx[::self.stride]
             centers = reduce(node.pos_cartesian, "(n s) d -> n d", 'mean', s=self.stride)
@@ -246,16 +210,12 @@ class EquivariantBallUnpooling(nn.Module):
                                in_s_dim + stride, out_s_dim*stride)
 
     def forward(self, node: EquivariantNode) -> EquivariantNode:
-        if self.stride == 1: # No pooling
-            # Still wrap in EquivariantNode for consistency
+        if self.stride == 1:
             return EquivariantNode(
                 x_mv=node.x_mv, x_s=node.x_s, pos_mv=node.pos_mv,
                 pos_cartesian=node.pos_cartesian, batch_idx=node.batch_idx, children=node
             )
 
-        # Aggregate features using mean
-        # Input shape: (N_fine, C, 16/s) where N_fine = N_coarse * stride
-        # Output shape: (N_coarse, C, 16/s)
         with torch.no_grad():
             rel_pos = rearrange(node.children.pos_cartesian, "(n m) d -> n m d", m=self.stride) - node.pos_cartesian[:, None]
         x_mv = torch.cat([node.x_mv, embed_translation(rel_pos)], dim = -2)
@@ -276,50 +236,38 @@ class EquivariantErwinBlock(nn.Module):
 
         self.norm2 = EquiLayerNorm()
 
-        hidden_mv_dim = int(mv_dim * mlp_ratio) # Or maybe fixed hidden dim? GATr MLPConfig allows tuple
-        hidden_s_dim = int(s_dim * mlp_ratio) if s_dim is not None else None
+        hidden_mv_dim = int(mv_dim)
+        hidden_s_dim = int(s_dim) if s_dim is not None else None
 
         mlp_config = MLPConfig(
             mv_channels=(mv_dim, hidden_mv_dim, mv_dim),
             s_channels=(s_dim, hidden_s_dim, s_dim) if s_dim is not None else None,
-            activation='gelu', # GATr uses scalar-gated activations
+            activation='gelu',
             dropout_prob=dropout
         )
         self.mlp = GeoMLP(config=mlp_config)
-
-        # DropPath not directly applicable to multivectors in the same way.
-        # GATr uses GradeDropout within layers if needed.
-        # self.drop_path = DropPath(dropout) if dropout > 0. else nn.Identity()
 
     def forward(self, node: EquivariantNode, reference_mv: torch.Tensor):
         x_mv, x_s, pos_mv, batch_idx = node.x_mv, node.x_s, node.pos_mv, node.batch_idx
         shortcut_mv, shortcut_s = x_mv, x_s
 
-        # --- Attention Part ---
         x_mv_norm, x_s_norm = self.norm1(x_mv, x_s)
         attn_out_mv, attn_out_s = self.attn(x_mv_norm, x_s_norm, pos_mv, node.pos_cartesian ,batch_idx)
 
-        # Apply dropout/drop path if applicable (GATr handles dropout internally in layers)
-        # attn_out_mv, attn_out_s = self.drop_path(attn_out_mv, attn_out_s) # Needs adaptation for tuple
 
         x_mv = shortcut_mv + attn_out_mv
         if x_s is not None and attn_out_s is not None:
             x_s = shortcut_s + attn_out_s
-        shortcut_mv, shortcut_s = x_mv, x_s # Update shortcut for next stage
+        shortcut_mv, shortcut_s = x_mv, x_s
 
-        # --- MLP Part ---
         x_mv_norm, x_s_norm = self.norm2(x_mv, x_s)
 
         mlp_out_mv, mlp_out_s = self.mlp(x_mv_norm, scalars=x_s_norm, reference_mv=reference_mv)
-
-        # Apply dropout/drop path
-        # mlp_out_mv, mlp_out_s = self.drop_path(mlp_out_mv, mlp_out_s)
 
         x_mv = shortcut_mv + mlp_out_mv
         if x_s is not None and mlp_out_s is not None:
             x_s = shortcut_s + mlp_out_s
 
-        # Update node features
         node.x_mv = x_mv
         node.x_s = x_s
         return node
@@ -329,12 +277,12 @@ class EquivariantBasicLayer(nn.Module):
     """ Equivariant version of Erwin's BasicLayer. """
     def __init__(
         self,
-        direction: Literal['down', 'up', None], # down: encoder, up: decoder, None: bottleneck
+        direction: Literal['down', 'up', None], 
         depth: int,
         stride: int,
         in_mv_dim: int, in_s_dim: Optional[int],
-        out_mv_dim: int, out_s_dim: Optional[int], # Only relevant for pooling/unpooling projection
-        hidden_mv_dim: int, hidden_s_dim: Optional[int], # Dim used within blocks
+        out_mv_dim: int, out_s_dim: Optional[int], 
+        hidden_mv_dim: int, hidden_s_dim: Optional[int], 
         num_heads: int,
         ball_size: int,
         mlp_ratio: int,
@@ -360,49 +308,36 @@ class EquivariantBasicLayer(nn.Module):
                 hidden_mv_dim, hidden_s_dim, out_mv_dim, out_s_dim, stride, dimensionality
             )
         elif direction == 'up' and stride > 1:
-            # Unpooling needs skip connection dims, assume they match hidden dims for now
-            # Input to unpooling proj is `in_mv_dim/in_s_dim` (from coarser level)
-            # Output should match `hidden_mv_dim/hidden_s_dim` (finer level block dim)
             self.unpool = EquivariantBallUnpooling(
-                 in_mv_dim, in_s_dim, # Input from previous (coarser) layer
-                 out_mv_dim=hidden_mv_dim, out_s_dim=hidden_s_dim, # Output dim of projection
+                 in_mv_dim, in_s_dim,
+                 out_mv_dim=hidden_mv_dim, out_s_dim=hidden_s_dim,
                  stride=stride, dimensionality=dimensionality
             )
 
     def forward(self, node: EquivariantNode, reference_mv: torch.Tensor) -> EquivariantNode:
-        # 1. Unpooling (for decoder)
         node = self.unpool(node)
 
-        # Handle rotation permutation logic from original Erwin
         tree_idx_rot_inv = None
         if len(self.rotate) > 1 and self.rotate[1]:
             assert node.tree_idx_rot is not None, "tree_idx_rot must be provided for rotation"
-            tree_idx_rot_inv = torch.argsort(node.tree_idx_rot) # map from rotated to original
+            tree_idx_rot_inv = torch.argsort(node.tree_idx_rot)
 
-        # 2. Apply Blocks
         for use_rotation, blk in zip(self.rotate, self.blocks):
             if use_rotation:
-                # Permute features according to rotated tree, process, permute back
                 node_rotated = EquivariantNode(
                     x_mv = node.x_mv[node.tree_idx_rot],
                     x_s = node.x_s[node.tree_idx_rot] if node.x_s is not None else None,
-                    #pos_mv = node.pos_mv[node.tree_idx_rot],
                     pos_mv = node.pos_mv[node.tree_idx_rot], 
                     pos_cartesian = node.pos_cartesian[node.tree_idx_rot] if node.pos_cartesian is not None else None,
                     batch_idx = node.batch_idx[node.tree_idx_rot] if node.batch_idx is not None else None,
-                    # Pass other attributes if needed, children link might be invalid in rotated view
                 )
                 processed_node_rotated = blk(node_rotated, reference_mv)
-                # Permute back and update original node
                 node.x_mv = processed_node_rotated.x_mv[tree_idx_rot_inv]
                 if node.x_s is not None:
                     node.x_s = processed_node_rotated.x_s[tree_idx_rot_inv]
-                # Keep original node's pos, batch_idx etc.
             else:
-                # Process with original ordering
                 node = blk(node, reference_mv)
 
-        # 3. Pooling (for encoder)
         node = self.pool(node)
 
         return node
@@ -457,20 +392,18 @@ class EquivariantErwinTransformer(nn.Module):
         assert len(dec_num_heads) == len(dec_depths) == len(strides)
         assert len(strides) == len(mv_dims) - 1
 
-        self.rotate = rotate > 0 # Original Erwin used rotate=angle, here just bool
+        self.rotate = rotate > 0
         self.decode = decode
         self.ball_sizes = ball_sizes
         self.strides = strides
         self.out_dim_scalar = out_dim_scalar
         self.out_dim_cartesian = out_dim_cartesian
 
-        # Initial Embedding
         self.embed = EquivariantErwinEmbedding(mv_dim_in, mv_dims[0], 
                                                in_s_dim=mv_dim_in, out_s_dim=s_dims[0], mp_steps=mp_steps)
 
-        num_layers = len(enc_depths) - 1 # last one is a bottleneck
+        num_layers = len(enc_depths) - 1
 
-        # Encoder
         self.encoder = nn.ModuleList()
         for i in range(num_layers):
             self.encoder.append(
@@ -490,13 +423,12 @@ class EquivariantErwinTransformer(nn.Module):
                 )
             )
 
-        # Bottleneck
         self.bottleneck = EquivariantBasicLayer(
             direction=None,
             depth=enc_depths[-1],
-            stride=1, # No pooling/unpooling
+            stride=1,
             in_mv_dim=mv_dims[-1], in_s_dim=s_dims[-1],
-            out_mv_dim=mv_dims[-1], out_s_dim=s_dims[-1], # Not used
+            out_mv_dim=mv_dims[-1], out_s_dim=s_dims[-1],
             hidden_mv_dim=mv_dims[-1], hidden_s_dim=s_dims[-1],
             num_heads=enc_num_heads[-1],
             ball_size=ball_sizes[-1],
@@ -506,7 +438,6 @@ class EquivariantErwinTransformer(nn.Module):
             dropout=dropout,
         )
 
-        # Decoder
         if decode:
             self.decoder = nn.ModuleList()
             for i in range(num_layers - 1, -1, -1):
@@ -515,11 +446,11 @@ class EquivariantErwinTransformer(nn.Module):
                         direction='up',
                         depth=dec_depths[i],
                         stride=strides[i],
-                        in_mv_dim=mv_dims[i+1], in_s_dim=s_dims[i+1], # Input from previous coarser layer
-                        out_mv_dim=mv_dims[i], out_s_dim=s_dims[i], # Not directly used by unpool proj output
-                        hidden_mv_dim=mv_dims[i], hidden_s_dim=s_dims[i], # Dim used within blocks (and target for unpool proj)
+                        in_mv_dim=mv_dims[i+1], in_s_dim=s_dims[i+1],
+                        out_mv_dim=mv_dims[i], out_s_dim=s_dims[i],
+                        hidden_mv_dim=mv_dims[i], hidden_s_dim=s_dims[i],
                         num_heads=dec_num_heads[i],
-                        ball_size=ball_sizes[i], # Ball size at this finer level
+                        ball_size=ball_sizes[i],
                         mlp_ratio=mlp_ratio,
                         rotate=self.rotate,
                         dimensionality=dimensionality,
@@ -532,24 +463,22 @@ class EquivariantErwinTransformer(nn.Module):
 
 
 
-    def forward(self, x_mv: torch.Tensor, # Initial features assumed scalar
+    def forward(self, x_mv: torch.Tensor,
                       node_positions_cartesian: torch.Tensor,
                       batch_idx: torch.Tensor,
                       x_s: Optional[torch.Tensor] = None,
-                      edge_index: Optional[torch.Tensor] = None, # For initial MPNN
-                      tree_idx: Optional[torch.Tensor] = None,   # Precomputed tree indices
-                      tree_mask: Optional[torch.Tensor] = None, # Precomputed tree mask
-                      radius: Optional[float] = None, # For building radius graph if edge_index not given
+                      edge_index: Optional[torch.Tensor] = None, 
+                      tree_idx: Optional[torch.Tensor] = None,
+                      tree_mask: Optional[torch.Tensor] = None,
+                      radius: Optional[float] = None,
                       **kwargs):
-        # 1. Build Ball Tree (using Cartesian coordinates as in original Erwin)
-        # This part remains non-equivariant by design for Erwin's cross-ball mechanism
+
         if tree_idx is None or tree_mask is None:
-            #print('making tree')
+
             tree_idx, tree_mask, tree_idx_rot_list = build_balltree_with_rotations(
                 node_positions_cartesian, batch_idx, self.strides, self.ball_sizes, self.rotate)
-            if tree_idx_rot_list is None: tree_idx_rot_list = [] # Ensure it's a list
+            if tree_idx_rot_list is None: tree_idx_rot_list = []
 
-        # Build radius graph if needed for initial MPNN
         if edge_index is None and self.embed.mp_steps > 0:
             if radius is None:
                  raise ValueError("Radius must be provided for MPNN if edge_index is not given.")
@@ -558,47 +487,37 @@ class EquivariantErwinTransformer(nn.Module):
             edge_index = torch_cluster.radius_graph(node_positions_cartesian, radius, batch=batch_idx, loop=True)
 
 
-        # 2. Initial Embedding (Scalar features -> MV/S features, Cartesian pos -> MV pos)
-        # Construct a reference multivector (e.g., from mean position) for GeoMLP
-        # Using 'data' might be slow, 'canonical' is faster but less adaptive.
-        self.ref_mv_global = construct_reference_multivector('data', x_mv) # Or use positions?
+        self.ref_mv_global = construct_reference_multivector('data', x_mv)
 
         x_mv, x_s= self.embed(x_mv, x_s, node_positions_cartesian, edge_index)
 
-        # 3. Prepare Initial Node for Hierarchy (using tree permutation)
         node = EquivariantNode(
             x_mv=x_mv[tree_idx],
             x_s=x_s[tree_idx] if x_s is not None else None,
             pos_mv=0,
-            pos_cartesian=node_positions_cartesian[tree_idx], # Keep for potential CoM in pooling
+            pos_cartesian=node_positions_cartesian[tree_idx],
             batch_idx=batch_idx[tree_idx],
-            tree_idx_rot=None, # Will be populated in the encoder layers
+            tree_idx_rot=None,
         )
 
-        # Store skip connections for decoder
         skip_connections = []
 
         # 4. Encoder Path
         rot_idx_iter = iter(tree_idx_rot_list)
         for i, layer in enumerate(self.encoder):
-            node.tree_idx_rot = next(rot_idx_iter, None) # Get rotation indices for this level
-            skip_connections.append(node) # Store node *before* processing and pooling
+            node.tree_idx_rot = next(rot_idx_iter, None)
+            skip_connections.append(node)
             node = layer(node, self.ref_mv_global)
 
-        # 5. Bottleneck
         node.tree_idx_rot = next(rot_idx_iter, None)
         node = self.bottleneck(node, self.ref_mv_global)
 
-        # 6. Decoder Path
         if self.decode:
             for i, layer in enumerate(self.decoder):
-                # Pass skip connection state to the unpooling layer within BasicLayer
                 skip_node = skip_connections.pop()
-                node.children = skip_node # Link for unpooling to access skip features
+                node.children = skip_node
                 node = layer(node, self.ref_mv_global)
 
-            # Final features are in `node.x_mv`, `node.x_s`
-            # Need to un-permute using the tree_mask and tree_idx
             final_x_mv = node.x_mv[tree_mask]
             final_x_s = node.x_s[tree_mask] if node.x_s is not None else None
             original_indices = torch.argsort(tree_idx[tree_mask])
@@ -606,7 +525,6 @@ class EquivariantErwinTransformer(nn.Module):
             if final_x_s is not None:
                  final_x_s = final_x_s[original_indices]
 
-            # 7. Final Output Processing
             output = {}
 
             output['final_mv'] = final_x_mv
@@ -620,9 +538,5 @@ class EquivariantErwinTransformer(nn.Module):
             return output
 
         else:
-            # Return bottleneck features if not decoding
             return {'bottleneck_mv': node.x_mv, 'bottleneck_s': node.x_s, 'bottleneck_batch_idx': node.batch_idx}
 
-# --- Helper Functions (If GATr not installed) ---
-# Add dummy implementations or necessary primitives if needed
-# e.g., torch_scatter if not available

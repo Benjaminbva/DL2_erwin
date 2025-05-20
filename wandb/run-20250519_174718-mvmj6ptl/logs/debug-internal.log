@@ -1,0 +1,15 @@
+{"time":"2025-05-19T17:47:18.702497034+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250519_174718-mvmj6ptl/logs/debug-core.log"}
+{"time":"2025-05-19T17:47:19.253196689+02:00","level":"INFO","msg":"created new stream","id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:19.253211274+02:00","level":"INFO","msg":"stream: started","id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:19.253263968+02:00","level":"INFO","msg":"sender: started","stream_id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:19.253266592+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:19.253307615+02:00","level":"INFO","msg":"handler: started","stream_id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:19.518695814+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-19T17:47:21.246881614+02:00","level":"INFO","msg":"stream: closing","id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:21.246895303+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-19T17:47:21.246923427+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-19T17:47:21.964508478+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-19T17:47:22.406715063+02:00","level":"INFO","msg":"handler: closed","stream_id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:22.406738232+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:22.406743631+02:00","level":"INFO","msg":"sender: closed","stream_id":"mvmj6ptl"}
+{"time":"2025-05-19T17:47:22.40677047+02:00","level":"INFO","msg":"stream: closed","id":"mvmj6ptl"}

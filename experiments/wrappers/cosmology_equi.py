@@ -22,7 +22,7 @@ class CosmologyEquiModel(nn.Module):
         mlp_config = MLPConfig(
             mv_channels=(main_model.out_dim, main_model.out_dim, 1),
             s_channels=None,
-            activation='gelu', # GATr uses scalar-gated activations
+            activation='gelu',
             dropout_prob=0
         )
 

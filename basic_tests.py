@@ -97,7 +97,7 @@ for batch in train_loader:
     break
 
 #point      = torch.tensor([1., 2., 3.])
-quaternion = torch.tensor([0.1, 0.2, 0.3, 0.9])  # arbitrary rotor (x,y,z,w)
+quaternion = torch.tensor([0.1, 0.2, 0.3, 0.9])
 quaternion = quaternion / quaternion.norm()
 
 config_w_pool = {
