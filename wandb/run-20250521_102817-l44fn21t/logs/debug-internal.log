@@ -1,0 +1,15 @@
+{"time":"2025-05-21T10:28:17.532547821+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250521_102817-l44fn21t/logs/debug-core.log"}
+{"time":"2025-05-21T10:28:17.801887845+02:00","level":"INFO","msg":"created new stream","id":"l44fn21t"}
+{"time":"2025-05-21T10:28:17.801921911+02:00","level":"INFO","msg":"stream: started","id":"l44fn21t"}
+{"time":"2025-05-21T10:28:17.802018023+02:00","level":"INFO","msg":"sender: started","stream_id":"l44fn21t"}
+{"time":"2025-05-21T10:28:17.802021383+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"l44fn21t"}
+{"time":"2025-05-21T10:28:17.802029883+02:00","level":"INFO","msg":"handler: started","stream_id":"l44fn21t"}
+{"time":"2025-05-21T10:28:18.027443918+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-21T10:32:32.068941413+02:00","level":"INFO","msg":"stream: closing","id":"l44fn21t"}
+{"time":"2025-05-21T10:32:32.068960563+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-21T10:32:32.068975425+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-21T10:32:33.011363094+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-21T10:32:33.371793982+02:00","level":"INFO","msg":"handler: closed","stream_id":"l44fn21t"}
+{"time":"2025-05-21T10:32:33.371815848+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"l44fn21t"}
+{"time":"2025-05-21T10:32:33.371838591+02:00","level":"INFO","msg":"sender: closed","stream_id":"l44fn21t"}
+{"time":"2025-05-21T10:32:33.371868631+02:00","level":"INFO","msg":"stream: closed","id":"l44fn21t"}

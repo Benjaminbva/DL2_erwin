@@ -1,0 +1,25 @@
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_setup.py:_flush():70] Current SDK version is 0.19.11
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_setup.py:_flush():70] Configure stats pid to 21655
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_setup.py:_flush():70] Loading settings from /home/aema/.config/wandb/settings
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_setup.py:_flush():70] Loading settings from /home/aema/Desktop/DL2_erwin/wandb/settings
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_setup.py:_flush():70] Loading settings from environment variables
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_init.py:setup_run_log_directory():724] Logging user logs to /home/aema/Desktop/DL2_erwin/wandb/run-20250521_124924-orvqh384/logs/debug.log
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to /home/aema/Desktop/DL2_erwin/wandb/run-20250521_124924-orvqh384/logs/debug-internal.log
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_init.py:init():852] calling init triggers
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'model': 'erwin', 'data_path': './data/cosmology', 'size': 'smallest', 'num_samples': 8192, 'num_epochs': 3000, 'batch_size': 2, 'use_wandb': True, 'lr': 0.0005, 'val_every_iter': 500, 'experiment': 'glx_node', 'test': True, 'seed': 0, 'mv_dim_in': 8, 'mv_dims': [8, 16], 's_dims': [8, 16], 'enc_num_heads': [2, 4], 'enc_depths': [2, 2], 'dec_num_heads': [2], 'dec_depths': [2], 'strides': [2], 'ball_sizes': [128, 128], 'rotate': 0, 'mp_steps': 0, '_wandb': {}}
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_init.py:init():893] starting backend
+2025-05-21 12:49:24,348 INFO    MainThread:21655 [wandb_init.py:init():897] sending inform_init request
+2025-05-21 12:49:24,349 INFO    MainThread:21655 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-05-21 12:49:24,349 INFO    MainThread:21655 [wandb_init.py:init():907] backend started and connected
+2025-05-21 12:49:24,350 INFO    MainThread:21655 [wandb_init.py:init():1005] updated telemetry
+2025-05-21 12:49:24,354 INFO    MainThread:21655 [wandb_init.py:init():1029] communicating run to backend with 90.0 second timeout
+2025-05-21 12:49:24,996 INFO    MainThread:21655 [wandb_init.py:init():1104] starting run threads in backend
+2025-05-21 12:49:25,039 INFO    MainThread:21655 [wandb_run.py:_console_start():2573] atexit reg
+2025-05-21 12:49:25,039 INFO    MainThread:21655 [wandb_run.py:_redirect():2421] redirect: wrap_raw
+2025-05-21 12:49:25,039 INFO    MainThread:21655 [wandb_run.py:_redirect():2490] Wrapping output streams.
+2025-05-21 12:49:25,040 INFO    MainThread:21655 [wandb_run.py:_redirect():2513] Redirects installed.
+2025-05-21 12:49:25,041 INFO    MainThread:21655 [wandb_init.py:init():1150] run started, returning control to user process
+2025-05-21 12:49:25,041 INFO    MainThread:21655 [wandb_watch.py:_watch():71] Watching
+2025-05-21 12:49:25,044 INFO    MainThread:21655 [wandb_run.py:_config_callback():1436] config_cb None None {'num_parameters': 75138}
+2025-05-21 12:49:26,641 INFO    MsgRouterThr:21655 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

@@ -49,9 +49,9 @@ def parse_args():
 
 erwin_configs = {
     "smallest": {
-        "mv_dim_in": 16,
-        "mv_dims": [16, 32],
-        "s_dims": [16, 32],
+        "mv_dim_in": 8,
+        "mv_dims": [8, 16],
+        "s_dims": [8, 16],
         "enc_num_heads": [2, 4],
         "enc_depths": [2, 2],
         "dec_num_heads": [2],
@@ -138,7 +138,7 @@ if __name__ == "__main__":
         split='val', 
         num_samples=512, 
         tfrecords_path=args.data_path, 
-        knn=10,
+        knn=10, 
     )
     test_dataset = CosmologyDataset(
         task='node', 

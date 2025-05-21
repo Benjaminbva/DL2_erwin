@@ -7,7 +7,7 @@ from gatr.layers.mlp import GeoMLP, MLPConfig
 class EquiEmbedding(nn.Module):
     def __init__(self, out_dim):
         super().__init__()
-        self.pos_embedding = EquiLinear(1, out_dim)
+        self.pos_embedding = EquiLinear(1, out_dim, 1, out_dim)
 
     def forward(self, pos):
         return self.pos_embedding(embed_point(pos).unsqueeze(1))
@@ -21,7 +21,7 @@ class CosmologyEquiModel(nn.Module):
 
         mlp_config = MLPConfig(
             mv_channels=(main_model.out_dim, main_model.out_dim, 1),
-            s_channels=None,
+            s_channels=(main_model.out_dim, main_model.out_dim, 1),
             activation='gelu',
             dropout_prob=0
         )
@@ -30,9 +30,11 @@ class CosmologyEquiModel(nn.Module):
 
     def forward(self, node_positions, **kwargs):
         x_mv, x_s = self.embedding_model(node_positions)
-        out = self.main_model(x_mv, node_positions, **kwargs)
-        return self.pred_head(out['final_mv'], scalars = x_s, 
+        x_mv, x_s2 = self.main_model(x_mv, node_positions, x_s = x_s,**kwargs)
+        return self.pred_head(x_mv, 
+                              scalars = x_s2, 
                               reference_mv=self.main_model.ref_mv_global)
+
 
     def step(self, batch, prefix="train"):
         pred_mv, pred_s = self(batch["pos"], **batch)

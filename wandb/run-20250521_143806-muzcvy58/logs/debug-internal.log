@@ -1,0 +1,15 @@
+{"time":"2025-05-21T14:38:06.7401816+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250521_143806-muzcvy58/logs/debug-core.log"}
+{"time":"2025-05-21T14:38:07.043969696+02:00","level":"INFO","msg":"created new stream","id":"muzcvy58"}
+{"time":"2025-05-21T14:38:07.043993602+02:00","level":"INFO","msg":"stream: started","id":"muzcvy58"}
+{"time":"2025-05-21T14:38:07.044072681+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"muzcvy58"}
+{"time":"2025-05-21T14:38:07.044079127+02:00","level":"INFO","msg":"handler: started","stream_id":"muzcvy58"}
+{"time":"2025-05-21T14:38:07.04410728+02:00","level":"INFO","msg":"sender: started","stream_id":"muzcvy58"}
+{"time":"2025-05-21T14:38:07.27320173+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-21T14:39:22.616812546+02:00","level":"INFO","msg":"stream: closing","id":"muzcvy58"}
+{"time":"2025-05-21T14:39:22.616825226+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-21T14:39:22.616842249+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-21T14:39:23.231554041+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-21T14:39:23.436502982+02:00","level":"INFO","msg":"handler: closed","stream_id":"muzcvy58"}
+{"time":"2025-05-21T14:39:23.436551711+02:00","level":"INFO","msg":"sender: closed","stream_id":"muzcvy58"}
+{"time":"2025-05-21T14:39:23.436540932+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"muzcvy58"}
+{"time":"2025-05-21T14:39:23.436589207+02:00","level":"INFO","msg":"stream: closed","id":"muzcvy58"}

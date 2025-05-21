@@ -97,7 +97,8 @@ class ErwinEmbedding(nn.Module):
 
     def forward(self, x: torch.Tensor, pos: torch.Tensor, edge_index: torch.Tensor):
         x = self.embed_fn(x)
-        return self.mpnn(x, pos, edge_index) if self.mp_steps > 0 else x
+        ciao = self.mpnn(x, pos, edge_index) 
+        return ciao if self.mp_steps > 0 else x
 
 
 @dataclass

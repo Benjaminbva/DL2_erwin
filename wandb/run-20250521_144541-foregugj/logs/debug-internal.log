@@ -1,0 +1,15 @@
+{"time":"2025-05-21T14:45:41.711925938+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250521_144541-foregugj/logs/debug-core.log"}
+{"time":"2025-05-21T14:45:41.993219598+02:00","level":"INFO","msg":"created new stream","id":"foregugj"}
+{"time":"2025-05-21T14:45:41.993240665+02:00","level":"INFO","msg":"stream: started","id":"foregugj"}
+{"time":"2025-05-21T14:45:41.993352783+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"foregugj"}
+{"time":"2025-05-21T14:45:41.993406119+02:00","level":"INFO","msg":"sender: started","stream_id":"foregugj"}
+{"time":"2025-05-21T14:45:41.993445133+02:00","level":"INFO","msg":"handler: started","stream_id":"foregugj"}
+{"time":"2025-05-21T14:45:42.324268672+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-21T15:01:10.385537689+02:00","level":"INFO","msg":"stream: closing","id":"foregugj"}
+{"time":"2025-05-21T15:01:10.385609212+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-21T15:01:10.385676786+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-21T15:01:11.511765587+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-21T15:01:12.023092774+02:00","level":"INFO","msg":"handler: closed","stream_id":"foregugj"}
+{"time":"2025-05-21T15:01:12.023127807+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"foregugj"}
+{"time":"2025-05-21T15:01:12.023153493+02:00","level":"INFO","msg":"sender: closed","stream_id":"foregugj"}
+{"time":"2025-05-21T15:01:12.023170615+02:00","level":"INFO","msg":"stream: closed","id":"foregugj"}

@@ -97,8 +97,8 @@ for batch in train_loader:
     break
 
 #point      = torch.tensor([1., 2., 3.])
-quaternion = torch.tensor([0.1, 0.2, 0.3, 0.9])
-quaternion = quaternion / quaternion.norm()
+#quaternion = torch.tensor([0.1, 0.2, 0.3, 0.9])
+#quaternion = quaternion / quaternion.norm()
 
 config_w_pool = {
     "c_in": 16,
@@ -109,23 +109,23 @@ config_w_pool = {
     "dec_num_heads": [4],
     "dec_depths": [4],
     "strides": [4,], # 0.25 coarsening
-    "mp_steps": 0, # no MPNN
+    "mp_steps": 3, # no MPNN
     "decode": True, # no decoder
     "dimensionality": 3, # for visualization
     "rotate": 0,
 }
 
 config = {
-    "mv_dim_in": 16,
-    "mv_dims": [16,32],
-    "s_dims": [16,32],
-    "ball_sizes": [128, 128],
+    "mv_dim_in": 4,
+    "mv_dims": [4,8],
+    "s_dims": [4,8],
+    "ball_sizes": [64, 64],
     "enc_num_heads": [1,1],
     "enc_depths": [1,1],
     "dec_num_heads": [4],
     "dec_depths": [4],
     "strides": [4,], # 0.25 coarsening
-    "mp_steps": 2, # no MPNN
+    "mp_steps": 3, # no MPNN
     "decode": True, # no decoder
     "dimensionality": 2, # for visualization
     "rotate": 0,
@@ -133,16 +133,16 @@ config = {
 
 
 equimodel = EquivariantErwinTransformer(**config)
-#normalmodel = ErwinTransformer(**config_w_pool)
+normalmodel = ErwinTransformer(**config_w_pool)
 
 model = CosmologyEquiModel(equimodel)
 cos_conf = {"batch_idx":batch_idx,
             "radius" : torch.tensor(2.0)}
 #print(check_equivariance_quaternions(model, point, quaternion, cos_conf))
-equiout = model(point, **cos_conf)
-print(equiout)
+#equiout = model(point, **cos_conf)
+#print(equiout)
 #equimodel.train()
 #model.train()
-#equiout = model(point, **cos_conf)
-#normalmodel(torch.ones(10000,16), point, batch_idx)
+equiout = model(point, **cos_conf)
+#normalmodel(torch.ones(10000,16), point, batch_idx, radius = 2.0)
 #assert check_equivariance_quaternions(layer, point, quaternion), "Embedding is not equivariant!"

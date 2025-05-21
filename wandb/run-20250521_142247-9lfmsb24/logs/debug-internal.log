@@ -1,0 +1,7 @@
+{"time":"2025-05-21T14:22:47.484115324+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250521_142247-9lfmsb24/logs/debug-core.log"}
+{"time":"2025-05-21T14:22:47.787804818+02:00","level":"INFO","msg":"created new stream","id":"9lfmsb24"}
+{"time":"2025-05-21T14:22:47.787830417+02:00","level":"INFO","msg":"stream: started","id":"9lfmsb24"}
+{"time":"2025-05-21T14:22:47.787895388+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"9lfmsb24"}
+{"time":"2025-05-21T14:22:47.78800083+02:00","level":"INFO","msg":"handler: started","stream_id":"9lfmsb24"}
+{"time":"2025-05-21T14:22:47.788013189+02:00","level":"INFO","msg":"sender: started","stream_id":"9lfmsb24"}
+{"time":"2025-05-21T14:22:48.035933341+02:00","level":"INFO","msg":"Starting system monitor"}

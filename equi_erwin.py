@@ -22,7 +22,7 @@ from balltree import build_balltree_with_rotations
 
 @dataclass
 class EquivariantNode:
-    """Dataclass to store hierarchical node information with multivectors."""
+    """ Dataclass to store the hierarchical node information."""
     x_mv: torch.Tensor               # Multivector features (..., C_mv, 16)
     pos_mv: torch.Tensor             # Multivector positions (..., 1, 16) - embedded points
     x_s: Optional[torch.Tensor] = None # Optional scalar features (..., C_s)
@@ -32,7 +32,17 @@ class EquivariantNode:
     children: Optional['EquivariantNode'] = None # Link to finer level node during unpooling
 
 def scatter_mean(src: torch.Tensor, idx: torch.Tensor, num_receivers: int):
+    """ 
+    Averages all values from src into the receivers at the indices specified by idx.
 
+    Args:
+        src (torch.Tensor): Source tensor of shape (N, D).
+        idx (torch.Tensor): Indices tensor of shape (N,).
+        num_receivers (int): Number of receivers (usually the maximum index in idx + 1).
+    
+    Returns:
+        torch.Tensor: Result tensor of shape (num_receivers, D).
+    """
     result = torch.zeros(num_receivers, src.size(1), dtype=src.dtype, device=src.device)
     count = torch.zeros(num_receivers, dtype=torch.long, device=src.device)
     result.index_add_(0, idx, src)
@@ -40,9 +50,18 @@ def scatter_mean(src: torch.Tensor, idx: torch.Tensor, num_receivers: int):
     return result / count.unsqueeze(1).clamp(min=1)
 
 class InvMPNN(nn.Module):
+    """ 
+    Message Passing Neural Network (see Gilmer et al., 2017).
+        m_ij = MLP([h_i, h_j, pos_i - pos_j])       message
+        m_i = mean(m_ij)                            aggregate
+        h_i' = MLP([h_i, m_i])                      update
+    """
     def __init__(self, scalar_feature_dim: int, mp_steps: int, distance_dim: int = 1):
         super().__init__()
         self.mp_steps = mp_steps
+
+        self.intial_proj = nn.Linear(1, scalar_feature_dim)
+
         self.message_fns = nn.ModuleList([
             nn.Sequential(
                 nn.Linear(2 * scalar_feature_dim + distance_dim, scalar_feature_dim),
@@ -70,7 +89,10 @@ class InvMPNN(nn.Module):
 
         edge_attr = self.compute_edge_attr(cartesian_pos, edge_index)
         row, col = edge_index
-
+        if h_s is None:
+            h_s = self.intial_proj(edge_attr)
+            h_s = scatter_mean(h_s, col, cartesian_pos.size(0))
+        
         for message_fn, update_fn in zip(self.message_fns, self.update_fns):
             message_inputs = torch.cat([h_s[row], h_s[col], edge_attr], dim=-1)
             messages = message_fn(message_inputs)
@@ -79,12 +101,12 @@ class InvMPNN(nn.Module):
 
             update_inputs = torch.cat([h_s, aggregated_messages], dim=-1)
             h_s_update = update_fn(update_inputs)
-            h_s = h_s + h_s_update
 
-        return h_s
+        return h_s + h_s_update
 
 
 class EquivariantErwinEmbedding(nn.Module):
+    """ Linear projection -> MPNN."""
     def __init__(self, 
                  in_mv_dim: int, 
                  out_mv_dim: int, 
@@ -100,16 +122,15 @@ class EquivariantErwinEmbedding(nn.Module):
             out_mv_channels=out_mv_dim,
             in_s_channels=in_s_dim,
             out_s_channels=out_s_dim
+
         )
-        self.mpnn = InvMPNN(scalar_feature_dim=out_s_dim, mp_steps=mp_steps, distance_dim=1)
+        self.mpnn = InvMPNN(scalar_feature_dim=out_mv_dim, mp_steps=mp_steps, distance_dim=1)
 
     def forward(self, x_mv: torch.Tensor, x_s: Optional[torch.Tensor], cartesian_pos: torch.Tensor = torch.Tensor([0]), edge_index: torch.Tensor = torch.tensor([0])):
-        x_mv, x_s = self.embed_fn(x_mv)
-        if x_s is None and self.mp_steps > 0:
-            row, col = edge_index
-            x_s = torch.norm(cartesian_pos[row] - cartesian_pos[col], dim=-1, keepdim=True)
+        x_mv, x_s = self.embed_fn(x_mv, x_s)
         if self.mp_steps > 0 :
             x_s = self.mpnn(x_s, cartesian_pos, edge_index)
+            #x_mv[:,:,0] = x_mv[:,:,0] + x_s
             return x_mv, x_s
         else:
             return x_mv, x_s
@@ -128,7 +149,7 @@ class EquivariantBallAttention(nn.Module):
             out_s_channels=s_dim,
             num_heads=num_heads,
             dropout_prob=dropout,
-            pos_encoding=True,
+            pos_encoding=False,
             increase_hidden_channels=increase_hidden_channels_factor
 
         )
@@ -172,6 +193,7 @@ class EquivariantBallPooling(nn.Module):
         self.out = out_mv_dim
         self.proj = EquiLinear(in_mv_dim * stride + stride, out_mv_dim, 
                                in_s_dim * stride + stride, out_s_dim)
+        self.norm = EquiLayerNorm()
 
     def forward(self, node: EquivariantNode) -> EquivariantNode:
         if self.stride == 1:
@@ -189,9 +211,14 @@ class EquivariantBallPooling(nn.Module):
         x_mv = torch.cat(
             [rearrange(node.x_mv, "(n s) c m -> n (s c) m", s=self.stride),
              embed_translation(rel_pos)], dim = 1)
-        x_s = torch.cat([rearrange(node.x_s, "(n s) c -> n (s c)", s=self.stride), 
-                         torch.norm(rel_pos, dim = -1)], dim = 1)
+        if node.x_s is not None:
+            x_s = torch.cat([rearrange(node.x_s, "(n s) c -> n (s c)", s=self.stride), 
+                            torch.norm(rel_pos, dim = -1)], dim = 1)
+        else:
+            x_s = None
+            
         x_mv, x_s = self.proj(x_mv, x_s)
+        x_mv, x_s = self.norm(x_mv, x_s)
         return EquivariantNode(x_mv=x_mv, 
                                x_s=x_s,
                                pos_mv=embed_point(centers),
@@ -207,7 +234,9 @@ class EquivariantBallUnpooling(nn.Module):
         super().__init__()
         self.stride = stride
         self.proj = EquiLinear(in_mv_dim + stride, out_mv_dim*stride, 
-                               in_s_dim + stride, out_s_dim*stride)
+                               in_s_dim + stride if in_s_dim is not None else None, 
+                               out_s_dim*stride if in_s_dim is not None else None)
+        self.norm = EquiLayerNorm()
 
     def forward(self, node: EquivariantNode) -> EquivariantNode:
         if self.stride == 1:
@@ -219,10 +248,17 @@ class EquivariantBallUnpooling(nn.Module):
         with torch.no_grad():
             rel_pos = rearrange(node.children.pos_cartesian, "(n m) d -> n m d", m=self.stride) - node.pos_cartesian[:, None]
         x_mv = torch.cat([node.x_mv, embed_translation(rel_pos)], dim = -2)
-        x_s = torch.cat([node.x_s, torch.norm(rel_pos, dim = -1)], dim = 1)
+        if node.x_s is not None:
+            x_s = torch.cat([node.x_s, torch.norm(rel_pos, dim = -1)], dim = 1)
+        else:
+            x_s = None
         x_mv, x_s = self.proj(x_mv, x_s)
+        x_mv, x_s = self.norm(x_mv, x_s)
         node.children.x_mv = node.children.x_mv + rearrange(x_mv, "n (m d) s-> (n m) d s", m = self.stride)
-        node.children.x_s = node.children.x_s + rearrange(x_s, "n (m d) -> (n m) d ", m = self.stride)
+        node.children.x_s = node.children.x_s + rearrange(x_s, "n (m d) -> (n m) d ", m = self.stride) if x_s is not None else None
+                
+        node.children.x_mv, node.children.x_s = self.norm(node.children.x_mv, node.children.x_s)
+
         return node.children
 
 class EquivariantErwinBlock(nn.Module):
@@ -236,8 +272,8 @@ class EquivariantErwinBlock(nn.Module):
 
         self.norm2 = EquiLayerNorm()
 
-        hidden_mv_dim = int(mv_dim)
-        hidden_s_dim = int(s_dim) if s_dim is not None else None
+        hidden_mv_dim = int(mv_dim*2)
+        hidden_s_dim = int(s_dim*2) if s_dim is not None else None
 
         mlp_config = MLPConfig(
             mv_channels=(mv_dim, hidden_mv_dim, mv_dim),
@@ -488,9 +524,7 @@ class EquivariantErwinTransformer(nn.Module):
 
 
         self.ref_mv_global = construct_reference_multivector('data', x_mv)
-
         x_mv, x_s= self.embed(x_mv, x_s, node_positions_cartesian, edge_index)
-
         node = EquivariantNode(
             x_mv=x_mv[tree_idx],
             x_s=x_s[tree_idx] if x_s is not None else None,
@@ -525,17 +559,9 @@ class EquivariantErwinTransformer(nn.Module):
             if final_x_s is not None:
                  final_x_s = final_x_s[original_indices]
 
-            output = {}
 
-            output['final_mv'] = final_x_mv
+            return final_x_mv, final_x_s
 
-
-            if final_x_s is not None:
-                 if self.out_dim_scalar is not None:
-                     output['final_s'] = self.final_proj_s(final_x_s)
-                 else:
-                     output['final_s'] = final_x_s
-            return output
 
         else:
             return {'bottleneck_mv': node.x_mv, 'bottleneck_s': node.x_s, 'bottleneck_batch_idx': node.batch_idx}
