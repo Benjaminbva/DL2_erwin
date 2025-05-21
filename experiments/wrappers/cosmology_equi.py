@@ -30,8 +30,8 @@ class CosmologyEquiModel(nn.Module):
 
     def forward(self, node_positions, **kwargs):
         x_mv, x_s = self.embedding_model(node_positions)
-        x_mv, x_s2 = self.main_model(x_mv, node_positions, x_s = x_s,**kwargs)
-        return self.pred_head(x_mv, 
+        x_mv2, x_s2 = self.main_model(x_mv, node_positions, x_s = x_s,**kwargs)
+        return self.pred_head(x_mv2, 
                               scalars = x_s2, 
                               reference_mv=self.main_model.ref_mv_global)
 

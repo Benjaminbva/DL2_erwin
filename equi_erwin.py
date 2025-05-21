@@ -290,7 +290,6 @@ class EquivariantErwinBlock(nn.Module):
         x_mv_norm, x_s_norm = self.norm1(x_mv, x_s)
         attn_out_mv, attn_out_s = self.attn(x_mv_norm, x_s_norm, pos_mv, node.pos_cartesian ,batch_idx)
 
-
         x_mv = shortcut_mv + attn_out_mv
         if x_s is not None and attn_out_s is not None:
             x_s = shortcut_s + attn_out_s

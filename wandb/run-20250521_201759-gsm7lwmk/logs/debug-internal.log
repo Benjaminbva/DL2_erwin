@@ -1,0 +1,15 @@
+{"time":"2025-05-21T20:17:59.455758177+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250521_201759-gsm7lwmk/logs/debug-core.log"}
+{"time":"2025-05-21T20:17:59.731513975+02:00","level":"INFO","msg":"created new stream","id":"gsm7lwmk"}
+{"time":"2025-05-21T20:17:59.731528641+02:00","level":"INFO","msg":"stream: started","id":"gsm7lwmk"}
+{"time":"2025-05-21T20:17:59.731625353+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"gsm7lwmk"}
+{"time":"2025-05-21T20:17:59.731710314+02:00","level":"INFO","msg":"handler: started","stream_id":"gsm7lwmk"}
+{"time":"2025-05-21T20:17:59.731716855+02:00","level":"INFO","msg":"sender: started","stream_id":"gsm7lwmk"}
+{"time":"2025-05-21T20:17:59.966921392+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-21T20:23:42.00742044+02:00","level":"INFO","msg":"stream: closing","id":"gsm7lwmk"}
+{"time":"2025-05-21T20:23:42.007455533+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-21T20:23:42.007502137+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-21T20:23:43.147217407+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-21T20:23:43.600370932+02:00","level":"INFO","msg":"handler: closed","stream_id":"gsm7lwmk"}
+{"time":"2025-05-21T20:23:43.600415429+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"gsm7lwmk"}
+{"time":"2025-05-21T20:23:43.600419168+02:00","level":"INFO","msg":"sender: closed","stream_id":"gsm7lwmk"}
+{"time":"2025-05-21T20:23:43.600456667+02:00","level":"INFO","msg":"stream: closed","id":"gsm7lwmk"}

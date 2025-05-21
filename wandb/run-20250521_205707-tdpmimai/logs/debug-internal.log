@@ -1,0 +1,16 @@
+{"time":"2025-05-21T20:57:07.619356038+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250521_205707-tdpmimai/logs/debug-core.log"}
+{"time":"2025-05-21T20:57:07.897223359+02:00","level":"INFO","msg":"created new stream","id":"tdpmimai"}
+{"time":"2025-05-21T20:57:07.897238067+02:00","level":"INFO","msg":"stream: started","id":"tdpmimai"}
+{"time":"2025-05-21T20:57:07.897254881+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"tdpmimai"}
+{"time":"2025-05-21T20:57:07.897275934+02:00","level":"INFO","msg":"sender: started","stream_id":"tdpmimai"}
+{"time":"2025-05-21T20:57:07.897314071+02:00","level":"INFO","msg":"handler: started","stream_id":"tdpmimai"}
+{"time":"2025-05-21T20:57:08.233517535+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-21T21:04:43.747432595+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/arcelli2001-university-of-amsterdam/ballformer/tdpmimai/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: read udp 127.0.0.1:45590->127.0.0.53:53: i/o timeout"}
+{"time":"2025-05-21T21:07:18.276002648+02:00","level":"INFO","msg":"stream: closing","id":"tdpmimai"}
+{"time":"2025-05-21T21:07:18.276023718+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-21T21:07:18.276082208+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-21T21:07:19.383732317+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-21T21:07:19.871749787+02:00","level":"INFO","msg":"handler: closed","stream_id":"tdpmimai"}
+{"time":"2025-05-21T21:07:19.87180147+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"tdpmimai"}
+{"time":"2025-05-21T21:07:19.871809284+02:00","level":"INFO","msg":"sender: closed","stream_id":"tdpmimai"}
+{"time":"2025-05-21T21:07:19.871864665+02:00","level":"INFO","msg":"stream: closed","id":"tdpmimai"}

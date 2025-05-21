@@ -24,7 +24,7 @@ def parse_args():
                         help="Model type (mpnn, pointtransformer, erwin)")
     parser.add_argument("--data-path", type=str)
     parser.add_argument("--size", type=str, default="small",
-                        choices=["smallest", "smaller", "small", "medium", "large"],
+                        choices=["egsmall","smallest", "smaller", "small", "medium", "large"],
                         help="Model size configuration")
     parser.add_argument("--num-samples", type=int, default=8192,
                         help="Number of samples for training")
@@ -58,6 +58,19 @@ erwin_configs = {
         "dec_depths": [2],
         "strides": [2],
         "ball_sizes": [128, 128],
+        "rotate": 0,
+        "mp_steps":3
+    },
+    "egsmall": {
+        "mv_dim_in": 8,
+        "mv_dims": [32, 64, 128, 256],
+        "s_dims": [32, 64, 128, 256],
+        "enc_num_heads": [2, 4, 8, 16],
+        "enc_depths": [2, 2, 6, 2],
+        "dec_num_heads": [2, 4, 8],
+        "dec_depths": [2, 2, 2],
+        "strides": [2, 2, 2],
+        "ball_sizes": [256, 256, 256, 256],
         "rotate": 0,
         "mp_steps":3
     },
@@ -138,7 +151,7 @@ if __name__ == "__main__":
         split='val', 
         num_samples=512, 
         tfrecords_path=args.data_path, 
-        knn=10, 
+        knn=10,
     )
     test_dataset = CosmologyDataset(
         task='node', 
