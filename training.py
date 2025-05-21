@@ -5,8 +5,8 @@ import os
 from tqdm import tqdm
 
 
-def setup_wandb_logging(model, config, project_name="ballformer"):
-    wandb.init(project=project_name, config=config, name=config["model"] + '_' + config["experiment"])
+def setup_wandb_logging(model, config, project_name="EquiErwin"):
+    wandb.init(entity="EquiErwin", project=project_name, config=config, name=config["model"] + '_' + config["experiment"])
     wandb.watch(model)
     wandb.config.update({"num_parameters": sum(p.numel() for p in model.parameters() if p.requires_grad)}, allow_val_change=True)
 

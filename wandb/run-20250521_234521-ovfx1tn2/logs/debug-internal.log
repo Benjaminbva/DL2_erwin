@@ -1,0 +1,15 @@
+{"time":"2025-05-21T23:45:21.947203544+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250521_234521-ovfx1tn2/logs/debug-core.log"}
+{"time":"2025-05-21T23:45:22.219118813+02:00","level":"INFO","msg":"created new stream","id":"ovfx1tn2"}
+{"time":"2025-05-21T23:45:22.219138873+02:00","level":"INFO","msg":"stream: started","id":"ovfx1tn2"}
+{"time":"2025-05-21T23:45:22.219177975+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"ovfx1tn2"}
+{"time":"2025-05-21T23:45:22.21931055+02:00","level":"INFO","msg":"handler: started","stream_id":"ovfx1tn2"}
+{"time":"2025-05-21T23:45:22.21932386+02:00","level":"INFO","msg":"sender: started","stream_id":"ovfx1tn2"}
+{"time":"2025-05-21T23:45:22.56028523+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-21T23:58:42.636733335+02:00","level":"INFO","msg":"stream: closing","id":"ovfx1tn2"}
+{"time":"2025-05-21T23:58:42.636904207+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-21T23:58:42.637113534+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-21T23:58:43.686274578+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-21T23:58:44.24958403+02:00","level":"INFO","msg":"handler: closed","stream_id":"ovfx1tn2"}
+{"time":"2025-05-21T23:58:44.249774866+02:00","level":"INFO","msg":"sender: closed","stream_id":"ovfx1tn2"}
+{"time":"2025-05-21T23:58:44.249789919+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ovfx1tn2"}
+{"time":"2025-05-21T23:58:44.250079567+02:00","level":"INFO","msg":"stream: closed","id":"ovfx1tn2"}

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/./experiments/train_cosmology.py", line 198, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/DL2_erwin/training.py", line 133, in fit
+    running_train_stats[k] += v.cpu().detach()
+                              ^^^^^^^
+KeyboardInterrupt
