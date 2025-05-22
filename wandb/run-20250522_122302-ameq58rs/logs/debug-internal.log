@@ -1,0 +1,7 @@
+{"time":"2025-05-22T12:23:02.8792817+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250522_122302-ameq58rs/logs/debug-core.log"}
+{"time":"2025-05-22T12:23:03.284105369+02:00","level":"INFO","msg":"created new stream","id":"ameq58rs"}
+{"time":"2025-05-22T12:23:03.284136588+02:00","level":"INFO","msg":"stream: started","id":"ameq58rs"}
+{"time":"2025-05-22T12:23:03.284257211+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"ameq58rs"}
+{"time":"2025-05-22T12:23:03.284386917+02:00","level":"INFO","msg":"handler: started","stream_id":"ameq58rs"}
+{"time":"2025-05-22T12:23:03.284399684+02:00","level":"INFO","msg":"sender: started","stream_id":"ameq58rs"}
+{"time":"2025-05-22T12:23:03.695395977+02:00","level":"INFO","msg":"Starting system monitor"}

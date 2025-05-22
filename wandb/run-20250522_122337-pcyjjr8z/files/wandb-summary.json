@@ -1,0 +1,1 @@
+{"avg/val/loss":0.9867355823516846,"train/loss":1.0069513320922852,"_wandb":{"runtime":19},"checkpoint/best_val_loss":0.9867355823516846,"global_step":500,"_runtime":19.800575943,"test/avg/loss":0.9868825674057007,"_step":500,"_timestamp":1.7479094367103255e+09,"stats/steps_per_second":52.71933157888951,"avg/train/loss":0.9923959970474243}

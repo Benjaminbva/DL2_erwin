@@ -1,0 +1,15 @@
+{"time":"2025-05-22T12:21:36.143509049+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250522_122136-gpytbyze/logs/debug-core.log"}
+{"time":"2025-05-22T12:21:36.447280217+02:00","level":"INFO","msg":"created new stream","id":"gpytbyze"}
+{"time":"2025-05-22T12:21:36.447308522+02:00","level":"INFO","msg":"stream: started","id":"gpytbyze"}
+{"time":"2025-05-22T12:21:36.447430049+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"gpytbyze"}
+{"time":"2025-05-22T12:21:36.447472989+02:00","level":"INFO","msg":"sender: started","stream_id":"gpytbyze"}
+{"time":"2025-05-22T12:21:36.447980339+02:00","level":"INFO","msg":"handler: started","stream_id":"gpytbyze"}
+{"time":"2025-05-22T12:21:36.758282939+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-22T12:21:38.104699041+02:00","level":"INFO","msg":"stream: closing","id":"gpytbyze"}
+{"time":"2025-05-22T12:21:38.104723596+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-22T12:21:38.104775702+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-22T12:21:38.803091232+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-22T12:21:39.110307399+02:00","level":"INFO","msg":"handler: closed","stream_id":"gpytbyze"}
+{"time":"2025-05-22T12:21:39.110328012+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"gpytbyze"}
+{"time":"2025-05-22T12:21:39.110340844+02:00","level":"INFO","msg":"sender: closed","stream_id":"gpytbyze"}
+{"time":"2025-05-22T12:21:39.110381145+02:00","level":"INFO","msg":"stream: closed","id":"gpytbyze"}

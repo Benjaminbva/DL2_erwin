@@ -1,0 +1,64 @@
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/./experiments/train_cosmology.py", line 208, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/DL2_erwin/training.py", line 127, in fit
+    stat_dict = train_step(model, batch, optimizer, scheduler)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/training.py", line 59, in train_step
+    stat_dict = model.training_step(batch)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/experiments/wrappers/cosmology.py", line 35, in training_step
+    return self.step(batch, "train")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/experiments/wrappers/cosmology.py", line 30, in step
+    pred = self(batch["pos"], **batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/experiments/wrappers/cosmology.py", line 27, in forward
+    return self.pred_head(self.main_model(node_features, node_positions, **kwargs))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/models/erwin.py", line 390, in forward
+    node = layer(node)
+           ^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/models/erwin.py", line 253, in forward
+    return self.pool(node)
+           ^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/models/erwin.py", line 137, in forward
+    x = torch.cat([rearrange(node.x, "(n s) c -> n (s c)", s=self.stride), rel_pos], dim=1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/einops/einops.py", line 600, in rearrange
+    return reduce(tensor, pattern, reduction="rearrange", **axes_lengths)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/einops/einops.py", line 532, in reduce
+    return _apply_recipe(
+           ^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/einops/einops.py", line 251, in _apply_recipe
+    tensor = backend.reshape(tensor, final_shapes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/einops/_backends.py", line 93, in reshape
+    return x.reshape(shape)
+           ^^^^^^^^^^^^^^^^
+KeyboardInterrupt

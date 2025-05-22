@@ -1,0 +1,52 @@
+Loading best checkpoint for testing...
+Loaded checkpoint from step 499 with validation loss 0.9867
+Exception ignored in: <function _releaseLock at 0x7ba72ac4ec00>
+Traceback (most recent call last):
+  File "/home/aema/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/logging/__init__.py", line 237, in _releaseLock
+    def _releaseLock():
+
+KeyboardInterrupt:
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 1251, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/multiprocessing/queues.py", line 114, in get
+    raise Empty
+_queue.Empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/./experiments/train_cosmology.py", line 208, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/DL2_erwin/training.py", line 175, in fit
+    test_stats = validate(model, test_loader, config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/training.py", line 76, in validate
+    for batch in iterator:
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 1458, in _next_data
+    idx, data = self._get_data()
+                ^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 1420, in _get_data
+    success, data = self._try_get_data()
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 1264, in _try_get_data
+    raise RuntimeError(
+RuntimeError: DataLoader worker (pid(s) 51542, 51543, 51544) exited unexpectedly
+Exception ignored in atexit callback: <function _start_and_connect_service.<locals>.teardown_atexit at 0x7ba5343bbba0>
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/service_connection.py", line 94, in teardown_atexit
+    conn.teardown(hooks.exit_code)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/service_connection.py", line 226, in teardown
+    self._router.join()
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/router.py", line 75, in join
+    self._thread.join()
+  File "/home/aema/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/threading.py", line 1119, in join
+    self._wait_for_tstate_lock()
+  File "/home/aema/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt:

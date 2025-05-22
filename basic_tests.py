@@ -139,8 +139,9 @@ normalmodel = ErwinTransformer(**config_w_pool)
 model = CosmologyEquiModel(equimodel)
 cos_conf = {"batch_idx":batch_idx,
             "radius" : torch.tensor(2.0)}
-print(check_equivariance_quaternions(model, point, quaternion, cos_conf))
-#equiout = model(point, **cos_conf)
+
+
+equiout = model(point, **cos_conf)
 #print(equiout)
 #equimodel.train()
 #model.train()
