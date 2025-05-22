@@ -1,0 +1,15 @@
+{"time":"2025-05-22T12:06:20.370979359+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250522_120620-nxs3dacb/logs/debug-core.log"}
+{"time":"2025-05-22T12:06:20.674781563+02:00","level":"INFO","msg":"created new stream","id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:20.67480311+02:00","level":"INFO","msg":"stream: started","id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:20.674873078+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:20.674911877+02:00","level":"INFO","msg":"handler: started","stream_id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:20.674915834+02:00","level":"INFO","msg":"sender: started","stream_id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:20.984734138+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-22T12:06:46.03077149+02:00","level":"INFO","msg":"stream: closing","id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:46.030792032+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-22T12:06:46.030824339+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-22T12:06:46.634537771+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-22T12:06:46.841192456+02:00","level":"INFO","msg":"handler: closed","stream_id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:46.841253559+02:00","level":"INFO","msg":"sender: closed","stream_id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:46.841252324+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"nxs3dacb"}
+{"time":"2025-05-22T12:06:46.841318578+02:00","level":"INFO","msg":"stream: closed","id":"nxs3dacb"}

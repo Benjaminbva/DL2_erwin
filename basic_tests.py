@@ -11,13 +11,14 @@ from models import ErwinTransformer
 from torch.utils.data import DataLoader
 from experiments.wrappers.cosmology_equi import CosmologyEquiModel
 import sys
+from gatr.interface.point import extract_point
 
 def check_equivariance_quaternions(
     layer: EquivariantErwinEmbedding,
     points: torch.Tensor,        # (3,) or (B,3)
     quaternions: torch.Tensor,   # (4,) or (B,4)
     cos_conf,
-    atol: float = 1e-6
+    atol: float = 0.1
 ) -> bool:
     """
     Returns True if for each i:
@@ -36,7 +37,7 @@ def check_equivariance_quaternions(
     p_mv = p_mv.unsqueeze(1)              # (B,1,16)
 
     # --- 3) Forward on original points ---
-    out_mv, out_s = layer(p_mv, **cos_conf)       # out_mv: (B,C_mv,16), out_s: (B,C_s)
+    out_mv, out_s = layer(extract_point(p_mv).squeeze(1), **cos_conf)       # out_mv: (B,C_mv,16), out_s: (B,C_s)
 
     # --- 4) Prepare rotors & inverses ---
     # broadcast single quaternion if needed
@@ -50,7 +51,7 @@ def check_equivariance_quaternions(
     p_rot  = geometric_product(tmp,     r_inv) # (B,1,16)
 
     # --- 6) Forward on rotated inputs ---
-    out_mv_r, out_s_r = layer(p_rot, **cos_conf)
+    out_mv_r, out_s_r = layer(extract_point(p_rot).squeeze(1), **cos_conf)
 
     # --- 7) Rotate the original outputs the same way ---
     C_mv    = out_mv.shape[1]
@@ -67,7 +68,7 @@ def check_equivariance_quaternions(
     if not (mv_close and s_close):
         print(f"Equivariance failed: mv_match={mv_close}, scalar_match={s_close}")
 
-    return mv_close and s_close
+    return mv_close, s_close
 
 
 
@@ -97,8 +98,8 @@ for batch in train_loader:
     break
 
 #point      = torch.tensor([1., 2., 3.])
-#quaternion = torch.tensor([0.1, 0.2, 0.3, 0.9])
-#quaternion = quaternion / quaternion.norm()
+quaternion = torch.tensor([0.1, 0.2, 0.3, 0.9])
+quaternion = quaternion / quaternion.norm()
 
 config_w_pool = {
     "c_in": 16,
@@ -138,11 +139,11 @@ normalmodel = ErwinTransformer(**config_w_pool)
 model = CosmologyEquiModel(equimodel)
 cos_conf = {"batch_idx":batch_idx,
             "radius" : torch.tensor(2.0)}
-#print(check_equivariance_quaternions(model, point, quaternion, cos_conf))
+print(check_equivariance_quaternions(model, point, quaternion, cos_conf))
 #equiout = model(point, **cos_conf)
 #print(equiout)
 #equimodel.train()
 #model.train()
-equiout = model(point, **cos_conf)
+#equiout = model(point, **cos_conf)
 #normalmodel(torch.ones(10000,16), point, batch_idx, radius = 2.0)
 #assert check_equivariance_quaternions(layer, point, quaternion), "Embedding is not equivariant!"

@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH --partition=gpu_a100
+#SBATCH --gpus=1
+#SBATCH --job-name=rad_equi_${USER}
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=18
+#SBATCH --time=00:10:00
+#SBATCH --output=rad_equi_%x.%j.out
+#SBATCH --error=rad_equi_%x.%j.err
+
+set -euxo pipefail
+
+cd /gpfs/home1/scur2676/DL2_erwin
+
+# 1) Build & activate your env (idempotent)
+chmod +x setup.sh
+source ./setup.sh --minimal
+
+# 2) W&B configuration — same for everyone except the API key
+export WANDB_API_KEY="<your_personal_api_key_here>"
+export WANDB_PROJECT="EquiErwin"        # the new project you created
+export WANDB_ENTITY="EquiErwin"       # your shared team/entity name
+
+# 3) Optional: tag runs with your Unix username
+export WANDB_TAGS="${USER}"
+
+# 4) Launch training
+echo "Launching training for ${USER} on W&B project ${WANDB_PROJECT}…"
+python ./experiments/train_cosmology.py \
+    --batch-size 2 \
+    --data-path ./cosmology_data \
+    --size smallest \
+    --experiment "${USER}_smallest_batch2"

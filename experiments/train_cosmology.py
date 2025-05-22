@@ -48,32 +48,6 @@ def parse_args():
 
 
 erwin_configs = {
-    "smallest": {
-        "mv_dim_in": 8,
-        "mv_dims": [8, 16],
-        "s_dims": [8, 16],
-        "enc_num_heads": [2, 4],
-        "enc_depths": [2, 2],
-        "dec_num_heads": [2],
-        "dec_depths": [2],
-        "strides": [2],
-        "ball_sizes": [128, 128],
-        "rotate": 0,
-        "mp_steps":3
-    },
-    "egsmall": {
-        "mv_dim_in": 8,
-        "mv_dims": [32, 64, 128, 256],
-        "s_dims": [32, 64, 128, 256],
-        "enc_num_heads": [2, 4, 8, 16],
-        "enc_depths": [2, 2, 6, 2],
-        "dec_num_heads": [2, 4, 8],
-        "dec_depths": [2, 2, 2],
-        "strides": [2, 2, 2],
-        "ball_sizes": [256, 256, 256, 256],
-        "rotate": 0,
-        "mp_steps":3
-    },
     "smaller": {
         "c_in": 8,
         "c_hidden": [8, 16],
@@ -123,8 +97,39 @@ erwin_configs = {
     },
 }
 
+equi_erwin_config = {
+    "smallest": {
+        "mv_dim_in": 8,
+        "mv_dims": [8, 16],
+        "s_dims": [8, 16],
+        "enc_num_heads": [2, 4],
+        "enc_depths": [2, 2],
+        "dec_num_heads": [2],
+        "dec_depths": [2],
+        "strides": [2],
+        "ball_sizes": [128, 128],
+        "rotate": 0,
+        "mp_steps":3
+    },
+    "small": {
+        "mv_dim_in": 8,
+        "mv_dims": [32, 64, 128, 256],
+        "s_dims": [32, 64, 128, 256],
+        "enc_num_heads": [2, 4, 8, 16],
+        "enc_depths": [2, 2, 6, 2],
+        "dec_num_heads": [2, 4, 8],
+        "dec_depths": [2, 2, 2],
+        "strides": [2, 2, 2],
+        "ball_sizes": [256, 256, 256, 256],
+        "rotate": 0,
+        "mp_steps":3
+    },
+
+}
+
 model_cls = {
-    "erwin": EquivariantErwinTransformer,
+    "erwin": ErwinTransformer,
+    "equierwin": EquivariantErwinTransformer,
 }
 
 
@@ -136,6 +141,8 @@ if __name__ == "__main__":
 
     if args.model == "erwin":
         model_config = erwin_configs[args.size]
+    elif args.model == "equierwin":
+        model_config = equi_erwin_config[args.size]
     else:
         raise ValueError(f"Unknown model type: {args.model}")
 
@@ -186,7 +193,10 @@ if __name__ == "__main__":
     )
 
     dynamic_model = model_cls[args.model](**model_config)
-    model = CosmologyEquiModel(dynamic_model).cuda()
+    if args.model == 'erwin':
+        model = CosmologyModel(dynamic_model).cuda()
+    elif args.model == 'equierwin':
+        model = CosmologyEquiModel(dynamic_model).cuda()
     model = torch.compile(model)
 
     optimizer = AdamW(model.parameters(), lr=args.lr)

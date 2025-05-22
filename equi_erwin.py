@@ -14,6 +14,9 @@ from gatr.interface import embed_point,embed_translation
 from gatr.utils.tensors import construct_reference_multivector
 import torch_cluster
 import sys
+import os
+sys.path.append("../../")
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 from balltree import build_balltree_with_rotations
