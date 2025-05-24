@@ -583,7 +583,7 @@ class EquivariantBasicLayer(nn.Module):
                 node_rotated = EquivariantNode(
                     x_mv = node.x_mv[node.tree_idx_rot],
                     x_s = node.x_s[node.tree_idx_rot] if node.x_s is not None else None,
-                    pos_mv = node.pos_mv[node.tree_idx_rot], 
+                    pos_mv = None, 
                     pos_cartesian = node.pos_cartesian[node.tree_idx_rot] if node.pos_cartesian is not None else None,
                     batch_idx = node.batch_idx[node.tree_idx_rot] if node.batch_idx is not None else None,
                 )

@@ -108,7 +108,7 @@ equi_erwin_config = {
         "dec_depths": [2],
         "strides": [2],
         "ball_sizes": [128, 128],
-        "rotate": 0,
+        "rotate": 90,
         "mp_steps":3
     },
     "small": {
