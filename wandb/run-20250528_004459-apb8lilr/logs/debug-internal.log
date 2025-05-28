@@ -1,0 +1,7 @@
+{"time":"2025-05-28T00:44:59.173280632+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250528_004459-apb8lilr/logs/debug-core.log"}
+{"time":"2025-05-28T00:44:59.517989535+02:00","level":"INFO","msg":"created new stream","id":"apb8lilr"}
+{"time":"2025-05-28T00:44:59.51801969+02:00","level":"INFO","msg":"stream: started","id":"apb8lilr"}
+{"time":"2025-05-28T00:44:59.518047993+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"apb8lilr"}
+{"time":"2025-05-28T00:44:59.518048546+02:00","level":"INFO","msg":"handler: started","stream_id":"apb8lilr"}
+{"time":"2025-05-28T00:44:59.518101784+02:00","level":"INFO","msg":"sender: started","stream_id":"apb8lilr"}
+{"time":"2025-05-28T00:44:59.786368753+02:00","level":"INFO","msg":"Starting system monitor"}

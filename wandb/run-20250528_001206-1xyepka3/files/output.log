@@ -1,0 +1,10 @@
+Loading best checkpoint for testing...
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/./experiments/train_cosmology.py", line 222, in <module>
+    fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)
+  File "/home/aema/Desktop/DL2_erwin/training.py", line 172, in fit
+    best_val_loss, best_step = load_checkpoint(model, optimizer, scheduler, config)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/training.py", line 45, in load_checkpoint
+    raise FileNotFoundError(f"No checkpoint found at {checkpoint_path}")
+FileNotFoundError: No checkpoint found at checkpoints/GATrErwin_base_GATrErwin_test_0_best.pt

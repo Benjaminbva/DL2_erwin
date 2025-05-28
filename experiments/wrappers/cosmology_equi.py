@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
-from gatr.layers.linear import EquiLinear
-from gatr.interface.point import embed_point, extract_point
-from gatr.layers.mlp import GeoMLP, MLPConfig
+from gatr_utils.layers.linear import EquiLinear
+from gatr_utils.interface.point import embed_point, extract_point
+from gatr_utils.layers.mlp import GeoMLP, MLPConfig
 
 class EquiEmbedding(nn.Module):
     def __init__(self, out_dim):

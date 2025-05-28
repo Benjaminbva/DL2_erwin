@@ -1,0 +1,15 @@
+{"time":"2025-05-28T00:41:22.994779275+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250528_004122-babg8loc/logs/debug-core.log"}
+{"time":"2025-05-28T00:41:23.422399825+02:00","level":"INFO","msg":"created new stream","id":"babg8loc"}
+{"time":"2025-05-28T00:41:23.422436744+02:00","level":"INFO","msg":"stream: started","id":"babg8loc"}
+{"time":"2025-05-28T00:41:23.422477113+02:00","level":"INFO","msg":"sender: started","stream_id":"babg8loc"}
+{"time":"2025-05-28T00:41:23.422476881+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"babg8loc"}
+{"time":"2025-05-28T00:41:23.422495619+02:00","level":"INFO","msg":"handler: started","stream_id":"babg8loc"}
+{"time":"2025-05-28T00:41:23.642984124+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-28T00:42:01.92306052+02:00","level":"INFO","msg":"stream: closing","id":"babg8loc"}
+{"time":"2025-05-28T00:42:01.92308741+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-28T00:42:01.923141765+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-28T00:42:02.510334545+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-28T00:42:02.82284798+02:00","level":"INFO","msg":"handler: closed","stream_id":"babg8loc"}
+{"time":"2025-05-28T00:42:02.822880632+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"babg8loc"}
+{"time":"2025-05-28T00:42:02.822905549+02:00","level":"INFO","msg":"sender: closed","stream_id":"babg8loc"}
+{"time":"2025-05-28T00:42:02.822932465+02:00","level":"INFO","msg":"stream: closed","id":"babg8loc"}

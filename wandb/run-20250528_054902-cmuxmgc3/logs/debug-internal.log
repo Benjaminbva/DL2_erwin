@@ -1,0 +1,15 @@
+{"time":"2025-05-28T05:49:02.699020374+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250528_054902-cmuxmgc3/logs/debug-core.log"}
+{"time":"2025-05-28T05:49:03.048659243+02:00","level":"INFO","msg":"created new stream","id":"cmuxmgc3"}
+{"time":"2025-05-28T05:49:03.048682182+02:00","level":"INFO","msg":"stream: started","id":"cmuxmgc3"}
+{"time":"2025-05-28T05:49:03.048753987+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"cmuxmgc3"}
+{"time":"2025-05-28T05:49:03.048844945+02:00","level":"INFO","msg":"handler: started","stream_id":"cmuxmgc3"}
+{"time":"2025-05-28T05:49:03.048852298+02:00","level":"INFO","msg":"sender: started","stream_id":"cmuxmgc3"}
+{"time":"2025-05-28T05:49:03.411954358+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-28T06:22:34.710730517+02:00","level":"INFO","msg":"stream: closing","id":"cmuxmgc3"}
+{"time":"2025-05-28T06:22:34.710752833+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-28T06:22:34.710762428+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-28T06:22:35.877259089+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-28T06:22:37.292194732+02:00","level":"INFO","msg":"handler: closed","stream_id":"cmuxmgc3"}
+{"time":"2025-05-28T06:22:37.292220915+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"cmuxmgc3"}
+{"time":"2025-05-28T06:22:37.292228445+02:00","level":"INFO","msg":"sender: closed","stream_id":"cmuxmgc3"}
+{"time":"2025-05-28T06:22:37.292256386+02:00","level":"INFO","msg":"stream: closed","id":"cmuxmgc3"}

@@ -11,11 +11,12 @@ from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
 from training import fit
-from equi_erwin import EquivariantErwinTransformer
+from models.GATrErwin import EquivariantErwinTransformer
 from models import ErwinTransformer
 from experiments.datasets import CosmologyDataset
 from experiments.wrappers.cosmology_equi import CosmologyEquiModel
 from experiments.wrappers.cosmology import CosmologyModel
+import ast
 
 
 def parse_args():
@@ -43,93 +44,101 @@ def parse_args():
     parser.add_argument("--test", action="store_true", default=True,
                         help="Whether to run testing")
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--mpsteps", type=int, default=0)
+    parser.add_argument("--auxiliarympnn", action="store_true", default=False)    
+    parser.add_argument("--embedt", action="store_true", default=False)    
     
     return parser.parse_args()
 
 
-erwin_configs = {
-    "smallest": {
-        "c_in": 8,
-        "c_hidden": [8, 16],
-        "enc_num_heads": [2, 4],
-        "enc_depths": [2, 2],
-        "dec_num_heads": [2],
-        "dec_depths": [2],
-        "strides": [2],
-        "ball_sizes": [128, 128],
-        "rotate": 0,
-        "mp_steps":0
+dynamic_configs = {
+    "erwin": {
+        "smallest": {
+            "c_in": 8,
+            "c_hidden": [8, 16],
+            "enc_num_heads": [2, 4],
+            "enc_depths": [2, 2],
+            "dec_num_heads": [2],
+            "dec_depths": [2],
+            "strides": [2],
+            "ball_sizes": [128, 128],
+            "rotate": 0,
+            "mp_steps":0
+        },
+        "small": {
+            "c_in": 32,
+            "c_hidden": [32, 64, 128, 256],
+            "enc_num_heads": [2, 4, 8, 16],
+            "enc_depths": [2, 2, 6, 2],
+            "dec_num_heads": [2, 4, 8],
+            "dec_depths": [2, 2, 2],
+            "strides": [2, 2, 2],
+            "ball_sizes": [256, 256, 256, 256],
+            "rotate": 0,
+            "mp_steps":3
+        },
+        "medium": {
+            "c_in": 64,
+            "c_hidden": [64, 128, 256, 512],
+            "enc_num_heads": [2, 4, 8, 16],
+            "enc_depths": [2, 2, 6, 2],
+            "dec_num_heads": [2, 4, 8],
+            "dec_depths": [2, 2, 2],
+            "strides": [2, 2, 2],
+            "ball_sizes": [256, 256, 256, 256],
+            "rotate": 0,
+        },
+        "large": {
+            "c_in": 128,
+            "c_hidden": [128, 256, 512, 1024],
+            "enc_num_heads": [2, 4, 8, 16],
+            "enc_depths": [2, 2, 6, 2],
+            "dec_num_heads": [2, 4, 8],
+            "dec_depths": [2, 2, 2],
+            "strides": [2, 2, 2],
+            "ball_sizes": [256, 256, 256, 256],
+            "rotate": 0,
+            "mp_steps":3
+        },
     },
-    "small": {
-        "c_in": 32,
-        "c_hidden": [32, 64, 128, 256],
-        "enc_num_heads": [2, 4, 8, 16],
-        "enc_depths": [2, 2, 6, 2],
-        "dec_num_heads": [2, 4, 8],
-        "dec_depths": [2, 2, 2],
-        "strides": [2, 2, 2],
-        "ball_sizes": [256, 256, 256, 256],
-        "rotate": 0,
-        "mp_steps":3
-    },
-    "medium": {
-        "c_in": 64,
-        "c_hidden": [64, 128, 256, 512],
-        "enc_num_heads": [2, 4, 8, 16],
-        "enc_depths": [2, 2, 6, 2],
-        "dec_num_heads": [2, 4, 8],
-        "dec_depths": [2, 2, 2],
-        "strides": [2, 2, 2],
-        "ball_sizes": [256, 256, 256, 256],
-        "rotate": 0,
-    },
-    "large": {
-        "c_in": 128,
-        "c_hidden": [128, 256, 512, 1024],
-        "enc_num_heads": [2, 4, 8, 16],
-        "enc_depths": [2, 2, 6, 2],
-        "dec_num_heads": [2, 4, 8],
-        "dec_depths": [2, 2, 2],
-        "strides": [2, 2, 2],
-        "ball_sizes": [256, 256, 256, 256],
-        "rotate": 0,
-        "mp_steps":3
-    },
-}
-
-equi_erwin_config = {
-    "smallest": {
-        "mv_dim_in": 8,
-        "mv_dims": [8, 16],
-        "s_dims": [8, 16],
-        "enc_num_heads": [2, 4],
-        "enc_depths": [2, 2],
-        "dec_num_heads": [2],
-        "dec_depths": [2],
-        "strides": [2],
-        "ball_sizes": [128, 128],
-        "rotate": 90,
-        "mp_steps":3
-    },
-    "small": {
-        "mv_dim_in": 8,
-        "mv_dims": [32, 64, 128, 256],
-        "s_dims": [32, 64, 128, 256],
-        "enc_num_heads": [2, 4, 8, 16],
-        "enc_depths": [2, 2, 6, 2],
-        "dec_num_heads": [2, 4, 8],
-        "dec_depths": [2, 2, 2],
-        "strides": [2, 2, 2],
-        "ball_sizes": [256, 256, 256, 256],
-        "rotate": 0,
-        "mp_steps":3
-    },
-
+    "GATrErwin":{
+        "smallest": {
+            "mv_dim_in": 8,
+            "mv_dims": [8, 16],
+            "s_dims": [8, 16],
+            "enc_num_heads": [2, 4],
+            "enc_depths": [2, 2],
+            "dec_num_heads": [2],
+            "dec_depths": [2],
+            "strides": [2],
+            "ball_sizes": [128, 128],
+            "rotate": 0,
+            "mp_steps":0,
+        },
+        "small": {
+            "mv_dim_in": 8,
+            "mv_dims": [32, 64, 128, 256],
+            "s_dims": [32, 64, 128, 256],
+            "enc_num_heads": [2, 4, 8, 16],
+            "enc_depths": [2, 2, 6, 2],
+            "dec_num_heads": [2, 4, 8],
+            "dec_depths": [2, 2, 2],
+            "strides": [2, 2, 2],
+            "ball_sizes": [256, 256, 256, 256],
+            "rotate": 0,
+            "mp_steps":0,
+        },
+    }
 }
 
 model_cls = {
     "erwin": ErwinTransformer,
-    "equierwin": EquivariantErwinTransformer,
+    "GATrErwin": EquivariantErwinTransformer,
+}
+
+wrapper_cls = {
+    "erwin": CosmologyModel,
+    "GATrErwin": CosmologyEquiModel,
 }
 
 
@@ -138,13 +147,6 @@ if __name__ == "__main__":
 
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed(args.seed)
-
-    if args.model == "erwin":
-        model_config = erwin_configs[args.size]
-    elif args.model == "equierwin":
-        model_config = equi_erwin_config[args.size]
-    else:
-        raise ValueError(f"Unknown model type: {args.model}")
 
     train_dataset = CosmologyDataset(
         task='node', 
@@ -192,12 +194,25 @@ if __name__ == "__main__":
         num_workers=16,
     )
 
+    if args.model not in dynamic_configs.keys():
+        raise ValueError(f"Unknown model type: {args.model}, choose between {dynamic_configs.keys()}")
+    
+    model_config = dynamic_configs[args.model][args.size]
+    model_config['mp_steps'] = args.mpsteps
+
+    if "s_dims" in model_config.keys():
+        if not args.auxiliarympnn:
+            model_config['s_dims'] = [None] * len(model_config['mv_dims'])
+        model_config['embedt'] = args.embedt
     dynamic_model = model_cls[args.model](**model_config)
-    if args.model == 'erwin':
-        model = CosmologyModel(dynamic_model).cuda()
-    elif args.model == 'equierwin':
-        model = CosmologyEquiModel(dynamic_model).cuda()
-    model = torch.compile(model)
+
+    if args.model not in wrapper_cls.keys():
+        print('model has no wrapper, dont be silly wrap your willy')
+        model = dynamic_model.cuda()
+    else:
+        model = wrapper_cls[args.model](dynamic_model).cuda()
+
+    #model = torch.compile(model)
 
     optimizer = AdamW(model.parameters(), lr=args.lr)
     scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=1e-6)

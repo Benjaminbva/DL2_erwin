@@ -1,0 +1,63 @@
+{
+  "os": "Linux-6.11.0-26-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.11.11",
+  "startedAt": "2025-05-27T22:34:12.658883Z",
+  "args": [
+    "--model",
+    "GATrErwin",
+    "--data-path",
+    "./data/cosmology",
+    "--size",
+    "smallest",
+    "--num-epochs",
+    "6",
+    "--batch-size",
+    "2",
+    "--experiment",
+    "base_+_Translation_Embeddings_test",
+    "--seed",
+    "0",
+    "--embedt",
+    "--num-samples",
+    "64",
+    "--val-every-iter",
+    "5"
+  ],
+  "program": "/home/aema/Desktop/DL2_erwin/./experiments/train_cosmology.py",
+  "codePath": "experiments/train_cosmology.py",
+  "git": {
+    "remote": "https://github.com/Benjaminbva/DL2_erwin.git",
+    "commit": "32c3c4224200d8d6f21002eff3cce95ac95d36c0"
+  },
+  "email": "arcelli2001@gmail.com",
+  "root": "/home/aema/Desktop/DL2_erwin",
+  "host": "aema",
+  "executable": "/home/aema/Desktop/DL2_erwin/erwin/bin/python",
+  "codePathLocal": "experiments/train_cosmology.py",
+  "cpu_count": 14,
+  "cpu_count_logical": 20,
+  "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "219227484160",
+      "used": "125305065472"
+    }
+  },
+  "memory": {
+    "total": "16438669312"
+  },
+  "cpu": {
+    "count": 14,
+    "countLogical": 20
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "memoryTotal": "8585740288",
+      "cudaCores": 4608,
+      "architecture": "Ada"
+    }
+  ],
+  "cudaVersion": "12.9"
+}

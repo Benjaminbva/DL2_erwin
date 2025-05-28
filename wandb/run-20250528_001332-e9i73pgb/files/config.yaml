@@ -1,0 +1,95 @@
+_wandb:
+    value:
+        cli_version: 0.19.11
+        m: []
+        python_version: 3.11.11
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 49
+                - 55
+            "2":
+                - 1
+                - 2
+                - 3
+                - 49
+                - 55
+            "3":
+                - 1
+                - 13
+                - 16
+                - 23
+                - 55
+            "4": 3.11.11
+            "5": 0.19.11
+            "8":
+                - 5
+            "12": 0.19.11
+            "13": linux-x86_64
+auxiliarympnn:
+    value: false
+ball_sizes:
+    value:
+        - 128
+        - 128
+batch_size:
+    value: 10
+data_path:
+    value: ./data/cosmology
+dec_depths:
+    value:
+        - 2
+dec_num_heads:
+    value:
+        - 2
+enc_depths:
+    value:
+        - 2
+        - 2
+enc_num_heads:
+    value:
+        - 2
+        - 4
+experiment:
+    value: base_GATrErwin_test
+lr:
+    value: 0.0005
+model:
+    value: GATrErwin
+mp_steps:
+    value: 0
+mpsteps:
+    value: 0
+mv_dim_in:
+    value: 8
+mv_dims:
+    value:
+        - 8
+        - 16
+num_epochs:
+    value: 600
+num_parameters:
+    value: 143522
+num_samples:
+    value: 64
+rotate:
+    value: 0
+s_dims:
+    value:
+        - 8
+        - 16
+seed:
+    value: 0
+size:
+    value: smallest
+strides:
+    value:
+        - 2
+test:
+    value: true
+use_wandb:
+    value: true
+val_every_iter:
+    value: 5

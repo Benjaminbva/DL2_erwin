@@ -1,0 +1,7 @@
+{"time":"2025-05-28T00:33:02.79141637+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250528_003302-wegw5zvz/logs/debug-core.log"}
+{"time":"2025-05-28T00:33:03.154290619+02:00","level":"INFO","msg":"created new stream","id":"wegw5zvz"}
+{"time":"2025-05-28T00:33:03.154323086+02:00","level":"INFO","msg":"stream: started","id":"wegw5zvz"}
+{"time":"2025-05-28T00:33:03.154360864+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"wegw5zvz"}
+{"time":"2025-05-28T00:33:03.154368149+02:00","level":"INFO","msg":"sender: started","stream_id":"wegw5zvz"}
+{"time":"2025-05-28T00:33:03.154416353+02:00","level":"INFO","msg":"handler: started","stream_id":"wegw5zvz"}
+{"time":"2025-05-28T00:33:03.504751334+02:00","level":"INFO","msg":"Starting system monitor"}

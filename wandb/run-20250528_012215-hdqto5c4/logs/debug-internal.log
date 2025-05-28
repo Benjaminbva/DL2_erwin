@@ -1,0 +1,15 @@
+{"time":"2025-05-28T01:22:15.671108232+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250528_012215-hdqto5c4/logs/debug-core.log"}
+{"time":"2025-05-28T01:22:16.705517918+02:00","level":"INFO","msg":"created new stream","id":"hdqto5c4"}
+{"time":"2025-05-28T01:22:16.70555267+02:00","level":"INFO","msg":"stream: started","id":"hdqto5c4"}
+{"time":"2025-05-28T01:22:16.705567137+02:00","level":"INFO","msg":"handler: started","stream_id":"hdqto5c4"}
+{"time":"2025-05-28T01:22:16.70557397+02:00","level":"INFO","msg":"sender: started","stream_id":"hdqto5c4"}
+{"time":"2025-05-28T01:22:16.705592518+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"hdqto5c4"}
+{"time":"2025-05-28T01:22:17.038494677+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-28T01:51:10.13385597+02:00","level":"INFO","msg":"stream: closing","id":"hdqto5c4"}
+{"time":"2025-05-28T01:51:10.133878287+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-28T01:51:10.134052287+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-28T01:51:11.372021825+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-28T01:51:12.380010449+02:00","level":"INFO","msg":"handler: closed","stream_id":"hdqto5c4"}
+{"time":"2025-05-28T01:51:12.380049381+02:00","level":"INFO","msg":"sender: closed","stream_id":"hdqto5c4"}
+{"time":"2025-05-28T01:51:12.380049275+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"hdqto5c4"}
+{"time":"2025-05-28T01:51:12.380102202+02:00","level":"INFO","msg":"stream: closed","id":"hdqto5c4"}

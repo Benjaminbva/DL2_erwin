@@ -24,7 +24,7 @@ def save_checkpoint(model, optimizer, scheduler, config, val_loss, global_step):
     save_dir = config.get('checkpoint_dir', 'checkpoints')
     os.makedirs(save_dir, exist_ok=True)
     
-    if config['model'] in ['erwin', 'pointtransformer']:
+    if config['model'] in ['erwin', 'pointtransformer', 'GATrErwin']:
         checkpoint_path = os.path.join(save_dir, f"{config['model']}_{config['experiment']}_{config['size']}_{config['seed']}_best.pt")
     else:
         checkpoint_path = os.path.join(save_dir, f"{config['model']}_{config['experiment']}_{config['seed']}_best.pt")
@@ -36,7 +36,7 @@ def save_checkpoint(model, optimizer, scheduler, config, val_loss, global_step):
 
 def load_checkpoint(model, optimizer, scheduler, config):
     save_dir = config.get('checkpoint_dir', 'checkpoints')
-    if config['model'] in ['erwin', 'pointtransformer']:
+    if config['model'] in ['erwin', 'pointtransformer', 'GATrErwin']:
         checkpoint_path = os.path.join(save_dir, f"{config['model']}_{config['experiment']}_{config['size']}_{config['seed']}_best.pt")
     else:
         checkpoint_path = os.path.join(save_dir, f"{config['model']}_{config['experiment']}_{config['seed']}_best.pt")
