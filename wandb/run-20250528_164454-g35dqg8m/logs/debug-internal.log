@@ -1,0 +1,7 @@
+{"time":"2025-05-28T16:44:54.13279328+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250528_164454-g35dqg8m/logs/debug-core.log"}
+{"time":"2025-05-28T16:44:54.49509123+02:00","level":"INFO","msg":"created new stream","id":"g35dqg8m"}
+{"time":"2025-05-28T16:44:54.495119512+02:00","level":"INFO","msg":"stream: started","id":"g35dqg8m"}
+{"time":"2025-05-28T16:44:54.495129963+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"g35dqg8m"}
+{"time":"2025-05-28T16:44:54.49514201+02:00","level":"INFO","msg":"sender: started","stream_id":"g35dqg8m"}
+{"time":"2025-05-28T16:44:54.495141266+02:00","level":"INFO","msg":"handler: started","stream_id":"g35dqg8m"}
+{"time":"2025-05-28T16:44:54.726989892+02:00","level":"INFO","msg":"Starting system monitor"}

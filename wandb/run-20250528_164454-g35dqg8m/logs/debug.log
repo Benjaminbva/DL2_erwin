@@ -1,0 +1,24 @@
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_setup.py:_flush():70] Current SDK version is 0.19.11
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_setup.py:_flush():70] Configure stats pid to 449315
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_setup.py:_flush():70] Loading settings from /home/aema/.config/wandb/settings
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_setup.py:_flush():70] Loading settings from /home/aema/Desktop/DL2_erwin/wandb/settings
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_setup.py:_flush():70] Loading settings from environment variables
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_init.py:setup_run_log_directory():724] Logging user logs to /home/aema/Desktop/DL2_erwin/wandb/run-20250528_164454-g35dqg8m/logs/debug.log
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to /home/aema/Desktop/DL2_erwin/wandb/run-20250528_164454-g35dqg8m/logs/debug-internal.log
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_init.py:init():852] calling init triggers
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'model': 'erwin', 'data_path': './data/cosmology', 'size': 'smaller', 'num_samples': 64, 'num_epochs': 5000, 'batch_size': 8, 'use_wandb': True, 'lr': 0.0005, 'val_every_iter': 5, 'experiment': 'base_smaller', 'test': True, 'seed': 1, 'mpsteps': 0, 'auxiliarympnn': False, 'embedt': False, 'rotate': 0, 'c_in': 8, 'c_hidden': [8, 16, 32], 'enc_num_heads': [2, 4, 8], 'enc_depths': [2, 2, 6], 'dec_num_heads': [2, 4], 'dec_depths': [2, 2], 'strides': [2, 2], 'ball_sizes': [128, 128, 128], 'mp_steps': 0, '_wandb': {}}
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_init.py:init():893] starting backend
+2025-05-28 16:44:54,129 INFO    MainThread:449315 [wandb_init.py:init():897] sending inform_init request
+2025-05-28 16:44:54,130 INFO    MainThread:449315 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-05-28 16:44:54,130 INFO    MainThread:449315 [wandb_init.py:init():907] backend started and connected
+2025-05-28 16:44:54,132 INFO    MainThread:449315 [wandb_init.py:init():1005] updated telemetry
+2025-05-28 16:44:54,135 INFO    MainThread:449315 [wandb_init.py:init():1029] communicating run to backend with 90.0 second timeout
+2025-05-28 16:44:54,726 INFO    MainThread:449315 [wandb_init.py:init():1104] starting run threads in backend
+2025-05-28 16:44:54,779 INFO    MainThread:449315 [wandb_run.py:_console_start():2573] atexit reg
+2025-05-28 16:44:54,780 INFO    MainThread:449315 [wandb_run.py:_redirect():2421] redirect: wrap_raw
+2025-05-28 16:44:54,780 INFO    MainThread:449315 [wandb_run.py:_redirect():2490] Wrapping output streams.
+2025-05-28 16:44:54,780 INFO    MainThread:449315 [wandb_run.py:_redirect():2513] Redirects installed.
+2025-05-28 16:44:54,781 INFO    MainThread:449315 [wandb_init.py:init():1150] run started, returning control to user process
+2025-05-28 16:44:54,781 INFO    MainThread:449315 [wandb_watch.py:_watch():71] Watching
+2025-05-28 16:44:54,782 INFO    MainThread:449315 [wandb_run.py:_config_callback():1436] config_cb None None {'num_parameters': 127907}

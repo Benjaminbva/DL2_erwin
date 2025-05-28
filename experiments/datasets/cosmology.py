@@ -106,6 +106,7 @@ def get_halo_dataset(
     params=["Omega_m", "sigma_8"],
     return_mean_std=False,
     standardize=True,
+    skip_standardize=False, # new
     tfrecords_path="quijote_records",
     include_tpcf=False,
 ):
@@ -130,11 +131,16 @@ def get_halo_dataset(
     mean_tpcf = tf.constant(MEAN_TPCF_VEC)
     std_tpcf = tf.constant(STD_TPCF_VEC)
 
-    if standardize:
+    if standardize and not skip_standardize: # new
         if include_tpcf:
-            dataset = dataset.map(lambda x, p, t: ((x - mean) / std, (p - mean_params) / std_params, (t - mean_tpcf) / std_tpcf))
+            dataset = dataset.map(lambda x, p, t: (
+                (x - mean) / std, 
+                (p - mean_params) / std_params, 
+                (t - mean_tpcf) / std_tpcf))
         else:
-            dataset = dataset.map(lambda x, p: ((x - mean) / std, (p - mean_params) / std_params))
+            dataset = dataset.map(lambda x, p: (
+                (x - mean) / std, 
+                (p - mean_params) / std_params))
 
     if batch_size is None:
         batch_size = num_total
@@ -149,7 +155,7 @@ def get_halo_dataset(
 
 
 class CosmologyDataset(Dataset):
-    def __init__(self, task, split, num_samples, tfrecords_path, knn):
+    def __init__(self, task, split, num_samples, tfrecords_path, knn, skip_standardize=False): # new
         self.task = task
 
         if task == "graph":
@@ -164,6 +170,7 @@ class CosmologyDataset(Dataset):
             split=split,
             standardize=True,
             return_mean_std=False,
+            skip_standardize=skip_standardize, # new
             features=features,
             params=["Omega_m", "sigma_8"],
             include_tpcf=False,

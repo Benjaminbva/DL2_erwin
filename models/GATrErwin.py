@@ -401,7 +401,6 @@ class EquivariantBasicLayer(nn.Module):
             ) for _ in range(depth)
         ])
         self.rotate = [i % 2 for i in range(depth)] if rotate else [False] * depth
-
         self.pool = lambda node: node
         self.unpool = lambda node: node
         if direction == 'down' and stride > 1:
@@ -417,7 +416,7 @@ class EquivariantBasicLayer(nn.Module):
 
     def forward(self, node: EquivariantNode, reference_mv: torch.Tensor) -> EquivariantNode:
         node = self.unpool(node)
-
+        
         tree_idx_rot_inv = None
         if len(self.rotate) > 1 and self.rotate[1]:
             assert node.tree_idx_rot is not None, "tree_idx_rot must be provided for rotation"
@@ -524,7 +523,7 @@ class EquivariantErwinTransformer(nn.Module):
                     num_heads=enc_num_heads[i],
                     ball_size=ball_sizes[i],
                     mlp_ratio=mlp_ratio,
-                    rotate=self.rotate,
+                    rotate=self.rotate > 0,
                     dimensionality=dimensionality,
                     dropout=dropout,
                     embedt = embedt
@@ -541,7 +540,7 @@ class EquivariantErwinTransformer(nn.Module):
             num_heads=enc_num_heads[-1],
             ball_size=ball_sizes[-1],
             mlp_ratio=mlp_ratio,
-            rotate=self.rotate,
+            rotate=self.rotate > 0,
             dimensionality=dimensionality,
             dropout=dropout,
             embedt = embedt
@@ -561,7 +560,7 @@ class EquivariantErwinTransformer(nn.Module):
                         num_heads=dec_num_heads[i],
                         ball_size=ball_sizes[i],
                         mlp_ratio=mlp_ratio,
-                        rotate=self.rotate,
+                        rotate=self.rotate > 0,
                         dimensionality=dimensionality,
                         dropout=dropout,
                         embedt = embedt
@@ -584,7 +583,7 @@ class EquivariantErwinTransformer(nn.Module):
                       **kwargs):
 
         if tree_idx is None or tree_mask is None:
-
+            print('rotating', self.rotate)
             tree_idx, tree_mask, tree_idx_rot_list = build_balltree_with_rotations(
                 node_positions_cartesian, batch_idx, self.strides, self.ball_sizes, self.rotate)
             if tree_idx_rot_list is None: tree_idx_rot_list = []

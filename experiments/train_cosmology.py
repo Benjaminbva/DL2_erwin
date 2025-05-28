@@ -47,6 +47,8 @@ def parse_args():
     parser.add_argument("--mpsteps", type=int, default=0)
     parser.add_argument("--auxiliarympnn", action="store_true", default=False)    
     parser.add_argument("--embedt", action="store_true", default=False)    
+    parser.add_argument("--rotate", type=int, default=0)
+
     
     return parser.parse_args()
 
@@ -62,6 +64,18 @@ dynamic_configs = {
             "dec_depths": [2],
             "strides": [2],
             "ball_sizes": [128, 128],
+            "rotate": 0,
+            "mp_steps":0
+        },
+        "smaller": {
+            "c_in": 8,
+            "c_hidden": [8, 16, 32],
+            "enc_num_heads": [2, 4, 8],
+            "enc_depths": [2, 2, 6],
+            "dec_num_heads": [2, 4],
+            "dec_depths": [2, 2],
+            "strides": [2, 2],
+            "ball_sizes": [128, 128, 128],
             "rotate": 0,
             "mp_steps":0
         },
@@ -199,6 +213,7 @@ if __name__ == "__main__":
     
     model_config = dynamic_configs[args.model][args.size]
     model_config['mp_steps'] = args.mpsteps
+    model_config['rotate'] = args.rotate
 
     if "s_dims" in model_config.keys():
         if not args.auxiliarympnn:
@@ -207,7 +222,7 @@ if __name__ == "__main__":
     dynamic_model = model_cls[args.model](**model_config)
 
     if args.model not in wrapper_cls.keys():
-        print('model has no wrapper, dont be silly wrap your willy')
+        print('model has no wrapper, dont be silly wrap your... model')
         model = dynamic_model.cuda()
     else:
         model = wrapper_cls[args.model](dynamic_model).cuda()
