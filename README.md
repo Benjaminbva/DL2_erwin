@@ -1,9 +1,7 @@
 # GATrErwin: A Geometric Algebra-Inspired Equivariant Hierarchical Transformer
 - **Authors**  
-    - Benjamin Van Altena, Fleur Dolmans, Emanuele Arcelli, Matthijs Vork 
-- **Paper**  
-[GATrErwin: A Geometric Algebra-Inspired Equivariant Hierarchical Transformer](...) 
-
+    - Benjamin Van Altena, Fleur Dolmans, Emanuele Arcelli, Matthijs Vork
+    - 
 ## Overview
 - **Goal**: Integrate Geometric Algebra Transformer (GATr) into the Erwin hierarchical transformer to enforce full E(3)-equivariance on 3D point clouds.
 - **Key idea**: Replace Erwin’s non-equivariant ball-tree attention and pooling/unpooling architecture with GATr’s equivariant layers.
