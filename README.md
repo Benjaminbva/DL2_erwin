@@ -104,6 +104,8 @@ Below are our main quantative results. These, and other results shown in the app
 - **Overall**
     - In summary, GATrErwin represents a trade-off: it achieves state‐of‐the‐art equivariant performance on large‐scale 3D point clouds but at the cost of runtime and model size. Future work should focus on replacing the axis-aligned tree construction with one which doesn't break equivariance.   
 
+## Contributions
+
 - **Benjamin Van Altena**  
   - **Model Design**  
     I analysed the Cosmology dataset, focusing on its key aspects and ways it could be augmented. Also, I spent time inspecting parts of the code/paper breaking equivariance and invariance, thinking of possible solutions.  
@@ -150,7 +152,7 @@ Below are our main quantative results. These, and other results shown in the app
   - **Report Writing**  
     I drafted several sections of the paper, helped organize its structure, and recreated figures in the style of the original publication.  
   - **Presentation**  
-    I prepared the slides and was one of the team members who presented. 
+    I prepared the slides and was one of the team members who presented.  
 
 ---
 
