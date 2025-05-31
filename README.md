@@ -117,7 +117,7 @@ Below are our main quantative results. These, and other results shown in the app
     We decided as a group that presenting with two people would be more effective for time management. I focused on studying certain key answers for possible questions after the presentation. Primarily, I focused on studying coarsening/refinement, positional encodings, point clouds, and ball‐tree construction.  
 
 - **Fleur Dolmans**  
-  - **Model Design**  
+  - **Model Design**  I designed how to fix the invariance breaking equations and assisted the analysis and implementation of the equations that broke rotation equivariance. 
     I designed how to fix the invariance-breaking equations.  
   - **Literature Review**  
     I familiarized myself with the surrounding literature of hierarchical encoders, equivariance-constrained models, and models for large-scale physical systems.  
