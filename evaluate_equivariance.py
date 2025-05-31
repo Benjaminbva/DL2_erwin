@@ -58,7 +58,7 @@ def load_model(ckpt_path: str, equi: bool, device: torch.device):
             enc_num_heads=cfg["enc_num_heads"], enc_depths=cfg["enc_depths"],
             dec_num_heads=cfg["dec_num_heads"], dec_depths=cfg["dec_depths"],
             strides=cfg["strides"], ball_sizes=cfg["ball_sizes"], rotate=cfg["rotate"],
-            mp_steps=cfg.get("mp_steps", 0), use_rad=cfg.get("use_rad", False),
+            mp_steps=cfg.get("mp_steps", 0), use_rad=cfg.get("use_rad", True),
             rbf_dim=cfg.get("rbf_dim", 0), max_l=cfg.get("max_l", 0),
             cutoff=cfg.get("cutoff", 0.0),
         ).to(device)
@@ -73,7 +73,7 @@ def load_model(ckpt_path: str, equi: bool, device: torch.device):
         ).to(device)
         model = CosmologyModel(net).to(device)
 
-    model.load_state_dict(ckpt.get("model_state_dict", ckpt), strict=False)
+    model.load_state_dict(ckpt.get("model_state_dict", ckpt))
     model.eval()
     return model
 

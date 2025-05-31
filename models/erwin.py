@@ -54,6 +54,8 @@ class MPNN(nn.Module):
     """
     def __init__(self, dim: int, mp_steps: int, dimensionality: int = 3):
         super().__init__()
+        self.dimensionality = 1
+        dimensionality = 1
         self.message_fns = nn.ModuleList([
             nn.Sequential(
                 nn.Linear(2 * dim + dimensionality, dim), 
@@ -67,7 +69,7 @@ class MPNN(nn.Module):
                 nn.Linear(2 * dim, dim), 
                 nn.LayerNorm(dim)
             ) for _ in range(mp_steps)
-        ])       
+        ])
 
     def layer(self, message_fn: nn.Module, update_fn: nn.Module, h: torch.Tensor, edge_attr: torch.Tensor, edge_index: torch.Tensor):
         row, col = edge_index
@@ -78,7 +80,11 @@ class MPNN(nn.Module):
     
     @torch.no_grad()
     def compute_edge_attr(self, pos, edge_index):
-        return pos[edge_index[0]] - pos[edge_index[1]]
+        if self.dimensionality == 1:
+            edge_attr = torch.norm(pos[edge_index[0]] - pos[edge_index[1]], dim=-1, keepdim=True)
+        else:
+            edge_attr = pos[edge_index[0]] - pos[edge_index[1]]
+        return edge_attr
 
     def forward(self, x: torch.Tensor, pos: torch.Tensor, edge_index: torch.Tensor):
         edge_attr = self.compute_edge_attr(pos, edge_index)
@@ -119,11 +125,17 @@ class BallPooling(nn.Module):
         3. apply linear projection and batch normalization.
         4. the output is the center of each ball endowed with the pooled features.
     """
-    def __init__(self, in_dim: int, out_dim: int, stride: int, dimensionality: int = 3):
+    def __init__(self, in_dim: int, out_dim: int, stride: int, dimensionality: int = 3, eq_12: bool = False):
         super().__init__()
+        self.inv = eq_12
         self.stride = stride
+
+        if self.inv:
+            dimensionality = 1
+ 
         self.proj = nn.Linear(stride * in_dim + stride * dimensionality, out_dim)
         self.norm = nn.BatchNorm1d(out_dim)
+        
 
     def forward(self, node: Node) -> Node:
         if self.stride == 1: # no pooling
@@ -133,7 +145,10 @@ class BallPooling(nn.Module):
             batch_idx = node.batch_idx[::self.stride]
             centers = reduce(node.pos, "(n s) d -> n d", 'mean', s=self.stride)
             pos = rearrange(node.pos, "(n s) d -> n s d", s=self.stride)
-            rel_pos = rearrange(pos - centers[:, None], "n s d -> n (s d)")
+            if not self.inv:
+                rel_pos = rearrange(pos - centers[:, None], "n s d -> n (s d)")
+            else:
+                rel_pos = torch.norm(pos - centers[:, None], dim=2)
         x = torch.cat([rearrange(node.x, "(n s) c -> n (s c)", s=self.stride), rel_pos], dim=1)
         x = self.norm(self.proj(x))
 
@@ -148,16 +163,24 @@ class BallUnpooling(nn.Module):
         3. apply linear projection and self-connection followed by batch normalization.
         4. the output is a refined tree with the same number of nodes as before pooling.
     """
-    def __init__(self, in_dim: int, out_dim: int, stride: int, dimensionality: int = 3):
+    def __init__(self, in_dim: int, out_dim: int, stride: int, dimensionality: int = 3, eq_13: bool = False):
         super().__init__()
+        self.inv = eq_13
         self.stride = stride
+
+        if self.inv:
+            dimensionality = 1
+
         self.proj = nn.Linear(in_dim + stride * dimensionality, stride * out_dim)         
         self.norm = nn.BatchNorm1d(out_dim)
 
     def forward(self, node: Node) -> Node:
         with torch.no_grad():
             rel_pos = rearrange(node.children.pos, "(n m) d -> n m d", m=self.stride) - node.pos[:, None]
-            rel_pos = rearrange(rel_pos, "n m d -> n (m d)")
+            if not self.inv:
+                rel_pos = rearrange(rel_pos, "n m d -> n (m d)")
+            else:
+                rel_pos = torch.norm(rel_pos, dim = 2)
         x = torch.cat([node.x, rel_pos], dim=-1)
         node.children.x = self.norm(node.children.x + rearrange(self.proj(x), "n (m d) -> (n m) d", m=self.stride))
         return node.children
@@ -165,12 +188,16 @@ class BallUnpooling(nn.Module):
 
 class BallMSA(nn.Module):
     """ Ball Multi-Head Self-Attention (BMSA) module (eq. 8). """
-    def __init__(self, dim: int, num_heads: int, ball_size: int, dimensionality: int = 3):
+    def __init__(self, dim: int, num_heads: int, ball_size: int, dimensionality: int = 3, x_9: bool = False):
         super().__init__()
+        self.inv = x_9
+        if self.inv:
+            dimensionality = 1
         self.num_heads = num_heads
         self.ball_size = ball_size
         self.qkv = nn.Linear(dim, 3 * dim)
         self.proj = nn.Linear(dim, dim)
+
         self.pe_proj = nn.Linear(dimensionality, dim)
         self.sigma_att = nn.Parameter(-1 + 0.01 * torch.randn((1, num_heads, 1, 1)))
 
@@ -185,10 +212,16 @@ class BallMSA(nn.Module):
         """ Relative position of leafs wrt the center of the ball (eq. 9). """
         num_balls, dim = pos.shape[0] // self.ball_size, pos.shape[1]
         pos = pos.view(num_balls, self.ball_size, dim)
-        return (pos - pos.mean(dim=1, keepdim=True)).view(-1, dim)
+        rel_pos = (pos - pos.mean(dim=1, keepdim=True))
+        dist = torch.norm(rel_pos, dim = 2, keepdim=True)
+        return rel_pos.view(-1, dim), dist.view(-1, 1)   
 
     def forward(self, x: torch.Tensor, pos: torch.Tensor):
-        x = x + self.pe_proj(self.compute_rel_pos(pos))
+        if not self.inv:
+            x_pos = self.pe_proj(self.compute_rel_pos(pos)[0])
+        else:
+            x_pos = self.pe_proj(self.compute_rel_pos(pos)[1])
+        x = x + x_pos
         q, k, v = rearrange(self.qkv(x), "(n m) (H E K) -> K n H m E", H=self.num_heads, m=self.ball_size, K=3)
         x = F.scaled_dot_product_attention(q, k, v, attn_mask=self.create_attention_mask(pos))
         x = rearrange(x, "n H m E -> (n m) (H E)", H=self.num_heads, m=self.ball_size)
@@ -196,12 +229,12 @@ class BallMSA(nn.Module):
 
 
 class ErwinTransformerBlock(nn.Module):
-    def __init__(self, dim: int, num_heads: int, ball_size: int, mlp_ratio: int, dimensionality: int = 3):
+    def __init__(self, dim: int, num_heads: int, ball_size: int, mlp_ratio: int, dimensionality: int = 3, x_9: bool = False):
         super().__init__()
         self.ball_size = ball_size
         self.norm1 = nn.RMSNorm(dim)
         self.norm2 = nn.RMSNorm(dim)
-        self.BMSA = BallMSA(dim, num_heads, ball_size, dimensionality)
+        self.BMSA = BallMSA(dim, num_heads, ball_size, dimensionality, x_9)
         self.swiglu = SwiGLU(dim, dim * mlp_ratio)
 
     def forward(self, x: torch.Tensor, pos: torch.Tensor):
@@ -222,21 +255,24 @@ class BasicLayer(nn.Module):
         mlp_ratio: int,
         rotate: bool,
         dimensionality: int = 3,
+        eq_9: bool = False,
+        eq_12: bool = False,
+        eq_13: bool = False
 
     ):
         super().__init__()
         hidden_dim = in_dim if direction == 'down' else out_dim
 
-        self.blocks = nn.ModuleList([ErwinTransformerBlock(hidden_dim, num_heads, ball_size, mlp_ratio, dimensionality) for _ in range(depth)])
+        self.blocks = nn.ModuleList([ErwinTransformerBlock(hidden_dim, num_heads, ball_size, mlp_ratio, dimensionality, eq_9) for _ in range(depth)])
         self.rotate = [i % 2 for i in range(depth)] if rotate else [False] * depth
 
         self.pool = lambda node: node
         self.unpool = lambda node: node
 
         if direction == 'down' and stride is not None:
-            self.pool = BallPooling(hidden_dim, out_dim, stride, dimensionality)
+            self.pool = BallPooling(hidden_dim, out_dim, stride, dimensionality, eq_12)
         elif direction == 'up' and stride is not None:
-            self.unpool = BallUnpooling(in_dim, hidden_dim, stride, dimensionality)
+            self.unpool = BallUnpooling(in_dim, hidden_dim, stride, dimensionality, eq_13)
 
     def forward(self, node: Node) -> Node:
         node = self.unpool(node)
@@ -291,6 +327,9 @@ class ErwinTransformer(nn.Module):
         mlp_ratio: int = 4,
         dimensionality: int = 3,
         mp_steps: int = 3,
+        eq_9: bool = False,
+        eq_12: bool = False,
+        eq_13: bool = False
     ):
         super().__init__()
         assert len(enc_num_heads) == len(enc_depths) == len(ball_sizes)
@@ -320,6 +359,9 @@ class ErwinTransformer(nn.Module):
                     rotate=rotate > 0,
                     mlp_ratio=mlp_ratio,
                     dimensionality=dimensionality,
+                    eq_9=eq_9,
+                    eq_12=eq_12,
+                    eq_13=eq_13
                 )
             )
 
@@ -334,6 +376,9 @@ class ErwinTransformer(nn.Module):
             rotate=rotate > 0,
             mlp_ratio=mlp_ratio,
             dimensionality=dimensionality,
+            eq_9=eq_9,
+            eq_12=eq_12,
+            eq_13=eq_13
         )
 
         if decode:
@@ -351,6 +396,9 @@ class ErwinTransformer(nn.Module):
                         rotate=rotate > 0,
                         mlp_ratio=mlp_ratio,
                         dimensionality=dimensionality,
+                        eq_9=eq_9,
+                        eq_12=eq_12,
+                        eq_13=eq_13
                     )
                 )
 
@@ -367,7 +415,7 @@ class ErwinTransformer(nn.Module):
             nn.init.constant_(m.bias, 0)
             nn.init.constant_(m.weight, 1.0)
     
-    def forward(self, node_features: torch.Tensor, node_positions: torch.Tensor, batch_idx: torch.Tensor, edge_index: torch.Tensor = None, tree_idx: torch.Tensor = None, tree_mask: torch.Tensor = None, radius: float = None, **kwargs):
+    def forward(self, node_features: torch.Tensor, node_positions: torch.Tensor, batch_idx: torch.Tensor, edge_index: torch.Tensor = None, tree_idx: torch.Tensor = None, tree_mask: torch.Tensor = None, radius: float = None, tree_idx_rot: torch.Tensor = None, **kwargs):
         with torch.no_grad():
             # if not given, build the ball tree and radius graph
             if tree_idx is None and tree_mask is None:
@@ -375,7 +423,6 @@ class ErwinTransformer(nn.Module):
             if edge_index is None and self.embed.mp_steps:
                 assert radius is not None, "radius (float) must be provided if edge_index is not given to build radius graph"
                 edge_index = torch_cluster.radius_graph(node_positions, radius, batch=batch_idx, loop=True)
-
         x = self.embed(node_features, node_positions, edge_index)
 
         node = Node(

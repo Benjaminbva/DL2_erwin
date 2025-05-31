@@ -1,0 +1,7 @@
+{"time":"2025-05-29T21:49:26.32914071+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250529_214926-o3arxwgr/logs/debug-core.log"}
+{"time":"2025-05-29T21:49:26.606778967+02:00","level":"INFO","msg":"created new stream","id":"o3arxwgr"}
+{"time":"2025-05-29T21:49:26.606813476+02:00","level":"INFO","msg":"stream: started","id":"o3arxwgr"}
+{"time":"2025-05-29T21:49:26.606823642+02:00","level":"INFO","msg":"sender: started","stream_id":"o3arxwgr"}
+{"time":"2025-05-29T21:49:26.606831152+02:00","level":"INFO","msg":"handler: started","stream_id":"o3arxwgr"}
+{"time":"2025-05-29T21:49:26.606891178+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"o3arxwgr"}
+{"time":"2025-05-29T21:49:26.94357804+02:00","level":"INFO","msg":"Starting system monitor"}

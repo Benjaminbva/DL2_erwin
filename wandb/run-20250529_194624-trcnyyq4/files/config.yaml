@@ -1,0 +1,114 @@
+_wandb:
+    value:
+        cli_version: 0.19.11
+        m: []
+        python_version: 3.11.11
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 49
+                - 55
+            "2":
+                - 1
+                - 2
+                - 3
+                - 49
+                - 55
+            "3":
+                - 1
+                - 13
+                - 16
+                - 23
+                - 55
+                - 61
+            "4": 3.11.11
+            "5": 0.19.11
+            "8":
+                - 5
+            "12": 0.19.11
+            "13": linux-x86_64
+auxiliarympnn:
+    value: false
+ball_sizes:
+    value:
+        - 256
+        - 256
+        - 256
+        - 256
+batch_size:
+    value: 8
+c_hidden:
+    value:
+        - 16
+        - 32
+        - 64
+        - 128
+c_in:
+    value: 16
+data_path:
+    value: ./data/cosmology
+dec_depths:
+    value:
+        - 2
+        - 2
+        - 2
+dec_num_heads:
+    value:
+        - 2
+        - 4
+        - 8
+embedt:
+    value: false
+enc_depths:
+    value:
+        - 2
+        - 2
+        - 6
+        - 2
+enc_num_heads:
+    value:
+        - 2
+        - 4
+        - 8
+        - 16
+eq_9:
+    value: true
+eq_12:
+    value: false
+eq_13:
+    value: false
+experiment:
+    value: inv_eq9
+lr:
+    value: 0.0005
+model:
+    value: erwin
+mp_steps:
+    value: 3
+mpsteps:
+    value: 3
+num_epochs:
+    value: 5000
+num_parameters:
+    value: 1197915
+num_samples:
+    value: 8192
+rotate:
+    value: 90
+seed:
+    value: 0
+size:
+    value: smallish
+strides:
+    value:
+        - 2
+        - 2
+        - 2
+test:
+    value: true
+use_wandb:
+    value: true
+val_every_iter:
+    value: 500

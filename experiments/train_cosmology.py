@@ -25,7 +25,7 @@ def parse_args():
                         help="Model type (mpnn, pointtransformer, erwin)")
     parser.add_argument("--data-path", type=str)
     parser.add_argument("--size", type=str, default="small",
-                        choices=["egsmall","smallest", "smaller", "small", "medium", "large"],
+                        choices=["egsmall","smallest", "smaller", "smallish", "small", "medium", "large"],
                         help="Model size configuration")
     parser.add_argument("--num-samples", type=int, default=8192,
                         help="Number of samples for training")
@@ -48,6 +48,13 @@ def parse_args():
     parser.add_argument("--auxiliarympnn", action="store_true", default=False)    
     parser.add_argument("--embedt", action="store_true", default=False)    
     parser.add_argument("--rotate", type=int, default=0)
+    parser.add_argument("--rad", action="store_true", default=False,
+                        help="Use radial‐basis function message passing")
+    parser.add_argument("--eq-9", action="store_true", default=False)  
+    parser.add_argument("--eq-12", action="store_true", default=False)  
+    parser.add_argument("--eq-13", action="store_true", default=False)  
+    
+    
 
     
     return parser.parse_args()
@@ -89,6 +96,18 @@ dynamic_configs = {
             "strides": [2, 2, 2],
             "ball_sizes": [256, 256, 256, 256],
             "rotate": 0,
+            "mp_steps":3
+        },
+        "smallish": {
+            "c_in": 16,
+            "c_hidden": [16, 32, 64, 128],
+            "enc_num_heads": [2, 4, 8, 16],
+            "enc_depths": [2, 2, 6, 2],
+            "dec_num_heads": [2, 4, 8],
+            "dec_depths": [2, 2, 2],
+            "strides": [2, 2, 2],
+            "ball_sizes": [256, 256, 256, 256],
+            "rotate": 90,
             "mp_steps":3
         },
         "medium": {
@@ -214,11 +233,16 @@ if __name__ == "__main__":
     model_config = dynamic_configs[args.model][args.size]
     model_config['mp_steps'] = args.mpsteps
     model_config['rotate'] = args.rotate
+    if args.model == 'erwin':
+        model_config['eq_9'] = args.eq_9
+        model_config['eq_12'] = args.eq_12
+        model_config['eq_13'] = args.eq_13
 
-    if "s_dims" in model_config.keys():
+    if args.model == 'GATrErwin':
         if not args.auxiliarympnn:
             model_config['s_dims'] = [None] * len(model_config['mv_dims'])
         model_config['embedt'] = args.embedt
+        model_config['rad'] = args.rad
     dynamic_model = model_cls[args.model](**model_config)
 
     if args.model not in wrapper_cls.keys():
@@ -227,12 +251,12 @@ if __name__ == "__main__":
     else:
         model = wrapper_cls[args.model](dynamic_model).cuda()
 
-    #model = torch.compile(model)
+    model = torch.compile(model)
 
     optimizer = AdamW(model.parameters(), lr=args.lr)
     scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=1e-6)
 
     config = vars(args)
     config.update(model_config)
-
+    print("num_parameters", sum(p.numel() for p in model.parameters() if p.requires_grad))
     fit(config, model, optimizer, scheduler, train_loader, valid_loader, test_loader, 100, 200)

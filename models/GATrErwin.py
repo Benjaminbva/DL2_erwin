@@ -15,7 +15,7 @@ from gatr_utils.utils.tensors import construct_reference_multivector
 import torch_cluster
 import sys
 import os
-from erwin_utils.radial import RadMPNN
+from models.RADMPNN import RadMPNN
 sys.path.append("../../")
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -153,11 +153,7 @@ class RadEquivariantErwinEmbedding(nn.Module):
                  out_mv_dim: int, 
                  in_s_dim: Optional[int] = None,
                  out_s_dim: Optional[int] = None,
-                 mp_steps: int = 0, 
-                 dimensionality: int = 3,
-                 rbf_dim: int = 16,
-                 max_l: int = 2,
-                 cutoff: float = 10.0):
+                 mp_steps: int = 0):
         super()._init_()
 
         self.mp_steps = mp_steps
@@ -488,7 +484,8 @@ class EquivariantErwinTransformer(nn.Module):
         dropout: float = 0.0,
         out_dim_scalar: Optional[int] = None,
         out_dim_cartesian: bool = False,
-        embedt = False
+        embedt = False,
+        use_rad: bool = False,
     ):
         super().__init__()
         assert len(mv_dims) == len(s_dims), "mv_dims and s_dims must have the same length"
@@ -503,10 +500,12 @@ class EquivariantErwinTransformer(nn.Module):
         self.out_dim_scalar = out_dim_scalar
         self.out_dim_cartesian = out_dim_cartesian
 
-        self.embed = EquivariantErwinEmbedding(mv_dim_in, mv_dims[0], 
-                                               in_s_dim=mv_dim_in, out_s_dim=s_dims[0], mp_steps=mp_steps)
-        #self.embed = RadEquivariantErwinEmbedding(mv_dim_in, mv_dims[0], 
-        #                    in_s_dim=mv_dim_in, out_s_dim=s_dims[0], mp_steps=mp_steps)
+        if use_rad:
+            self.embed = RadEquivariantErwinEmbedding(mv_dim_in, mv_dims[0], 
+                                                      in_s_dim=mv_dim_in, out_s_dim=s_dims[0], mp_steps=mp_steps)
+        else:
+            self.embed = EquivariantErwinEmbedding(mv_dim_in, mv_dims[0], 
+                                                   in_s_dim=mv_dim_in, out_s_dim=s_dims[0], mp_steps=mp_steps)
 
         num_layers = len(enc_depths) - 1
 

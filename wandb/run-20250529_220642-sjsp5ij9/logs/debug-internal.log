@@ -1,0 +1,16 @@
+{"time":"2025-05-29T22:06:42.572260148+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/aema/Desktop/DL2_erwin/wandb/run-20250529_220642-sjsp5ij9/logs/debug-core.log"}
+{"time":"2025-05-29T22:06:42.846453745+02:00","level":"INFO","msg":"created new stream","id":"sjsp5ij9"}
+{"time":"2025-05-29T22:06:42.846472967+02:00","level":"INFO","msg":"stream: started","id":"sjsp5ij9"}
+{"time":"2025-05-29T22:06:42.846581597+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"sjsp5ij9"}
+{"time":"2025-05-29T22:06:42.846691483+02:00","level":"INFO","msg":"sender: started","stream_id":"sjsp5ij9"}
+{"time":"2025-05-29T22:06:42.846691177+02:00","level":"INFO","msg":"handler: started","stream_id":"sjsp5ij9"}
+{"time":"2025-05-29T22:06:43.135412516+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-29T22:29:51.53251588+02:00","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/EquiErwin/EquiErwin/sjsp5ij9/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2025-05-29T22:36:59.415937776+02:00","level":"INFO","msg":"stream: closing","id":"sjsp5ij9"}
+{"time":"2025-05-29T22:36:59.41595455+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-29T22:36:59.416046068+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-29T22:37:00.653216156+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-29T22:37:01.370108078+02:00","level":"INFO","msg":"handler: closed","stream_id":"sjsp5ij9"}
+{"time":"2025-05-29T22:37:01.370143515+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"sjsp5ij9"}
+{"time":"2025-05-29T22:37:01.370159981+02:00","level":"INFO","msg":"sender: closed","stream_id":"sjsp5ij9"}
+{"time":"2025-05-29T22:37:01.37018302+02:00","level":"INFO","msg":"stream: closed","id":"sjsp5ij9"}

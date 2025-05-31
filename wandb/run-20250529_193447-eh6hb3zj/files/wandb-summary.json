@@ -1,0 +1,1 @@
+{"checkpoint/best_val_loss":1.0245896577835083,"avg/train/loss":1.0196006298065186,"_step":6,"avg/val/loss":1.0245896577835083,"_timestamp":1.748540125502737e+09,"test/avg/loss":1.024743676185608,"_wandb":{"runtime":39},"train/loss":0.8342334628105164,"_runtime":39.038639153,"global_step":6}

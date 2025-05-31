@@ -8,6 +8,7 @@ class Embedding(nn.Module):
         self.pos_embedding = nn.Linear(3, out_dim)
 
     def forward(self, pos):
+        #pos = torch.norm(pos, dim = -1, keepdim=True)
         return self.pos_embedding(pos)
 
 

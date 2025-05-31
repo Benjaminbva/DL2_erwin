@@ -1,0 +1,2433 @@
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_setup.py:_flush():70] Current SDK version is 0.19.11
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_setup.py:_flush():70] Configure stats pid to 101781
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_setup.py:_flush():70] Loading settings from /home/aema/.config/wandb/settings
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_setup.py:_flush():70] Loading settings from /home/aema/Desktop/DL2_erwin/wandb/settings
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_setup.py:_flush():70] Loading settings from environment variables
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_init.py:setup_run_log_directory():724] Logging user logs to /home/aema/Desktop/DL2_erwin/wandb/run-20250529_215548-tpacl5cn/logs/debug.log
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to /home/aema/Desktop/DL2_erwin/wandb/run-20250529_215548-tpacl5cn/logs/debug-internal.log
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_init.py:init():852] calling init triggers
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'model': 'erwin', 'data_path': './data/cosmology', 'size': 'smallish', 'num_samples': 8192, 'num_epochs': 5000, 'batch_size': 8, 'use_wandb': True, 'lr': 0.0005, 'val_every_iter': 500, 'experiment': 'inv_eq9_inmpnn_invembedding', 'test': True, 'seed': 0, 'mpsteps': 3, 'auxiliarympnn': False, 'embedt': False, 'rotate': 90, 'rad': False, 'eq_9': True, 'eq_12': False, 'eq_13': False, 'c_in': 16, 'c_hidden': [16, 32, 64, 128], 'enc_num_heads': [2, 4, 8, 16], 'enc_depths': [2, 2, 6, 2], 'dec_num_heads': [2, 4, 8], 'dec_depths': [2, 2, 2], 'strides': [2, 2, 2], 'ball_sizes': [256, 256, 256, 256], 'mp_steps': 3, '_wandb': {}}
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_init.py:init():893] starting backend
+2025-05-29 21:55:48,092 INFO    MainThread:101781 [wandb_init.py:init():897] sending inform_init request
+2025-05-29 21:55:48,094 INFO    MainThread:101781 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-05-29 21:55:48,094 INFO    MainThread:101781 [wandb_init.py:init():907] backend started and connected
+2025-05-29 21:55:48,095 INFO    MainThread:101781 [wandb_init.py:init():1005] updated telemetry
+2025-05-29 21:55:48,099 INFO    MainThread:101781 [wandb_init.py:init():1029] communicating run to backend with 90.0 second timeout
+2025-05-29 21:55:48,878 INFO    MainThread:101781 [wandb_init.py:init():1104] starting run threads in backend
+2025-05-29 21:55:48,943 INFO    MainThread:101781 [wandb_run.py:_console_start():2573] atexit reg
+2025-05-29 21:55:48,943 INFO    MainThread:101781 [wandb_run.py:_redirect():2421] redirect: wrap_raw
+2025-05-29 21:55:48,943 INFO    MainThread:101781 [wandb_run.py:_redirect():2490] Wrapping output streams.
+2025-05-29 21:55:48,943 INFO    MainThread:101781 [wandb_run.py:_redirect():2513] Redirects installed.
+2025-05-29 21:55:48,945 INFO    MainThread:101781 [wandb_init.py:init():1150] run started, returning control to user process
+2025-05-29 21:55:48,945 INFO    MainThread:101781 [wandb_watch.py:_watch():71] Watching
+2025-05-29 21:55:48,948 INFO    MainThread:101781 [wandb_run.py:_config_callback():1436] config_cb None None {'num_parameters': 1197787}
+2025-05-29 22:05:54,721 WARNING MsgRouterThr:101781 [router.py:message_loop():63] [no run ID] message_loop has been closed
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/router_sock.py", line 27, in _read_message
+    return self._sock_client.read_server_response(timeout=1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 235, in read_server_response
+    data = self._read_packet_bytes(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 220, in _read_packet_bytes
+    raise SockClientClosedError
+wandb.sdk.lib.sock_client.SockClientClosedError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/router.py", line 56, in message_loop
+    msg = self._read_message()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/router_sock.py", line 29, in _read_message
+    raise MessageRouterClosedError from e
+wandb.sdk.interface.router.MessageRouterClosedError
+2025-05-29 22:05:54,724 INFO    MsgRouterThr:101781 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.
+2025-05-29 22:05:54,804 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,806 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,806 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,807 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,807 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,807 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,808 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,808 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,808 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,808 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,809 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,809 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,809 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,809 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,810 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,810 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,810 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,811 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,811 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,812 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,812 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,813 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,813 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,813 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,814 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,814 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,814 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,815 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,815 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,815 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,815 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,816 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,816 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,816 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,816 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,817 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,817 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,817 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,818 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,818 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,819 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,819 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,819 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,820 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,820 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,820 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,820 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,821 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,821 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,821 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,821 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,822 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,822 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,822 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,822 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,823 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,823 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,823 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,823 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,824 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,825 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,825 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,826 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,826 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,826 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,827 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,827 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,827 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,828 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,828 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,828 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,828 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,829 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,829 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,829 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,829 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2025-05-29 22:05:54,830 ERROR   MainThread:101781 [redirect.py:_on_write():664] [no run ID] error in stderr callback
+Traceback (most recent call last):
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 2500, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 1639, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 762, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 174, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 154, in send_server_request
+    self._send_message(msg)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 151, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/aema/Desktop/DL2_erwin/erwin/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
