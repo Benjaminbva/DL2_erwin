@@ -70,6 +70,16 @@ Below are our main quantative results. These, and other results shown in the app
 
 > *Table 1a: Average invariance Error (IE) over several rotation angles on a newly initialized (untrained) model as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
 
+> **Row → Notebook section (untrained):**  
+> + Erwin → “Erwin → Base (Erwin without MPNN or Rotating tree)”  
+> + Fixed tree → “InvErwin → Eq. 9”  
+> + Inv MPNN → “Erwin → + MPNN”  
+> + Inv Eq. 1 → “InvErwin → Eq. 9”  
+> + Inv Coarsening 2 → “InvErwin → Eq. 12”  
+> + Inv Refinement 2 → “InvErwin → Eq. 13”  
+> + Wrap → “Erwin → + Rotating tree”
+
+
 ### 2 Invariance Experiment (Trained Model)
 
 | Model          | MSE   | IE @ 15°  | IE @ 45°  | IE @ 90°  | IE @ 160°  |
@@ -82,6 +92,14 @@ Below are our main quantative results. These, and other results shown in the app
 
 > *Table 1b: Mean Squared Error (MSE) and Invariance Error (IE) at 15°, 45°, 90°, 160° on trained models as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
 
+> **Row → Notebook section (trained):**  
+> + Erwin → “Erwin → Base (trained)”  
+> + Inv MPNN → “Erwin → + MPNN”  
+> + Inv Eq. 1 → “InvErwin → Eq. 9”  
+> + Inv Coarsening 2 → “InvErwin → Eq. 12”  
+> + Inv Refinement 2 → “InvErwin → Eq. 13”
+
+
 ### 3 Equivariance Experiment
 
 | Model           | MSE  | 15°   | 45°   | 90°   | 160°  |
@@ -91,6 +109,11 @@ Below are our main quantative results. These, and other results shown in the app
 | GATrErwin+      | 0.699 | 0.610 | 1.19  | 1.02  | 1.58  |
 
 > *Table 2: MSE and IE at various rotation angles for Erwin vs. GATrErwin, with (“+”) and without rotated‐tree augmentation. The “+” versions use a rotated ball‐tree. Results are reported on the original dataset D (MSE) and under rotated variations of the dataset D<sub>θ</sub>.*
+
+> **Row → Notebook section:**  
+> + Erwin+ → “Erwin → + MPNN + Rotating tree”  
+> + GATrErwin → “GATrErwin → Basic GATr Erwin”  
+> + GATrErwin+ → “GATrErwin → + Rotating Tree”
 
 ---
 
