@@ -97,7 +97,7 @@ dynamic_configs = {
             "strides": [2, 2, 2],
             "ball_sizes": [256, 256, 256, 256],
             "rotate": 0,
-            "mp_steps":3
+            "mp_steps":0
         },
         "smallish": {
             "c_in": 16,
@@ -109,7 +109,7 @@ dynamic_configs = {
             "strides": [2, 2, 2],
             "ball_sizes": [256, 256, 256, 256],
             "rotate": 90,
-            "mp_steps":3
+            "mp_steps":0
         },
         "medium": {
             "c_in": 64,
@@ -132,7 +132,7 @@ dynamic_configs = {
             "strides": [2, 2, 2],
             "ball_sizes": [256, 256, 256, 256],
             "rotate": 0,
-            "mp_steps":3
+            "mp_steps":0
         },
     },
     "GATrErwin":{
@@ -148,6 +148,19 @@ dynamic_configs = {
             "ball_sizes": [128, 128],
             "rotate": 0,
             "mp_steps":0,
+        },
+        "smaller": {
+            "mv_dim_in": 8,
+            "mv_dims": [8, 16, 32],
+            "s_dims": [8, 16, 32],
+            "enc_num_heads": [2, 4, 8],
+            "enc_depths": [2, 2, 6],
+            "dec_num_heads": [2, 4],
+            "dec_depths": [2, 2],
+            "strides": [2, 2],
+            "ball_sizes": [128, 128, 128],
+            "rotate": 0,
+            "mp_steps": 0,
         },
         "small": {
             "mv_dim_in": 8,

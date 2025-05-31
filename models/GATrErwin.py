@@ -148,13 +148,13 @@ class EquivariantErwinEmbedding(nn.Module):
             return x_mv, x_s
         
 class RadEquivariantErwinEmbedding(nn.Module):
-    def _init_(self, 
+    def __init__(self, 
                  in_mv_dim: int, 
                  out_mv_dim: int, 
                  in_s_dim: Optional[int] = None,
                  out_s_dim: Optional[int] = None,
                  mp_steps: int = 0):
-        super()._init_()
+        super().__init__()
 
         self.mp_steps = mp_steps
         self.embed_fn = EquiLinear(
@@ -168,7 +168,7 @@ class RadEquivariantErwinEmbedding(nn.Module):
                             )
 
     def forward(self, x_mv: torch.Tensor, x_s: Optional[torch.Tensor], cartesian_pos: torch.Tensor = torch.Tensor([0]), edge_index: torch.Tensor = torch.tensor([0])):
-        x_mv, x_s = self.embed_fn(x_mv) #Bx1x16 -> #Bxout_cx16
+        x_mv, x_s = self.embed_fn(x_mv)
         if x_s is None and self.mp_steps > 0:
             row, col = edge_index
             x_s = torch.norm(cartesian_pos[row] - cartesian_pos[col], dim=-1, keepdim=True)

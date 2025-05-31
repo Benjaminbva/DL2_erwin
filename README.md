@@ -1,4 +1,8 @@
 # GATrErwin: A Geometric Algebra-Inspired Equivariant Hierarchical Transformer
+- **Authors**  
+    - Benjamin Van Altena, Fleur Dolmans, Emanuele Arcelli, Matthijs Vork 
+- **Paper**  
+[GATrErwin: A Geometric Algebra-Inspired Equivariant Hierarchical Transformer](...) 
 
 ## Overview
 - **Goal**: Integrate Geometric Algebra Transformer (GATr) into the Erwin hierarchical transformer to enforce full E(3)-equivariance on 3D point clouds.
@@ -10,12 +14,12 @@
 ## Introduction & Related Work
 1. **Erwin summary**  
    - Erwin (Zhdanov et al., 2025), is a hierarchical transformer inspired by the field of computational many-body physics. It combines the efficiency of tree-based algorithms with the expressivity of attention mechanisms. Erwin organizes irregular 3D point clouds into binary ball trees, where each ball (node) covers a subset of points, and subsequently computes multi-head self-attention independently within each ball. Key aspects within Erwin's architecture include:
-   1) Hierarchical coarsening and refinement: after each attention block, Erwin coarsens the tree by pooling features up the ball-tree hierarchy, and then refines features back down through the encoder, enabling the capture of both fine-grained local details and global features.
-   2) Cross-ball interaction: attention is calculated within disjoint balls. To allow for interaction between points in different balls, Erwin alternates between the orginal tree and one built on the rotated copy of the 3D point cloud.
-   3) Linear-time attention: by restricting attention to local fixed-size neighbourhoods, the models compexity is reduced from quadratic to linear in the number of points.
+        1) Hierarchical coarsening and refinement: after each attention block, Erwin coarsens the tree by pooling features up the ball-tree hierarchy, and then refines features back down through the encoder, enabling the capture of both fine-grained local details and global features.
+        2) Cross-ball interaction: attention is calculated within disjoint balls. To allow for interaction between points in different balls, Erwin alternates between the orginal tree and one built on the rotated copy of the 3D point cloud.
+        3) Linear-time attention: by restricting attention to local fixed-size neighbourhoods, the models compexity is reduced from quadratic to linear in the number of points.
    In the evaluation on three large-scale physical domain Erwin was able to consistently outperform other baselines, achieving state-of-the-art performance in both computational efficiency and prediction accuracy. 
 2. **Related work**  
-   - Achieving sub-quadratic attention on large inputs has been studied extensively. On regular grid data, the SwinTransformer (BRON) reduces complexity by restricting self-attention to non-overlapping local windows and connecting them via shifted windows. Other methods, like (Liu et al., 2023; Sun et al., 2022 ;PointTransformer v3(bron)) focus on inducing structures that allow for patching. However transforming point clouds into sequences, while scalable, can introduce artificial discontinuities that harm local relationships (Zhdanov et al., 2025).  In 1D, the hierarchical attention methods H-Transformer (Zhu & Soricut, 2021) and Fast Multipole Attention (Kang et al., 2023) avoid quadratic cost by computing full-scale atention localy and learning distant relationships through coarsening. For 3D point clouds, OctFormer (Wang, 2023) builds an octree so that spatially adjacent points are consecutive in memory, but relies on costly octree convolutions. Other methods, like (Janny et al., 2023; Alkin et al., 2024a), avoid the use of hierarchical attention, by proposing to instead use cluster attention. By applying attention to clustered points, and scattering features back, they trade off efficiency for potential sacrifce of more fine-grained details, posing scalability problems. 
+   - Achieving sub-quadratic attention on large inputs has been studied extensively. Erwin (Zhdanov et al., 2025) discusses such related work: on regular grid data, the SwinTransformer (Liu et al., 2021) reduces complexity by restricting self-attention to non-overlapping local windows and connecting them via shifted windows. Other methods, like (Liu et al., 2023; Sun et al., 2022 ; Wuet al., 2024) focus on inducing structures that allow for patching. However transforming point clouds into sequences, while scalable, can introduce artificial discontinuities that harm local relationships (Zhdanov et al., 2025).  In 1D, the hierarchical attention methods H-Transformer (Zhu & Soricut, 2021) and Fast Multipole Attention (Kang et al., 2023) avoid quadratic cost by computing full-scale atention localy and learning distant relationships through coarsening. For 3D point clouds, OctFormer (Wang, 2023) builds an octree so that spatially adjacent points are consecutive in memory, but relies on costly octree convolutions. Other methods, like (Janny et al., 2023; Alkin et al., 2024), avoid the use of hierarchical attention, by proposing to instead use cluster attention. By applying attention to clustered points, and scattering features back, they trade off efficiency for potential sacrifce of more fine-grained details, posing scalability problems. 
 
 ---
 
@@ -41,48 +45,64 @@ GATrErwin is not the first model to add the equivariance requirement. The SE(3)-
 - **Equivariant Pooling & Unpooling**  
   - The model substitutes Erwin’s BallPooling and BallUnPooling linear layers and batch norms with GATr’s equivariant linearlayer and equivariant layer normalization.
 - **Enhanced InvMPNN**  
-  - We were able to use GATr to implement an invariant MPNN, which we further enhance by introducing trainable Besselstyleradial basis functions (RBFs) with smooth cosine cutoffs to decompose 
+  - We were able to use GATr to implement an invariant MPNN, which we further enhance by introducing trainable Besselstyleradial basis functions (RBFs) with smooth cosine cutoffs to decompose. 
 
 ---
 
-## Experiments & Ablation
+## Experiments 
 
 The experiments in GATrErwin were run on the Cosmology dataset. To run/replicate experiments, you will need to download:  
 - [Cosmology Dataset (7 GB)](https://zenodo.org/records/11479419)
 
-| Experiment                                              | Paper Table | Code                                                           | Command                                                                                             |
-|---------------------------------------------------------|:-----------:|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| **Cosmology Velocity Prediction (GATrErwin)**           |    Table 4  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --epochs 100<br>    ``` |
-| **Ablation: Relative distances as translations**        |    Table 2  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --use-relative-distances<br>    ``` |
-| **Ablation: InvMPNN message-passing**                   |    Table 2  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --invmpnn<br>    ``` |
-| **Ablation: InvMPNN as auxiliary scalar**               |    Table 2  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --aux-scalar<br>    ``` |
-| **Ablation: Scaled GATrErwin**                          |    Table 2  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --scaled<br>    ``` |
-| **Ablation: RADMPNN (RBF-enhanced MPNN)**               |    Table 2  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --radmpnn<br>    ``` |
-| **Ablation: Rotating-Tree cross-ball connections**       |    Table 2  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --rotating-tree<br>    ``` |
-| **RBF-dimensionality study**                            |    Table 3  | [`experiments/train_cosmology.py`](./experiments/train_cosmology.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/train_cosmology.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --rbf-dim 128<br>    ``` |
-| **Equivariance evaluation under rotations & translations** |    Table 4  | [`experiments/evaluate_equivariance.py`](./experiments/evaluate_equivariance.py) | &nbsp;&nbsp;&nbsp;&nbsp;```bash<br>    python experiments/evaluate_equivariance.py \\<br>      --model GATrErwin \\<br>      --dataset cosmology \\<br>      --rotate-angles 15 45 145 \\<br>      --translate 50 150 300<br>    ``` |
-
----
-
 ## Results & Notebooks
+Below are our main quantative results. These, and other results shown in the appendix of our paper, can be reproduced following the steps and explanation found in [Reproduction Notebook](https://github.com/Benjaminbva/DL2_erwin/blob/main/The%20notebook.ipynb).
+### 1 Invariance Experiment (Untrained Model)
+
+| Component        | Avg IE   |
+|------------------|----------|
+| Erwin            | 0.7266   |
+| + Fixed tree     | 0.002    |
+| + Inv MPNN       | 0.0024   |
+| + Inv Eq. 1      | 0.0025   |
+| + Inv Coarsening 2 | 0.0025  |
+| + Inv Refinement 2 | 1.4246e-6 |
+| + Wrap           | 0.1739   |
+
+> *Table 1a: Average invariance Error (IE) over several rotation angles on a newly initialized (untrained) model as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
+
+### 2 Invariance Experiment (Trained Model)
+
+| Model          | MSE   | IE @ 15°  | IE @ 45°  | IE @ 90°  | IE @ 160°  |
+|----------------|-------|-----------|----------|----------|-----------|
+| Erwin          | 0.609  | 0.502    | 1.03    | 1.02    | 1.50      |
+| + Inv MPNN     | 0.625  | 0.606    | 1.17    | 1.02    | 1.55      |
+| + Inv Eq. 1    | 0.639  | 0.668    | 1.16    | 0.961  | 1.44      |
+| + Inv Coarsening 2 | 0.627  | 0.640    | 1.33    | 1.02    | 1.59      |
+| + Inv Refinement 2 | 0.621  | 0.610    | 1.19    | 1.02    | 1.58      |
+
+> *Table 1b: Mean Squared Error (MSE) and Invariance Error (IE) at 15°, 45°, 90°, 160° on trained models as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
+
+### 3 Equivariance Experiment
+
+| Model           | MSE  | 15°   | 45°   | 90°   | 160°  |
+|-----------------|------|------|------|------|------|
+| Erwin+          | 0.609 | 0.668 | 1.16  | 0.961 | 1.44  |
+| GATrErwin       | 0.672 | 0.640 | 1.33  | 1.02  | 1.59  |
+| GATrErwin+      | 0.699 | 0.610 | 1.19  | 1.02  | 1.58  |
+
+> *Table 2: MSE and IE at various rotation angles for Erwin vs. GATrErwin, with (“+”) and without rotated‐tree augmentation. The “+” versions use a rotated ball‐tree. Results are reported on the original dataset D (MSE) and under rotated variations of the dataset D<sub>θ</sub>.*
 
 ---
 
 ## Conclusion
-Summarize your findings:
-- Enforcing E(3) equivariance yields lower MSE on standard and perturbed test sets.
-- Trade-offs: compute & params vs. robustness.
-- Insights on geometric priors and potential for future work (e.g., adaptive equivariance breaking, larger scale).
-
-
-## Strengths, Weaknesses of GATrErwin
-- **Strengths**  
-  - GATrErwin outperforms other state-of-the-art equivariant models like SEGNN and NequiLP in MSE on the Cosmology dataset. 
-- **Weaknesses**  
-  - Due to the increased dimensionality of adding Cliford Algebra the parameter count increases significantly, leading to large increases in run-time. This was expected, but seeing as a key benefit of Erwin is speed, it is not ideal. 
-  - The inclusion of rigid equivariant constraints of the GATr architecture the model is less flexible in adapting to scenario's where full equivariance is not guaranteed. for example, when inductive bias is violated. 
-  - 
----
+- **Strengths**
+    - GATrErwin successfully embeds E(3)-equivariant Geometric Algebra Transformer (GATr) modules into the hierarchical Erwin architecture, replacing ball‐tree attention, coarsening and refinement projections, and MPNN steps with multivector operations in projective geometric algebra. On the Cosmology velocity‐prediction benchmark, GATrErwin achieves the lowest MSE of all evaluated equivariant models
+    - Raw inter-particle distances can possibly span many orders of magnitude, possibly causing unstable gradients when they are fed directly into a neural network, leading to unstable training in Erwin. GATrErwin adresses this problem by introducing radial basis functions. Through the projection of each distance onto a set of orthogonal radial basis functions, thereby transforming any distance into a fixed-length vector whose components stay within a controlled range. With this addition the training of GATrErwin is more stabe and converges reliably. 
+- **Weaknesses**
+    - By enforcing full E(3) equivariance with the introduction of GATr, GATrErwin has about ten times more parameters and runs roughly ten times slower per training epoch compared to Erwin. Specifically, in cases where inference speed is the priority, the simpler Erwin model more convenient. However, the extra cost can be justified when datasets are small or when robustness to arbitrary orientations is critical.
+    - On the rotated test set, Erwin achieves a lower MSE than GATrErwin despite both models using the same non-equivariant ball tree construction, indicating that GATrErwin's rigid equivariant layers increase its vulnerability to rotational perturbations.
+- **Overall**
+    - In summary, GATrErwin represents a trade-off: it achieves state‐of‐the‐art equivariant performance on large‐scale 3D point clouds but at the cost of runtime and model size. Future work should focus on replacing the axis-aligned tree construction with one which doesn't break equivariance.   
 
 ## Contributions
 - **Benjamin Van Altena**: 
@@ -93,10 +113,87 @@ Summarize your findings:
 ---
 
 ## References
-1. Zhdanov et al., *Erwin: A tree-based hierarchical transformer for large-scale physical systems*, 2025.  
-2. Brehmer et al., *Geometric Algebra Transformer*, NeurIPS 2023.  
-3. Suk et al., *ViNE-GATr: Scaling geometric algebra transformers with virtual-node embeddings*, ICLR 2025.  
-4. Fuchs et al., *SE(3)-Transformers*, NeurIPS 2020.  
-5. … _(add others as needed)_
+
+1. Abramson, J., Adler, J., Dunger, J., Evans, R., Green, T., Pritzel, A., Ronneberger, O., Willmore, L., Ballard, A. J., Bambrick, J., et al.  
+   **Accurate structure prediction of biomolecular interactions with AlphaFold 3.**  
+   *Nature, 630(8016):493–500, 2024.*
+
+2. Alkin, B., Fürst, A., Schmid, S., Gruber, L., Holzleitner, M., and Brandstetter, J.  
+   **Universal physics transformers: A framework for efficiently scaling neural operators.**  
+   In *Proceedings of NeurIPS, 2024.*
+
+3. Brehmer, J., De Haan, P., Behrends, S., and Cohen, T. S.  
+   **Geometric algebra transformer.**  
+   In *Advances in Neural Information Processing Systems*, vol. 36, pages 35472–35496, 2023.
+
+4. Finzi, M., Stanton, S., Izmailov, P., and Wilson, A. G.  
+   **Generalizing convolutional neural networks for equivariance to Lie groups on arbitrary continuous data.**  
+   In *Proceedings of ICML*, pages 3165–3176. PMLR, 2020.
+
+5. Fuchs, F., Worrall, D., Fischer, V., and Welling, M.  
+   **SE(3)-Transformers: 3D roto-translation equivariant attention networks.**  
+   In *Advances in Neural Information Processing Systems*, vol. 33, pages 1970–1981, 2020.
+
+6. Janny, S., Béneteau, A., Nadri, M., Digne, J., Thome, N., and Wolf, C.  
+   **EAGLE: Large-scale learning of turbulent fluid dynamics with mesh transformers.**  
+   In *ICLR Workshops, 2023.*
+
+7. Kang, Y., Tran, G., and Sterck, H. D.  
+   **Fast multipole attention: A divide-and-conquer attention mechanism for long sequences.**  
+   *arXiv:2310.11960, 2023.*
+
+8. Liao, Y.-L. and Smidt, T.  
+   **Equiformer: Equivariant graph attention transformer for 3D atomistic graphs.**  
+   *arXiv:2206.11990, 2022.*
+
+9. Liu, Z., Lin, Y., Cao, Y., Hu, H., Wei, Y., Zhang, Z., Lin, S., and Guo, B.  
+   **Swin Transformer: Hierarchical vision transformer using shifted windows.**  
+   In *Proceedings of ICCV, 2021.*
+
+10. Liu, Z., Yang, X., Tang, H., Yang, S., and Han, S.  
+    **Flatformer: Flattened window attention for efficient point cloud transformer.**  
+    In *Proceedings of CVPR, 2023.*
+
+11. Moskalev, A., Prakash, M., Liao, R., and Mansi, T.  
+    **SE(3)-Hyena operator for scalable equivariant learning.**  
+    *arXiv:2407.01049, 2024.*
+
+12. Perin, A. and Deny, S.  
+    **On the ability of deep networks to learn symmetries from data: A neural kernel theory.**  
+    *arXiv:2412.11521, 2024.*
+
+13. Qu, E. and Krishnapriyan, A.  
+    **The importance of being scalable: Improving the speed and accuracy of neural network interatomic potentials across chemical domains.**  
+    In *Advances in Neural Information Processing Systems*, vol. 37, pages 139030–139053, 2024.
+
+14. Suk, J., Hehn, T., Behboodi, A., and Cesa, G.  
+    **ViNE-GATr: Scaling geometric algebra transformers with virtual‐node embeddings.**  
+    In *ICLR 2025 Workshop on Machine Learning Multiscale Processes, 2025.*
+
+15. Sun, P., Tan, M., Wang, W., Liu, C., Xia, F., Leng, Z., and Anguelov, D.  
+    **Swformer: Sparse window transformer for 3D object detection in point clouds.**  
+    In *Proceedings of ECCV, 2022.*
+
+16. Wang, P.-S.  
+    **Octformer: Octree-based transformers for 3D point clouds.**  
+    *ACM Transactions on Graphics (SIGGRAPH), 42(4), 2023.*
+
+17. Wu, X., Jiang, L., Wang, P., Liu, Z., Liu, X., Qiao, Y., Ouyang, W., He, T., and Zhao, H.  
+    **Point Transformer V3: Simpler, faster, stronger.**  
+    In *Proceedings of CVPR, 2024.*
+
+18. Zhdanov, M., Welling, M., and van de Meent, J.-W.  
+    **Erwin: A tree-based hierarchical transformer for large-scale physical systems.**  
+    *arXiv:2502.17019, 2025.*
+
+19. Zhu, Z. and Soricut, R.  
+    **H-transformer-1d: Fast one-dimensional hierarchical attention for sequences.**  
+    In *Proceedings of NeurIPS*, pages 3801–3815. ACL, 2021.
+
+20. Zhu, M., Ghaffari, M., Clark, W. A., and Peng, H.  
+    **E2PN: Efficient SE(3)-equivariant point network.**  
+    In *Proceedings of CVPR, pages 1223–1232, 2023.*
 
 ---
+
+
