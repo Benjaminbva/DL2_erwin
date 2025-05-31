@@ -68,15 +68,6 @@ Below are our main quantative results. These, and other results shown in the app
 
 > *Table 1a: Average invariance Error (IE) over several rotation angles on a newly initialized (untrained) model as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
 
-> **Row → Notebook section (untrained):**  
-> + Erwin → “Erwin → Base (Erwin without MPNN or Rotating tree)”  
-> + Fixed tree → “InvErwin → Eq. 9”  
-> + Inv MPNN → “Erwin → + MPNN”  
-> + Inv Eq. 1 → “InvErwin → Eq. 9”  
-> + Inv Coarsening 2 → “InvErwin → Eq. 12”  
-> + Inv Refinement 2 → “InvErwin → Eq. 13”  
-> + Wrap → “Erwin → + Rotating tree”
-
 ### 2 Invariance Experiment (Trained Model)
 
 | Model          | MSE   | IE @ 15°  | IE @ 45°  | IE @ 90°  | IE @ 160°  |
@@ -89,13 +80,6 @@ Below are our main quantative results. These, and other results shown in the app
 
 > *Table 1b: Mean Squared Error (MSE) and Invariance Error (IE) at 15°, 45°, 90°, 160° on trained models as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
 
-> **Row → Notebook section (trained):**  
-> + Erwin → “Erwin → Base (trained)”  
-> + Inv MPNN → “Erwin → + MPNN”  
-> + Inv Eq. 1 → “InvErwin → Eq. 9”  
-> + Inv Coarsening 2 → “InvErwin → Eq. 12”  
-> + Inv Refinement 2 → “InvErwin → Eq. 13”
-
 ### 3 Equivariance Experiment
 
 | Model           | MSE  | 15°   | 45°   | 90°   | 160°  |
@@ -106,12 +90,6 @@ Below are our main quantative results. These, and other results shown in the app
 
 > *Table 2: Equivariance error (EE) for Erwin+ and GATrErwin, with and without rotated‐tree augmentation (“+”). 
       Results are reported on the original dataset \(D\) and the EE on the rotated clusters around specific angles.*
-
-> **Row → Notebook section:**  
-> + Erwin+ → “Erwin → + MPNN + Rotating tree”  
-> + GATrErwin → “GATrErwin → Basic GATr Erwin”  
-> + GATrErwin+ → “GATrErwin → + Rotating Tree”
-
 ---
 
 ## Conclusion
