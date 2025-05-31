@@ -88,7 +88,8 @@ Below are our main quantative results. These, and other results shown in the app
 | GATrErwin       | 0.672 | 0.640 | 1.33  | 1.02  | 1.59  |
 | GATrErwin+      | 0.699 | 0.610 | 1.19  | 1.02  | 1.58  |
 
-> *Table 2: MSE and IE at various rotation angles for Erwin vs. GATrErwin, with (“+”) and without rotated‐tree augmentation. The “+” versions use a rotated ball‐tree. Results are reported on the original dataset D (MSE) and under rotated variations of the dataset D<sub>θ</sub>.*
+> *Table 2: Equivariance error (EE) for Erwin+ and GATrErwin, with and without rotated‐tree augmentation (“+”). 
+      Results are reported on the original dataset \(D\) and the EE on the rotated clusters around specific angles.*
 
 ---
 
