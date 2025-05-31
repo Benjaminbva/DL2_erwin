@@ -50,6 +50,7 @@ def parse_args():
     parser.add_argument("--rotate", type=int, default=0)
     parser.add_argument("--rad", action="store_true", default=False,
                         help="Use radial‐basis function message passing")
+    parser.add_argument("--InvMPNN", action="store_true", default=False) 
     parser.add_argument("--eq-9", action="store_true", default=False)  
     parser.add_argument("--eq-12", action="store_true", default=False)  
     parser.add_argument("--eq-13", action="store_true", default=False)  

@@ -54,8 +54,8 @@ class MPNN(nn.Module):
     """
     def __init__(self, dim: int, mp_steps: int, dimensionality: int = 3):
         super().__init__()
-        self.dimensionality = 1
-        dimensionality = 1
+        self.dimensionality = 3
+        dimensionality = 3
         self.message_fns = nn.ModuleList([
             nn.Sequential(
                 nn.Linear(2 * dim + dimensionality, dim), 
