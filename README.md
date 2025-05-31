@@ -70,16 +70,6 @@ Below are our main quantative results. These, and other results shown in the app
 
 > *Table 1a: Average invariance Error (IE) over several rotation angles on a newly initialized (untrained) model as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
 
-> **Row → Notebook section (untrained):**  
-> + Erwin → “Erwin → Base (Erwin without MPNN or Rotating tree)”  
-> + Fixed tree → “InvErwin → Eq. 9”  
-> + Inv MPNN → “Erwin → + MPNN”  
-> + Inv Eq. 1 → “InvErwin → Eq. 9”  
-> + Inv Coarsening 2 → “InvErwin → Eq. 12”  
-> + Inv Refinement 2 → “InvErwin → Eq. 13”  
-> + Wrap → “Erwin → + Rotating tree”
-
-
 ### 2 Invariance Experiment (Trained Model)
 
 | Model          | MSE   | IE @ 15°  | IE @ 45°  | IE @ 90°  | IE @ 160°  |
@@ -92,14 +82,6 @@ Below are our main quantative results. These, and other results shown in the app
 
 > *Table 1b: Mean Squared Error (MSE) and Invariance Error (IE) at 15°, 45°, 90°, 160° on trained models as we incrementally fix invariant breaking components by incorporating distances between points instead of relative positions.*
 
-> **Row → Notebook section (trained):**  
-> + Erwin → “Erwin → Base (trained)”  
-> + Inv MPNN → “Erwin → + MPNN”  
-> + Inv Eq. 1 → “InvErwin → Eq. 9”  
-> + Inv Coarsening 2 → “InvErwin → Eq. 12”  
-> + Inv Refinement 2 → “InvErwin → Eq. 13”
-
-
 ### 3 Equivariance Experiment
 
 | Model           | MSE  | 15°   | 45°   | 90°   | 160°  |
@@ -109,11 +91,6 @@ Below are our main quantative results. These, and other results shown in the app
 | GATrErwin+      | 0.699 | 0.610 | 1.19  | 1.02  | 1.58  |
 
 > *Table 2: MSE and IE at various rotation angles for Erwin vs. GATrErwin, with (“+”) and without rotated‐tree augmentation. The “+” versions use a rotated ball‐tree. Results are reported on the original dataset D (MSE) and under rotated variations of the dataset D<sub>θ</sub>.*
-
-> **Row → Notebook section:**  
-> + Erwin+ → “Erwin → + MPNN + Rotating tree”  
-> + GATrErwin → “GATrErwin → Basic GATr Erwin”  
-> + GATrErwin+ → “GATrErwin → + Rotating Tree”
 
 ---
 
@@ -127,11 +104,53 @@ Below are our main quantative results. These, and other results shown in the app
 - **Overall**
     - In summary, GATrErwin represents a trade-off: it achieves state‐of‐the‐art equivariant performance on large‐scale 3D point clouds but at the cost of runtime and model size. Future work should focus on replacing the axis-aligned tree construction with one which doesn't break equivariance.   
 
-## Contributions
-- **Benjamin Van Altena**: 
-- **Fleur Dolmans**:
-- **Emanuele Arcelli**: 
-- **Matthijs Vork**: 
+- **Benjamin Van Altena**  
+  - **Model Design**  
+    I analysed the Cosmology dataset, focusing on its key aspects and ways it could be augmented. Also, I spent time inspecting parts of the code/paper breaking equivariance and invariance, thinking of possible solutions.  
+  - **Literature Review**  
+    I primarily focused on the main papers, making sure to both understand the Erwin and GATr papers as well as their corresponding codebases. Furthermore, I inspected and went through several papers on the relevant work for sub-quadratic paper, also discussed in the Erwin paper.  
+  - **Code Implementation**  
+    I wrote the first version to make Equation 13 rotation-equivariant. In addition to this, I spent time working on the rotated dataset. Finally, I wrote and created the README.md of the GitHub repository.  
+  - **Report Writing**  
+    In general, I spent time going through the report to check for general storyline and language errors. In the process of writing the README, I focused on matching both texts, looking for and finding inconsistencies and errors in the process.  
+  - **Presentation**  
+    We decided as a group that presenting with two people would be more effective for time management. I focused on studying certain key answers for possible questions after the presentation. Primarily, I focused on studying coarsening/refinement, positional encodings, point clouds, and ball‐tree construction.  
+
+- **Fleur Dolmans**  
+  - **Model Design**  
+    I designed how to fix the invariance-breaking equations.  
+  - **Literature Review**  
+    I familiarized myself with the surrounding literature of hierarchical encoders, equivariance-constrained models, and models for large-scale physical systems.  
+  - **Code Implementation**  
+    I implemented the invariant equations along with flags that would automate and facilitate the use of the code.  
+  - **Report Writing**  
+    I was the main person in charge of the paper, overseeing the cohesiveness of its story and ensuring we appropriately communicated the importance of our findings for the right audience. I wrote the introduction (along with the within-related-works section) and the background explaining the mathematical framework of how our model works.  
+  - **Presentation**  
+    I helped with the slides; however, we decided as a group that for effectiveness and time’s sake only two people should present. I was in charge of answering questions about the literature space our models live in.  
+
+- **Emanuele Arcelli**  
+  - **Model Design**  
+    How to allow Erwin’s architecture to handle multivectors, specifically the initial embeddings, the InvMPNN, and the main block. I decided to represent relative positions as physical translations in PGA as well as use the InvMPNN features as auxiliary scalars instead of embedding them directly onto the multivector.  
+  - **Literature Review**  
+    I deeply familiarized myself with Geometric Algebra, equivariance, and the inner workings of each GATr equation and how geometric object embeddings into the Projective Geometric Algebra framework.  
+  - **Code Implementation**  
+    I implemented the invariant version of Equations 9, 12, and 13. I implemented the equivariant embeddings, the InvMPNN, the main GATr block, and made sure the refinement and coarsening steps were compatible with the rest of the architecture. I wrote the notebook that displays the experiments and ordered and commented on the code for reproducibility, maintenance, and ease of use.  
+  - **Report Writing**  
+    I oversaw that the paper followed the development of the code as bugs and problems tainted the initial results and as more runs showed the real performance of the models. I wrote the first draft of the invariance experiment as well as that of the discussion.  
+  - **Presentation**  
+    I presented the introduction, background section of the models, and explained briefly Geometric Algebra.  
+
+- **Matthijs Vork**  
+  - **Model Design**  
+    I analysed the equations that broke rotation invariance and equivariance and reformulated them to respect both properties. I also designed the message function of the MPNN, adding radial-basis-function embeddings of pairwise distances.  
+  - **Literature Review**  
+    I surveyed papers that informed the current approach and searched related work within this niche to find ideas for improvement.  
+  - **Code Implementation**  
+    I rewrote Equation 12 to make it rotation-equivariant, implemented the radial-basis-function layer, and set up the experiment on the rotated dataset.  
+  - **Report Writing**  
+    I drafted several sections of the paper, helped organize its structure, and recreated figures in the style of the original publication.  
+  - **Presentation**  
+    I prepared the slides and was one of the team members who presented. 
 
 ---
 
